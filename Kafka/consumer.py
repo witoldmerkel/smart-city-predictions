@@ -13,4 +13,4 @@ consumer = KafkaConsumer(
 
 for message in consumer:
     message = message.value
-    print('{} added to'.format(message))
+    print('{} add to'.format(message))
