@@ -1,6 +1,7 @@
 from time import sleep
 from json import dumps
 from kafka import KafkaProducer
+#.\bin\windows\kafka-server-start.bat .\config\server.properties
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          value_serializer=lambda x:
