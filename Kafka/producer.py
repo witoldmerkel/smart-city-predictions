@@ -1,6 +1,8 @@
 from time import sleep
 from json import dumps
 from kafka import KafkaProducer
+import requests
+
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          value_serializer=lambda x:
