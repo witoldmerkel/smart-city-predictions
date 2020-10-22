@@ -13,12 +13,12 @@ while(1):
     data1 = response1.json()
     producer.send('numtest', value=data1)
 
-    response2 = requests.get("https://api.waqi.info/feed/ursynow/?token=5daa289b09c26a80ee8dfb9f41a19fafd067c10b")
-    data2 = response2.json()
-    producer.send('numtest', value=data2)
+    #response2 = requests.get("https://api.waqi.info/feed/ursynow/?token=5daa289b09c26a80ee8dfb9f41a19fafd067c10b")
+    #data2 = response2.json()
+    #producer.send('numtest', value=data2)
 
-    response3 = requests.get("https://api.waqi.info/feed/targowek/?token=5daa289b09c26a80ee8dfb9f41a19fafd067c10b")
-    data3 = response3.json()
-    producer.send('numtest', value=data3)
+    #response3 = requests.get("https://api.waqi.info/feed/targowek/?token=5daa289b09c26a80ee8dfb9f41a19fafd067c10b")
+    #data3 = response3.json()
+    #producer.send('numtest', value=data3)
 
-    sleep(20)
+    sleep(1)
