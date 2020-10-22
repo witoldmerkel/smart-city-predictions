@@ -21,4 +21,4 @@ while(1):
     data3 = response3.json()
     producer.send('numtest', value=data3)
 
-    sleep(5)
+    sleep(20)
