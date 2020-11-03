@@ -7,7 +7,7 @@ from pyspark.sql.context import SQLContext
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print("Usage: kafka_wordcount.py <zk> <topic>", file=sys.stderr)
+        print("Usage: kafka_wordcount.py <zk> <topic>")
         exit(-1)
 
     sc = SparkContext(appName="PythonStreamingKafkaWordCount")
