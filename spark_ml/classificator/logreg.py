@@ -5,7 +5,7 @@ sc = SparkContext('local')
 spark = SparkSession(sc)
 
 # Load training data
-training = spark.read.format("libsvm").load("/Users/witek/Desktop/Studia/Inżynierka/sample_libsvm_data.txt")
+training = spark.read.format("libsvm").load('D:/Pobrane/sample_libsvm_data.txt')
 
 lr = LogisticRegression(maxIter=10, regParam=0.3, elasticNetParam=0.8)
 
