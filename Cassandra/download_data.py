@@ -6,17 +6,22 @@ from cassandra.query import dict_factory
 
 
 cluster = Cluster(contact_points=["127.0.0.1"], port="9042")
-
 session = cluster.connect("json")
-session.row_factory = dict_factory
 
-sql_query = "SELECT * FROM {}.{};".format("json", "urzedy_nazwy")
+
+def pandas_factory(colnames, rows):
+    return pd.DataFrame(rows, columns=colnames)
+
+
+session.row_factory = pandas_factory
+session.default_fetch_size = None
+
+
+query = "SELECT * FROM {}.{};".format("json", "urzedy")
 
 df = pd.DataFrame()
 
-for row in session.execute(sql_query):
-    df = df.append(pd.DataFrame(row, index=[0]))
-
-df = df.reset_index(drop=True)
+rslt = session.execute(query, timeout=None)
+df = rslt._current_rows
 
 print(df.shape)
