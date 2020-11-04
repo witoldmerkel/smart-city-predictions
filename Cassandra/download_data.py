@@ -17,7 +17,7 @@ session.row_factory = pandas_factory
 session.default_fetch_size = None
 
 
-query = "SELECT * FROM {}.{};".format("json", "urzedy")
+query = "SELECT * FROM {}.{};".format("json", "velib")
 
 df = pd.DataFrame()
 
