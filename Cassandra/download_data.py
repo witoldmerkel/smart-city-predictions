@@ -1,13 +1,15 @@
 import pandas as pd
 
 from cassandra.cluster import Cluster
-from cassandra.auth import PlainTextAuthProvider
-from cassandra.query import dict_factory
-
 
 cluster = Cluster(contact_points=["127.0.0.1"], port="9042")
 session = cluster.connect("json")
 
+#urzedy = session.execute('select * from urzedy;')
+#powietrze = session.execute('select * from powietrze;')
+#velib = session.execute('select * from velib;')
+#velib_stacje = session.execute('select * from velib_stations;')
+#urzedy_nazwy = session.execute('select * from urzedy_nazwy;')
 
 def pandas_factory(colnames, rows):
     return pd.DataFrame(rows, columns=colnames)
