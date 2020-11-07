@@ -1,6 +1,7 @@
 import os
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
+import platform
 
 
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.0 --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
@@ -36,4 +37,11 @@ firstStation = firstStation.cache()
 firstStation.unpersist()
 
 # Shutdowning PySpark Context
+
+
 sc.stop()
+
+plt = platform.system()
+
+if plt == "Windows":
+    os.system('rmdir /q /s "D:\SparkTEMP"')
