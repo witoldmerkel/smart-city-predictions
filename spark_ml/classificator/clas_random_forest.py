@@ -3,7 +3,9 @@ from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import IndexToString, StringIndexer, VectorIndexer
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.sql import SparkSession
-
+import findspark
+print(findspark.find())
+findspark.init()
 if __name__ == "__main__":
     spark = SparkSession\
         .builder\
@@ -12,7 +14,7 @@ if __name__ == "__main__":
 
     # $example on$
     # Load and parse the data file, converting it to a DataFrame.
-    data = spark.read.format("libsvm").load('/Users/witek/Desktop/Studia/Inżynierka/sample_libsvm_data.txt')
+    data = spark.read.format("libsvm").load(r'C:\Users\jaiko\Desktop\Inżynierka\spark-2.4.7-bin-hadoop2.7\data\mllib\sample_libsvm_data.txt')
 
     # Index labels, adding metadata to the label column.
     # Fit on whole dataset to include all labels in index.
