@@ -16,7 +16,8 @@ spark = SparkSession\
         .getOrCreate()
 
 # Consume Kafka topic
-events = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092").option("subscribe", "sparkvelib").load()
+events = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092")\
+    .option("subscribe", "sparkvelib").load()
 
 # Cast the JSON payload as a String
 lines = events.selectExpr("CAST(value AS STRING)")
