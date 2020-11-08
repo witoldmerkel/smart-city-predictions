@@ -28,4 +28,5 @@ powietrze.insert(loc = 1, column="Miesiac", value=miesiac)
 powietrze.insert(loc = 1, column="Rok", value=rok)
 powietrze.insert(loc = 1, column="Godzina", value=godzina)
 powietrze.insert(loc = 1, column="Minuta", value=minuta)
-print(powietrze)
+
+target = powietrze[['pm25']]
