@@ -4,6 +4,7 @@ from pyspark.sql import SparkSession
 from pyspark.context import SparkContext
 import os
 
+#All of these jars should be downloaded in spark jars
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1,' \
                                     'org.apache.spark:spark-streaming-kafka-0-10-assembly_2.12:3.0.1,' \
                                     'org.apache.kafka:kafka-clients:2.6.0,' \
