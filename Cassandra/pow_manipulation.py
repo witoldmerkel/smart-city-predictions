@@ -32,27 +32,23 @@ powietrze = miesiac.withColumn("dzien", dayofweek(miesiac["normal_type"]))
 
 # Stworzenie targeta
 
-powietrze = powietrze.withColumn("target(stan_za_4h)", (when(powietrze["pm25"] < 12, "Dobre").when(powietrze["pm25"] <= 35, "Umiarkowane")
+powietrze = powietrze.withColumn("target", (when(powietrze["pm25"] < 12, "Dobre").when(powietrze["pm25"] <= 35, "Umiarkowane")
                                             .when(powietrze["pm25"] <= 55, "Niezdrowe dla chorych").when(powietrze["pm25"] <= 150, "Niezdrowe")
                                             .when(powietrze["pm25"] <= 250, "Bardzo niezdrowe").otherwise("Niebezpieczne")))
 
-paryz = powietrze.where(powietrze["name"] == "Paris")
-ursynow = powietrze.where(powietrze["name"] == "Ursynów, Warszawa, Mazowieckie, Poland")
-marszalkowska = powietrze.where(powietrze["name"] == "Marszałkowska, Warszawa, Mazowieckie, Poland")
-targowek = powietrze.where(powietrze["name"] == "Targówek, Warszawa, Mazowieckie, Poland")
-
-paryz = paryz.orderBy(paryz["timestamp"])
-ursynow = ursynow.orderBy(ursynow["timestamp"])
-marszalkowska = marszalkowska.orderBy(marszalkowska["timestamp"])
-targowek = targowek.orderBy(targowek["timestamp"])
+iterator1 = powietrze.select('name').distinct().orderBy(powietrze['name'])
+iterator = iterator1.toPandas()
+num = 0
 
 w = Window().partitionBy().orderBy(col("timestamp"))
-paryz = paryz.select("*", lag("target(stan_za_4h)", 24).over(w).alias("target")).na.drop()
-ursynow = ursynow.select("*", lag("target(stan_za_4h)", 24).over(w).alias("target")).na.drop()
-marszalkowska = marszalkowska.select("*", lag("target(stan_za_4h)", 24).over(w).alias("target")).na.drop()
-targowek = targowek.select("*", lag("target(stan_za_4h)", 24).over(w).alias("target")).na.drop()
+for id in iterator['name']:
+    temp = powietrze.where(powietrze['name'] == id)
+    temp = temp.orderBy(temp["timestamp"])
+    temp = temp.select("*", lag("target", 24).over(w).alias("target(stan_za_4h)")).na.drop()
+    if num == 0:
+        dane = temp
+    else:
+        dane = dane.union(temp)
+    num+=1
 
-paryz = paryz.drop("target")
-ursynow = ursynow.drop("target")
-marszalkowska = marszalkowska.drop("target")
-targowek = targowek.drop("target")
+dane.show()
