@@ -4,6 +4,7 @@ from pyspark.sql import SQLContext
 from pyspark.sql.types import TimestampType
 from pyspark.sql.functions import hour, minute, year, month, dayofweek, when, lag, col
 from pyspark.sql.window import Window
+import platform
 
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.0 --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
 
@@ -49,3 +50,12 @@ for id in iterator['idgrupy']:
     num+=1
 
 dane.show()
+
+# Zamkniecie polaczenia ze Spark
+
+sc.stop()
+
+plt = platform.system()
+
+if plt == "Windows":
+    os.system('rmdir /q /s "D:\SparkTEMP"')

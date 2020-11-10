@@ -1,4 +1,5 @@
 import os
+import platform
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql.types import TimestampType
@@ -52,3 +53,12 @@ for id in iterator['name']:
     num+=1
 
 dane.show()
+
+# Zamkniecie polaczenia ze Spark
+
+sc.stop()
+
+plt = platform.system()
+
+if plt == "Windows":
+    os.system('rmdir /q /s "D:\SparkTEMP"')
