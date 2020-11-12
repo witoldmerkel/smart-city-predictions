@@ -1,7 +1,7 @@
 import os
 import platform
 import load_table, common_manipulations
-from pyspark.sql.functions import lag, col
+from pyspark.sql.functions import lead
 from pyspark.sql.window import Window
 
 # Załadowanie i przetworzenie danych z tabeli velib
@@ -19,22 +19,11 @@ def load_velib(keys_space_name="json", table_name="velib"):
 
     # Stworzenie zmiennej celu
 
-    iterator1 = velib.select('station_id').distinct().orderBy(velib['station_id'])
-    iterator = iterator1.toPandas()
-    num = 0
+    w = Window().partitionBy("station_id").orderBy("timestamp")
+    dane = velib.withColumn("target", lead("num_bikes_available", 240).over(w)).na.drop()
 
-    w = Window().partitionBy().orderBy(col("timestamp"))
-    for id in iterator['station_id']:
-        temp = velib.where(velib['station_id'] == id)
-        temp = temp.orderBy(temp["timestamp"])
-        temp = temp.select("*", lag("num_bikes_available", 240).over(w).alias("num_bikes_available(stan_za_4h)")).na.drop()
-        if num == 0:
-            dane = temp
-        else:
-            dane = dane.union(temp)
-        num+=1
-
-    dane.show()
+    dane.sort("station_id", "timestamp").show(300)
+    print(dane.dtypes)
 
     # Zamkniecie polaczenia ze Spark
 

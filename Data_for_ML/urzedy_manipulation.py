@@ -1,6 +1,6 @@
 import os
 import load_table, common_manipulations
-from pyspark.sql.functions import lag, col
+from pyspark.sql.functions import lead
 from pyspark.sql.window import Window
 import platform
 
@@ -19,23 +19,13 @@ def load_urzedy(keys_space_name="json", table_name="urzedy"):
     urzedy = common_manipulations.timestamp_to_date(urzedy_temp)
     
     # Stworzenie zmiennej celu
-    
-    iterator1 = urzedy.select('idgrupy').distinct().orderBy(urzedy['idgrupy'])
-    iterator = iterator1.toPandas()
-    num = 0
-    
-    w = Window().partitionBy().orderBy(col("timestamp"))
-    for id in iterator['idgrupy']:
-        temp = urzedy.where(urzedy['idgrupy'] == id)
-        temp = temp.orderBy(temp["timestamp"])
-        temp = temp.select("*", lag("liczbaklwkolejce", 240).over(w).alias("liczbaklwkolejce(stan_za_4h)")).na.drop()
-        if num == 0:
-            dane = temp
-        else:
-            dane = dane.union(temp)
-        num+=1
-    
-    dane.show()
+
+    w = Window().partitionBy("idgrupy").orderBy("timestamp")
+    dane = urzedy.withColumn("target", lead("liczbaklwkolejce", 240).over(w)).na.drop()
+
+    dane.sort("idgrupy", "timestamp").show(300)
+    print(dane.dtypes)
+
     
     # Zamkniecie polaczenia ze Spark
     
