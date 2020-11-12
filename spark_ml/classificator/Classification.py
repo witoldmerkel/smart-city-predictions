@@ -1,6 +1,6 @@
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
-from pyspark.ml.feature import IndexToString,OneHotEncoder, StringIndexer, VectorAssembler, StandardScaler
+from pyspark.ml.feature import IndexToString, OneHotEncoder, StringIndexer, VectorAssembler, StandardScaler
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 import platform
 import os
@@ -8,7 +8,9 @@ import os
 
 def make_class_model(data, sc):
 
+    # Stages for pipline
     stages = []
+
     # Index labels, adding metadata to the label column.
     # Fit on whole dataset to include all labels in index.
     targetIndexer = StringIndexer(inputCol="target", outputCol="indexedTarget").fit(data)
@@ -17,12 +19,14 @@ def make_class_model(data, sc):
     # Split the data into training and test sets (30% held out for testing)
     (trainingData, testData) = data.randomSplit([0.7, 0.3])
 
+    # Identify categorical and numerical variables
     catCols = [x for (x, dataType) in trainingData.dataTypes if (((dataType == "string") | (dataType == "boolean"))
                & (x != "target"))]
 
     numCols = [x for (x, dataType) in trainingData.dataTypes if ((dataType == "int") | (dataType == "bigint")
                                                                  | (dataType == "float") | (dataType == "double"))]
 
+    # OneHotEncode categorical variables
     indexers = [StringIndexer(inputCol=column, outputCol=column + "-index") for column in catCols]
 
     encoder = OneHotEncoder(
@@ -36,6 +40,7 @@ def make_class_model(data, sc):
 
     stages += [indexers, encoder, assembler_cat]
 
+    # Standardize numerical variables
     scalers = [StandardScaler(inputCol=column, outputCol=column + "-scaled") for column in numCols]
 
     assembler_num = VectorAssembler(
@@ -43,6 +48,7 @@ def make_class_model(data, sc):
         outputCol="numerical-features"
     )
 
+    # Combine all features in one vector
     assembler_all = VectorAssembler(
         inputCols=['categorical-features', 'numerical-features'],
         outputCol='features'
@@ -80,8 +86,10 @@ def make_class_model(data, sc):
     rfModel = model.stages[2]
     print(rfModel)
 
+    # Stop spark session
     sc.stop()
 
+    # Deleting temp files for Windows systems
     plt = platform.system()
 
     if plt == "Windows":
