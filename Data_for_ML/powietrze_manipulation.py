@@ -1,6 +1,7 @@
 import platform
 import os
-import load_table, common_manipulations
+import load_table
+import common_manipulations
 from pyspark.sql.functions import when, lead
 from pyspark.sql.window import Window
 
@@ -25,6 +26,10 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
 
     w = Window().partitionBy("name").orderBy("timestamp")
     dane = powietrze.withColumn("target", lead("target_temp", 4).over(w)).na.drop()
+
+    # Usuniecie kolumn nieuzywanych do predykcji
+
+    dane = dane.drop(*['tz', 'normal_type'])
 
     dane.sort("name", "timestamp").show(200)
     print(dane.dtypes)

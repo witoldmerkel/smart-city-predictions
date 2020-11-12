@@ -1,8 +1,10 @@
 import os
 import platform
-import load_table, common_manipulations
+import load_table
+import common_manipulations
 from pyspark.sql.functions import lead
 from pyspark.sql.window import Window
+from pyspark.sql.types import BooleanType
 
 # Załadowanie i przetworzenie danych z tabeli velib
 
@@ -22,6 +24,12 @@ def load_velib(keys_space_name="json", table_name="velib"):
     w = Window().partitionBy("station_id").orderBy("timestamp")
     dane = velib.withColumn("target", lead("num_bikes_available", 240).over(w)).na.drop()
 
+    # Usuniecie kolumn nieuzywanych do predykcji
+    dane = dane.drop(*['normal_type', 'numbikesavailable', 'numdocksavailable', 'station_code'])
+    dane = dane.withColumn("is_installed", dane['is_installed'].cast(BooleanType())) \
+        .withColumn('is_renting', dane['is_renting'].cast(BooleanType())) \
+        .withColumn('is_returning', dane['is_returning'].cast(BooleanType()))
+
     dane.sort("station_id", "timestamp").show(300)
     print(dane.dtypes)
 
@@ -35,3 +43,5 @@ def load_velib(keys_space_name="json", table_name="velib"):
         os.system('rmdir /q /s "D:\SparkTEMP"')
 
     return dane, sc
+
+dane = load_velib()

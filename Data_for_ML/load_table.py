@@ -1,6 +1,4 @@
 import os
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
 from pyspark.sql import SparkSession
 
 

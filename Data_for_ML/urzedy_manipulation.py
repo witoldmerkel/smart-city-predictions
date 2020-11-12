@@ -1,5 +1,6 @@
 import os
-import load_table, common_manipulations
+import load_table
+import common_manipulations
 from pyspark.sql.functions import lead
 from pyspark.sql.window import Window
 import platform
@@ -23,6 +24,8 @@ def load_urzedy(keys_space_name="json", table_name="urzedy"):
     w = Window().partitionBy("idgrupy").orderBy("timestamp")
     dane = urzedy.withColumn("target", lead("liczbaklwkolejce", 240).over(w)).na.drop()
 
+    # Usuniecie kolumn nieuzywanych do predykcji
+    dane = dane.drop(*['normal_type'])
     dane.sort("idgrupy", "timestamp").show(300)
     print(dane.dtypes)
 
