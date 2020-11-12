@@ -1,8 +1,7 @@
 import os
 import platform
-import load_table
-from pyspark.sql.types import TimestampType
-from pyspark.sql.functions import hour, minute, year, month, dayofweek, when, lag, col
+import load_table, common_manipulations
+from pyspark.sql.functions import lag, col
 from pyspark.sql.window import Window
 
 # Załadowanie i przetworzenie danych z tabeli velib
@@ -12,16 +11,11 @@ def load_velib(keys_space_name="json", table_name="velib"):
 
     # Wczytanie danych
 
-    velib_temp, cs = load_table.load_and_get_table_df(keys_space_name, table_name)
+    velib_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name)
 
     # Dodanie zmiennych opisujących dokładnie czas
 
-    velib_temp = velib_temp.withColumn("normal_type", velib_temp["timestamp"].cast(TimestampType()))
-    godzina = velib_temp.withColumn('godzina', hour(velib_temp['normal_type']))
-    minuta = godzina.withColumn('minuta', minute(godzina['normal_type']))
-    rok = minuta.withColumn('rok', year(minuta['normal_type']))
-    miesiac = rok.withColumn('miesiac', month(rok['normal_type']))
-    velib = miesiac.withColumn("dzien", dayofweek(miesiac["normal_type"]))
+    velib = common_manipulations.timestamp_to_date(velib_temp)
 
     # Stworzenie zmiennej celu
 

@@ -1,6 +1,6 @@
 import platform
 import os
-import load_table
+import load_table, common_manipulations
 from pyspark.sql.types import TimestampType
 from pyspark.sql.functions import hour, minute, year, month, dayofweek, when, lag, col
 from pyspark.sql.window import Window
@@ -16,14 +16,9 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
 
     # Dodanie zmiennych opisujących dokładnie czas
 
-    powietrze_temp = powietrze_temp.withColumn("normal_type", powietrze_temp["timestamp"].cast(TimestampType()))
-    godzina = powietrze_temp.withColumn('godzina', hour(powietrze_temp['normal_type']))
-    minuta = godzina.withColumn('minuta', minute(godzina['normal_type']))
-    rok = minuta.withColumn('rok', year(minuta['normal_type']))
-    miesiac = rok.withColumn('miesiac', month(rok['normal_type']))
-    powietrze = miesiac.withColumn("dzien", dayofweek(miesiac["normal_type"]))
+    powietrze = common_manipulations.timestamp_to_date(powietrze_temp)
 
-    # Stworzenie targeta
+    # Stworzenie zmiennej celu
 
     powietrze = powietrze.withColumn("target", (when(powietrze["pm25"] < 12, "Dobre").when(powietrze["pm25"] <= 35, "Umiarkowane")
                                                 .when(powietrze["pm25"] <= 55, "Niezdrowe dla chorych").when(powietrze["pm25"] <= 150, "Niezdrowe")
@@ -44,8 +39,8 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
             dane = dane.union(temp)
         num+=1
 
-    dane.show()
-
+    dane.show(100)
+    print(dane.dtypes)
     # Zamkniecie polaczenia ze Spark
 
     sc.stop()
@@ -56,4 +51,7 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
         os.system('rmdir /q /s "D:\SparkTEMP"')
 
     return dane, sc
+
+dane = load_powietrze()
+
 

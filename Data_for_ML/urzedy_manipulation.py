@@ -1,8 +1,6 @@
-import platform
 import os
-import load_table
-from pyspark.sql.types import TimestampType
-from pyspark.sql.functions import hour, minute, year, month, dayofweek, when, lag, col
+import load_table, common_manipulations
+from pyspark.sql.functions import lag, col
 from pyspark.sql.window import Window
 import platform
 
@@ -18,12 +16,7 @@ def load_urzedy(keys_space_name="json", table_name="urzedy"):
     
     # Dodanie zmiennych opisujących dokładnie czas
     
-    urzedy_temp = urzedy_temp.withColumn("normal_type", urzedy_temp["timestamp"].cast(TimestampType()))
-    godzina = urzedy_temp.withColumn('godzina', hour(urzedy_temp['normal_type']))
-    minuta = godzina.withColumn('minuta', minute(godzina['normal_type']))
-    rok = minuta.withColumn('rok', year(minuta['normal_type']))
-    miesiac = rok.withColumn('miesiac', month(rok['normal_type']))
-    urzedy = miesiac.withColumn("dzien", dayofweek(miesiac["normal_type"]))
+    urzedy = common_manipulations.timestamp_to_date(urzedy_temp)
     
     # Stworzenie zmiennej celu
     
@@ -54,3 +47,5 @@ def load_urzedy(keys_space_name="json", table_name="urzedy"):
         os.system('rmdir /q /s "D:\SparkTEMP"')
 
     return dane, sc
+
+dane = load_urzedy()
