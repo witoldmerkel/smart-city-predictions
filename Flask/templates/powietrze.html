@@ -8,24 +8,22 @@
 
     var pobierzDane = function () {
         var miasto = $('#miasta').val();
-        var from = $('#from').val();
-        var to = $('#to').val();
+        var fromd = Date.parse($('#from').val())/1000;
+        var tod = Date.parse($('#to').val())/1000;
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto,
+            "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto + "/" + fromd + "/" + tod,
             "method": "GET",
             "dataType": 'json'
         }
-        console.log(miasto)
-        console.log(from)
-        console.log(to)
         $.ajax(settings).done(function (response) {
             var tabela = document.getElementById("tabel");
             for (i=0; i < response.length; i++){
                 var singleRow=document.createElement('tr');
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).name + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).timestamp + '</td>';
+                const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
+                const humanDateFormat = dateObject.toLocaleString()
+                singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
                 singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm25 + '</td>';
                 tabela.appendChild(singleRow);}
 
@@ -36,7 +34,6 @@
 
     <table id="tabel">
         <tr>
-            <th>name</th>
             <th>timestamp</th>
             <th>pm25</th>
 
@@ -56,14 +53,14 @@
 <label for="from">Od kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="from"
-       name="from" value="2018-06-12T19:30"
-       min="2012-11-01T00:00" max="2020-11-20T00:00">
+       name="from" value="2020-10-31T00:00"
+       min="2020-10-01T00:00" max="2020-11-20T00:00">
 
 <label for="to">Do kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="to"
-       name="to" value="2018-06-12T19:30"
-       min="2012-11-01T00:00" max="2020-11-20T00:00">
+       name="to" value="2020-11-30T00:00"
+       min="2020-10-01T00:00" max="2020-11-30T00:00">
 
 <button onclick="pobierzDane()", id="rob">Rób</button>
 

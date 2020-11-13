@@ -13,11 +13,11 @@ def home():
 def powietrze():
     return render_template("powietrze.html")
 
-@app.route("/powietrze/dane/<miasto>", methods=['GET'])
-def get_powietrze(miasto):
+@app.route("/powietrze/dane/<miasto>/<fromd>/<tod>", methods=['GET'])
+def get_powietrze(miasto, fromd, tod):
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
-    cql = "SELECT json * FROM powietrze where name =" + miasto
+    cql = "SELECT json * FROM powietrze where name =" + miasto + " and timestamp >" + fromd + " and timestamp <" + tod
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
