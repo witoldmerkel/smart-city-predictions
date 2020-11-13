@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, Response
 from cassandra.cluster import Cluster
 import pandas as pd
+from flask_wtf import FlaskForm
 
 app = Flask(__name__)
 
@@ -8,29 +9,20 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/powietrze", methods=['GET'])
-def get_powietrze():
-    cluster = Cluster(['127.0.0.1'], "9042")
-    session = cluster.connect('json')
-    cql = "SELECT * FROM powietrze"
-    r = session.execute(cql)
-    return str(r[0])
+@app.route("/powietrze")
+def powietrze():
+    return render_template("powietrze.html")
 
-@app.route("/urzedy", methods=['GET'])
-def get_urzedy():
+@app.route("/powietrze/dane/<miasto>", methods=['GET'])
+def get_powietrze(miasto):
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
-    cql = "SELECT * FROM urzedy"
+    cql = "SELECT json * FROM powietrze where name =" + miasto
     r = session.execute(cql)
-    return str(r[0])
-
-@app.route("/velib", methods=['GET'])
-def get_velib():
-    cluster = Cluster(['127.0.0.1'], "9042")
-    session = cluster.connect('json')
-    cql = "SELECT * FROM velib"
-    r = session.execute(cql)
-    return str(r[0])
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
 
 if __name__ == '__main__':
     app.run()

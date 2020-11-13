@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Powietrze tabela</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+
+    var pobierzDane = function () {
+        var miasto = $('#miasta').val();
+        var from = $('#from').val();
+        var to = $('#to').val();
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto,
+            "method": "GET",
+            "dataType": 'json'
+        }
+        console.log(miasto)
+        console.log(from)
+        console.log(to)
+        $.ajax(settings).done(function (response) {
+            var tabela = document.getElementById("tabel");
+            for (i=0; i < response.length; i++){
+                var singleRow=document.createElement('tr');
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).name + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).timestamp + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm25 + '</td>';
+                tabela.appendChild(singleRow);}
+
+})};
+    </script>
+</head>
+<body>
+
+    <table id="tabel">
+        <tr>
+            <th>name</th>
+            <th>timestamp</th>
+            <th>pm25</th>
+
+        </tr>
+
+    </table>
+
+<label for="miasta">Który punkt pomiaru:</label>
+
+<select name="miasta" id="miasta">
+  <option value="'Paris'">Paryż</option>
+  <option value="'Marszałkowska, Warszawa, Mazowieckie, Poland'">Marszałkowska</option>
+  <option value="'Ursynów, Warszawa, Mazowieckie, Poland'">Ursynów</option>
+  <option value="'Targówek, Warszawa, Mazowieckie, Poland'">Targówek</option>
+</select>
+
+<label for="from">Od kiedy pokazywać dane:</label>
+
+<input type="datetime-local" id="from"
+       name="from" value="2018-06-12T19:30"
+       min="2012-11-01T00:00" max="2020-11-20T00:00">
+
+<label for="to">Do kiedy pokazywać dane:</label>
+
+<input type="datetime-local" id="to"
+       name="to" value="2018-06-12T19:30"
+       min="2012-11-01T00:00" max="2020-11-20T00:00">
+
+<button onclick="pobierzDane()", id="rob">Rób</button>
+
+</body>
+</html>

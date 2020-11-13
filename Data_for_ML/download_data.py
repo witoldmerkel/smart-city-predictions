@@ -5,9 +5,11 @@ import time
 
 cluster = Cluster(['127.0.0.1'], "9042")
 session = cluster.connect('json')
-powietrze = session.execute('select * from powietrze;')
-urzedy = session.execute('select * from urzedy;')
-velib = session.execute('select * from velib;')
-urzedy_nazwy = session.execute('select * from urzedy_nazwy;')
-velib_stacje = session.execute('select * from velib_stations;')
+miasto = "Paris"
+cql = "select * from powietrze where name = " + str(miasto)
+powietrze = session.execute(cql)
+df = pd.DataFrame()
+for row in powietrze:
+    print(pd.DataFrame(row))
+
 
