@@ -2,18 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Powietrze tabela</title>
+    <title>Rowery tabela</title>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
 
+    var zaladujDane = function () {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/velib/stacje",
+            "method": "GET",
+            "dataType": 'json'
+        }
+        $.ajax(settings).done(function (response) {
+            for (i=0; i < response.length; i++){
+                var x = document.getElementById("stacje");
+                var option = document.createElement("option");
+                option.text = JSON.parse(response[i][0]).name;
+                option.value = JSON.parse(response[i][0]).station_id;
+                x.add(option);
+
+
+}})};
+    window.onload = zaladujDane();
+
     var pobierzDane = function () {
-        var miasto = $('#miasta').val();
+        var stacja = $('#stacje').val();
         var fromd = Date.parse($('#from').val())/1000;
         var tod = Date.parse($('#to').val())/1000;
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto + "/" + fromd + "/" + tod,
+            "url": "http://127.0.0.1:5000/velib/dane/" + stacja + "/" + fromd + "/" + tod,
             "method": "GET",
             "dataType": 'json'
         }
@@ -24,14 +44,13 @@
                 const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
                 const humanDateFormat = dateObject.toLocaleString()
                 singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm25 + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).num_bikes_available + '</td>';
                 tabela.appendChild(singleRow);}
 
 })};
     </script>
 </head>
 <body>
-
     <nav>
         <ul class="menu">
             <li><a href="{{ url_for('home') }}">Powrót do strony startowej</a></li>
@@ -41,19 +60,15 @@
     <table id="tabel">
         <tr>
             <th>Data i godzina</th>
-            <th>pm25</th>
+            <th>Liczba wolnych rowerów</th>
 
         </tr>
 
     </table>
 
-<label for="miasta">Który punkt pomiaru:</label>
+<label for="stacje">Która stacja:</label>
 
-<select name="miasta" id="miasta">
-  <option value="'Paris'">Paryż</option>
-  <option value="'Marszałkowska, Warszawa, Mazowieckie, Poland'">Marszałkowska</option>
-  <option value="'Ursynów, Warszawa, Mazowieckie, Poland'">Ursynów</option>
-  <option value="'Targówek, Warszawa, Mazowieckie, Poland'">Targówek</option>
+<select name="stacje" id="stacje">
 </select>
 
 <label for="from">Od kiedy pokazywać dane:</label>
