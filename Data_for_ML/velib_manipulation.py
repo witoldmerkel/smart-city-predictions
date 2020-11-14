@@ -1,5 +1,3 @@
-import os
-import platform
 import load_table
 import common_manipulations
 from pyspark.sql.functions import lead
@@ -33,15 +31,4 @@ def load_velib(keys_space_name="json", table_name="velib"):
     dane.sort("station_id", "timestamp").show(300)
     print(dane.dtypes)
 
-    # Zamkniecie polaczenia ze Spark
-
-    sc.stop()
-
-    plt = platform.system()
-
-    if plt == "Windows":
-        os.system('rmdir /q /s "D:\SparkTEMP"')
-
     return dane, sc
-
-dane = load_velib()

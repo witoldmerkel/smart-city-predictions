@@ -20,10 +20,10 @@ def make_class_model(data, sc):
     (trainingData, testData) = data.randomSplit([0.7, 0.3])
 
     # Identify categorical and numerical variables
-    catCols = [x for (x, dataType) in trainingData.dataTypes if (((dataType == "string") | (dataType == "boolean"))
+    catCols = [x for (x, dataType) in trainingData.dtypes if (((dataType == "string") | (dataType == "boolean"))
                & (x != "target"))]
 
-    numCols = [x for (x, dataType) in trainingData.dataTypes if ((dataType == "int") | (dataType == "bigint")
+    numCols = [x for (x, dataType) in trainingData.dtypes if ((dataType == "int") | (dataType == "bigint")
                                                                  | (dataType == "float") | (dataType == "double"))]
 
     # OneHotEncode categorical variables
@@ -38,23 +38,26 @@ def make_class_model(data, sc):
         outputCol="categorical-features"
     )
 
-    stages += [indexers, encoder, assembler_cat]
+    stages += indexers
+    stages += [encoder, assembler_cat]
 
-    # Standardize numerical variables
-    scalers = [StandardScaler(inputCol=column, outputCol=column + "-scaled") for column in numCols]
+
 
     assembler_num = VectorAssembler(
-        inputCols=[scaler.getOutputCol() for scaler in scalers],
+        inputCols=numCols,
         outputCol="numerical-features"
     )
 
+    # Standardize numerical variables
+    scaler = StandardScaler(inputCol="numerical-features", outputCol="numerical-features_scaled")
+
     # Combine all features in one vector
     assembler_all = VectorAssembler(
-        inputCols=['categorical-features', 'numerical-features'],
+        inputCols=['categorical-features', 'numerical-features_scaled'],
         outputCol='features'
     )
 
-    stages += [scalers, assembler_num, assembler_all]
+    stages += [assembler_num, scaler, assembler_all]
 
     # Train a RandomForest model.
     rf = RandomForestClassifier(labelCol="indexedTarget", featuresCol="features", numTrees=10)
@@ -75,11 +78,11 @@ def make_class_model(data, sc):
     predictions = model.transform(testData)
 
     # Select example rows to display.
-    predictions.select("predictedLabel", "label", "features").show(5)
+    predictions.select("predictedLabel", "target", "features").show(5)
 
     # Select (prediction, true label) and compute test error
     evaluator = MulticlassClassificationEvaluator(
-        labelCol="indexedLabel", predictionCol="prediction", metricName="accuracy")
+        labelCol="indexedTarget", predictionCol="prediction", metricName="accuracy")
     accuracy = evaluator.evaluate(predictions)
     print("Accuracy = %g" % (0.0 + accuracy))
 

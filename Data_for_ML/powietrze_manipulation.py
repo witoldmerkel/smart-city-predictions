@@ -1,5 +1,3 @@
-import platform
-import os
 import load_table
 import common_manipulations
 from pyspark.sql.functions import when, lead
@@ -20,32 +18,24 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
 
     # Stworzenie zmiennej celu
 
-    powietrze = powietrze.withColumn("target_temp", (when(powietrze["pm25"] < 12, "Dobre").when(powietrze["pm25"] <= 35, "Umiarkowane")
-                                                .when(powietrze["pm25"] <= 55, "Niezdrowe dla chorych").when(powietrze["pm25"] <= 150, "Niezdrowe")
-                                                .when(powietrze["pm25"] <= 250, "Bardzo niezdrowe").otherwise("Niebezpieczne")))
+    powietrze = powietrze.withColumn("target_temp", (when(powietrze["pm25"] < 12, "Dobre")
+                                                     .when(powietrze["pm25"] <= 35, "Umiarkowane")
+                                                     .when(powietrze["pm25"] <= 55, "Niezdrowe dla chorych")
+                                                     .when(powietrze["pm25"] <= 150, "Niezdrowe")
+                                                     .when(powietrze["pm25"] <= 250, "Bardzo niezdrowe")
+                                                     .otherwise("Niebezpieczne")))
 
     w = Window().partitionBy("name").orderBy("timestamp")
     dane = powietrze.withColumn("target", lead("target_temp", 4).over(w)).na.drop()
 
     # Usuniecie kolumn nieuzywanych do predykcji
 
-    dane = dane.drop(*['tz', 'normal_type'])
+    dane = dane.drop(*['tz', 'normal_type', 'minuta'])
 
     dane.sort("name", "timestamp").show(200)
     print(dane.dtypes)
 
-    # Zamkniecie polaczenia ze Spark
-
-    sc.stop()
-
-    plt = platform.system()
-
-    if plt == "Windows":
-        os.system('rmdir /q /s "D:\SparkTEMP"')
-
     return dane, sc
 
-
-dane = load_powietrze()
 
 

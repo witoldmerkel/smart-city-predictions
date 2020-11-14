@@ -1,9 +1,8 @@
-import os
 import load_table
 import common_manipulations
 from pyspark.sql.functions import lead
 from pyspark.sql.window import Window
-import platform
+
 
 # Załadowanie i przetworzenie danych z tabeli urzedy
 
@@ -29,16 +28,4 @@ def load_urzedy(keys_space_name="json", table_name="urzedy"):
     dane.sort("idgrupy", "timestamp").show(300)
     print(dane.dtypes)
 
-    
-    # Zamkniecie polaczenia ze Spark
-    
-    sc.stop()
-    
-    plt = platform.system()
-    
-    if plt == "Windows":
-        os.system('rmdir /q /s "D:\SparkTEMP"')
-
     return dane, sc
-
-dane = load_urzedy()
