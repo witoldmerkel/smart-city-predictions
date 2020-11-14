@@ -2,18 +2,22 @@ from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import IndexToString, OneHotEncoder, StringIndexer, VectorAssembler, StandardScaler
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from cassandra.cluster import Cluster
+from time import time
+import pickle
 import platform
 import os
 
 
-def make_class_model(data, sc):
+def make_class_model(data, sc, keyspace, table):
 
+    t0 = time()
     # Stages for pipline
     stages = []
 
     # Index labels, adding metadata to the label column.
     # Fit on whole dataset to include all labels in index.
-    targetIndexer = StringIndexer(inputCol="target", outputCol="indexedTarget").fit(data)
+    targetIndexer = StringIndexer(inputCol="target", outputCol="indexedTarget", handleInvalid="keep").fit(data)
     stages += [targetIndexer]
 
     # Split the data into training and test sets (30% held out for testing)
@@ -27,7 +31,7 @@ def make_class_model(data, sc):
                                                                  | (dataType == "float") | (dataType == "double"))]
 
     # OneHotEncode categorical variables
-    indexers = [StringIndexer(inputCol=column, outputCol=column + "-index") for column in catCols]
+    indexers = [StringIndexer(inputCol=column, outputCol=column + "-index", handleInvalid="keep") for column in catCols]
 
     encoder = OneHotEncoder(
         inputCols=[indexer.getOutputCol() for indexer in indexers],
@@ -88,6 +92,16 @@ def make_class_model(data, sc):
 
     rfModel = model.stages[2]
     print(rfModel)
+    tt = time() - t0
+    timestamp = int(time())
+    model_pickle = pickle.dumps(model).hex()
+
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect(keyspace)
+    query = ("INSERT INTO %s (timestamp, model, stat, learning_time, model_name)") % (table)
+    query = query + " VALUES (%s, %s, %s, %s, %s)"
+    session.execute(query, (timestamp, model_pickle, accuracy, tt, "RandomForest"))
+
 
     # Stop spark session
     sc.stop()
