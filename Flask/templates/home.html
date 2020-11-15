@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title>Flask Parent Template</title>
+      <title>Strona główna</title>
       <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
    </head>
    <body>
@@ -15,6 +15,7 @@
                      <li><a href="{{ url_for('home') }}">Strona startowa</a></li>
                      <li><a href="{{ url_for('powietrze') }}">Powietrze</a></li>
                      <li><a href="{{ url_for('velib') }}">Rowery</a></li>
+                     <li><a href="{{ url_for('urzedy') }}">Urzędy</a></li>
                   </ul>
                </nav>
             </strong>
