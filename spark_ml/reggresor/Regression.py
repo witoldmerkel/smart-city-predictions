@@ -22,7 +22,7 @@ def make_regr_model(data, sc):
                & (x != "target"))]
 
     # OneHotEncode categorical variables
-    indexers = [StringIndexer(inputCol=column, outputCol=column + "-index") for column in catCols]
+    indexers = [StringIndexer(inputCol=column, outputCol=column + "-index", handleInvalid="keep") for column in catCols]
 
     encoder = OneHotEncoder(
         inputCols=[indexer.getOutputCol() for indexer in indexers],
