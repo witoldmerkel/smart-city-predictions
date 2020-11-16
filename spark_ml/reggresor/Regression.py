@@ -2,12 +2,14 @@ from pyspark.ml import Pipeline
 from pyspark.ml.regression import RandomForestRegressor
 from pyspark.ml.feature import OneHotEncoder, StringIndexer, VectorAssembler, StandardScaler
 from pyspark.ml.evaluation import RegressionEvaluator
+from time import time
 import platform
 import os
 
 
 def make_regr_model(data, sc):
 
+    t0 = time()
     # Stages for pipline
     stages = []
 
@@ -77,8 +79,10 @@ def make_regr_model(data, sc):
     rmse = evaluator.evaluate(predictions)
     print("RMSE = %g" % (0.0 + rmse))
 
-    rfModel = model.stages[1]
-    print(rfModel)
+    # Final model saving
+    tt = time() - t0
+    timestamp = int(time())
+    model.write().overwrite().save(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
 
     # Stop spark session
     sc.stop()

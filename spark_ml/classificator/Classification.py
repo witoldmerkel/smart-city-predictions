@@ -91,14 +91,14 @@ def make_class_model(data, sc, keyspace, table):
     accuracy = evaluator.evaluate(predictions)
     print("Accuracy = %g" % (0.0 + accuracy))
 
-    # rfModel = model.stages[2]
-    # print(rfModel)
-    # tt = time() - t0
-    # timestamp = int(time())
-    # model.write().overwrite().save(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
+    # Final model saving
+    tt = time() - t0
+    timestamp = int(time())
+    model.write().overwrite().save(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
+
+
     # loaded_model = PipelineModel.load(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
     # model_pickle = pickle.dumps(loaded_model).hex()
-    #
     # cluster = Cluster(['127.0.0.1'], "9042")
     # session = cluster.connect(keyspace)
     # query = ("INSERT INTO %s (timestamp, model, stat, learning_time, model_name)") % (table)
