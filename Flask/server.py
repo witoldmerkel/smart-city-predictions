@@ -21,6 +21,17 @@ def velib():
 def urzedy():
     return render_template("urzedy.html")
 
+@app.route("/powietrze/nazwy")
+def get_nazwy_punktow():
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('json')
+    cql = "SELECT name from powietrze where timestamp = 1605553200 allow filtering"
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
 @app.route("/powietrze/dane/<miasto>/<fromd>/<tod>", methods=['GET'])
 def get_powietrze_dane_archiwalne(miasto, fromd, tod):
     cluster = Cluster(['127.0.0.1'], "9042")

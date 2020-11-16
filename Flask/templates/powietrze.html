@@ -6,8 +6,28 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
 
+    var zaladujDane = function () {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/powietrze/nazwy",
+            "method": "GET",
+            "dataType": 'json'
+        }
+        $.ajax(settings).done(function (response) {
+            for (i=0; i < response.length; i++){
+                var x = document.getElementById("miasta");
+                var option = document.createElement("option");
+                option.text = response[i][0];
+                option.value = response[i][0];
+                x.add(option);
+            }})};
+    window.onload = zaladujDane();
+
     var pobierzDane = function () {
         var miasto = $('#miasta').val();
+        var poczatek = "'"
+        miasto = poczatek.concat(miasto, "'")
         var fromd = Date.parse($('#from').val())/1000;
         var tod = Date.parse($('#to').val())/1000;
         var settings = {
@@ -62,10 +82,6 @@
 <label for="miasta">Który punkt pomiaru:</label>
 
 <select name="miasta" id="miasta">
-  <option value="'Paris'">Paryż</option>
-  <option value="'Marszałkowska, Warszawa, Mazowieckie, Poland'">Marszałkowska</option>
-  <option value="'Ursynów, Warszawa, Mazowieckie, Poland'">Ursynów</option>
-  <option value="'Targówek, Warszawa, Mazowieckie, Poland'">Targówek</option>
 </select>
 
 <label for="from">Od kiedy pokazywać dane:</label>
