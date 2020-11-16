@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/spark_ml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/spark_ml/classificator" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/spark_ml/reggresor" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SpeedLayer" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (smart-city-predictions2)" jdkType="Python SDK" />
