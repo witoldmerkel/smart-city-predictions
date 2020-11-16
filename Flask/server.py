@@ -1,7 +1,6 @@
-from flask import Flask, render_template, jsonify, Response
+from flask import Flask, render_template
 from cassandra.cluster import Cluster
 import pandas as pd
-from flask_wtf import FlaskForm
 
 app = Flask(__name__)
 
