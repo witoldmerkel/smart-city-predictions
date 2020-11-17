@@ -1,33 +1,16 @@
 from pyspark.sql.functions import from_json
 import pyspark.sql.functions as F
-from pyspark.sql import SparkSession
+from kafka_spark_connection import create_sk_connection
+from velib_manipulation import velib_preprocessing
+from powietrze_manipulation import powietrze_preprocessing
 from pyspark.sql.types import (
-        StructType, StringType, IntegerType
+        StructType, StringType, IntegerType, FloatType
         )
-import os
 
 
 def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
 
-
-    # All of these jars should be downloaded in spark jars
-    os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1,' \
-                                        'org.apache.spark:spark-streaming-kafka-0-10-assembly_2.12:3.0.1,' \
-                                        'org.apache.kafka:kafka-clients:2.6.0,' \
-                                        'org.apache.commons:commons-pool2:2.9.0,' \
-                                        'org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.0.1 pyspark-shell'
-
-    # Creating spark session
-    spark = SparkSession\
-            .builder\
-            .appName(topic)\
-            .getOrCreate()
-
-    # loaded_model = PipelineModel.load(model_path)
-
-    # Consume Kafka topic
-    sc = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092")\
-        .option("subscribe", topic).option("startingOffsets", "earliest").load()
+    sc = create_sk_connection(topic)
 
     json_schema = StructType() \
         .add("station_code", StringType()) \
@@ -42,7 +25,6 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Deskto
         .add("is_returning", StringType()) \
         .add("is_renting", StringType()) \
         .add("timestamp", StringType(), False)
-
 
     stream = sc.select(
        from_json(F.col("value").cast("string"), json_schema).alias("parsed")
@@ -63,11 +45,65 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Deskto
         .withColumn('station_id', stream['station_id'].cast(IntegerType())) \
         .withColumn('timestamp', stream['timestamp'].cast(IntegerType()))
 
+    stream = velib_preprocessing(stream)
+
     query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
 
     query.awaitTermination()
 
-    return stream, query
+    return stream, query, model_path
 
 
-activate_velib_stream()
+def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
+
+    sc = create_sk_connection(topic)
+
+    json_schema = StructType() \
+        .add("o3", StringType()) \
+        .add("tz", StringType()) \
+        .add("h", StringType()) \
+        .add("pm10", StringType()) \
+        .add("co", StringType()) \
+        .add("long", StringType()) \
+        .add("no2", StringType()) \
+        .add("p", StringType()) \
+        .add("pm25", StringType()) \
+        .add("t", StringType()) \
+        .add("v", StringType()) \
+        .add("so2", StringType()) \
+        .add("w", StringType()) \
+        .add("name", StringType()) \
+        .add("lat", StringType()) \
+
+    stream = sc.select(
+       from_json(F.col("value").cast("string"), json_schema).alias("parsed")
+    )
+
+    stream = stream.select("parsed.*")
+
+    stream = stream.withColumn("co", stream['co'].cast(FloatType())) \
+        .withColumn('h', stream['h'].cast(FloatType())) \
+        .withColumn('lat', stream['lat'].cast(FloatType())) \
+        .withColumn('long', stream['long'].cast(FloatType())) \
+        .withColumn('name', stream['name'].cast(StringType())) \
+        .withColumn('no2', stream['no2'].cast(FloatType())) \
+        .withColumn('o3', stream['o3'].cast(FloatType())) \
+        .withColumn('p', stream['p'].cast(FloatType())) \
+        .withColumn('pm10', stream['pm10'].cast(FloatType())) \
+        .withColumn('pm25', stream['pm25'].cast(FloatType())) \
+        .withColumn('so2', stream['so2'].cast(FloatType())) \
+        .withColumn('t', stream['t'].cast(FloatType())) \
+        .withColumn('tz', stream['tz'].cast(StringType())) \
+        .withColumn('w', stream['w'].cast(FloatType())) \
+        .withColumn('timestamp', stream['v'].cast(IntegerType()))
+
+    stream = powietrze_preprocessing(stream)
+
+    query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
+
+    query.awaitTermination()
+
+    return stream, query, model_path
+
+
+activate_powietrze_stream()

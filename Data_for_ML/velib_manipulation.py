@@ -15,8 +15,7 @@ def velib_preprocessing(velib_data):
         .withColumn('is_renting', dane['is_renting'].cast(StringType())) \
         .withColumn('is_returning', dane['is_returning'].cast(StringType()))
 
-    dane.sort("station_id", "timestamp").show(300)
-    print(dane.dtypes)
+
     return dane
 
 
@@ -34,5 +33,8 @@ def load_velib(keys_space_name="json", table_name="velib"):
 
     w = Window().partitionBy("station_id").orderBy("timestamp")
     dane = velib.withColumn("target", lead("num_bikes_available", 240).over(w)).na.drop()
+
+    dane.sort("station_id", "timestamp").show(300)
+    print(dane.dtypes)
 
     return dane, sc

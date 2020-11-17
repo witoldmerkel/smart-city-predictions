@@ -13,8 +13,7 @@ def urzedy_preprocessing(urzedy_data):
 
     dane = urzedy.drop(*['normal_type'])
 
-    dane.sort("idgrupy", "timestamp").show(300)
-    print(dane.dtypes)
+
     return dane
 
 
