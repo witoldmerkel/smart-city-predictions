@@ -1,14 +1,13 @@
 from pyspark.sql.functions import from_json
 import pyspark.sql.functions as F
 from pyspark.sql import SparkSession
-from pyspark.ml import PipelineModel
 from pyspark.sql.types import (
         StructType, StringType, IntegerType
         )
 import os
 
 
-def activate_speed_connection(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
+def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
 
 
     # All of these jars should be downloaded in spark jars
@@ -28,7 +27,7 @@ def activate_speed_connection(topic="sparkvelib", model_path=r'C:\Users\jaiko\De
 
     # Consume Kafka topic
     sc = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092")\
-        .option("subscribe", topic).option("startingOffsets","earliest").load()
+        .option("subscribe", topic).option("startingOffsets", "earliest").load()
 
     json_schema = StructType() \
         .add("station_code", StringType()) \
@@ -49,10 +48,26 @@ def activate_speed_connection(topic="sparkvelib", model_path=r'C:\Users\jaiko\De
        from_json(F.col("value").cast("string"), json_schema).alias("parsed")
     )
 
-    stream.select("parsed.*")
+    stream = stream.select("parsed.*")
+
+    stream = stream.withColumn("is_installed", stream['is_installed'].cast(StringType())) \
+        .withColumn('is_renting', stream['is_renting'].cast(StringType())) \
+        .withColumn('is_returning', stream['is_returning'].cast(StringType())) \
+        .withColumn('ebike', stream['ebike'].cast(IntegerType())) \
+        .withColumn('mechanical', stream['mechanical'].cast(IntegerType())) \
+        .withColumn('num_bikes_available', stream['num_bikes_available'].cast(IntegerType())) \
+        .withColumn('num_docks_available', stream['num_docks_available'].cast(IntegerType())) \
+        .withColumn('numbikesavailable', stream['numbikesavailable'].cast(IntegerType())) \
+        .withColumn('numdocksavailable', stream['numdocksavailable'].cast(IntegerType())) \
+        .withColumn('station_code', stream['station_code'].cast(IntegerType())) \
+        .withColumn('station_id', stream['station_id'].cast(IntegerType())) \
+        .withColumn('timestamp', stream['timestamp'].cast(IntegerType()))
 
     query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
 
     query.awaitTermination()
 
-activate_speed_connection()
+    return stream, query
+
+
+activate_velib_stream()

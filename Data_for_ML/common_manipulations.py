@@ -1,4 +1,4 @@
-from pyspark.sql.functions import hour, minute, year, month, dayofweek
+from pyspark.sql.functions import hour, minute, dayofweek
 from pyspark.sql.types import TimestampType, StringType
 
 
