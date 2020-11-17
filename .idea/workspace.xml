@@ -19,12 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="Load manipulation and streaming first structures">
+    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="Streaming modules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data_for_ML/powietrze_manipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data_for_ML/powietrze_manipulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data_for_ML/urzedy_manipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data_for_ML/urzedy_manipulation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data_for_ML/velib_manipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data_for_ML/velib_manipulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpeedLayer/kafka_spark_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedLayer/kafka_spark_connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpeedLayer/speed_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedLayer/speed_connection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -254,7 +251,7 @@
       <workItem from="1605387681429" duration="148000" />
       <workItem from="1605387849206" duration="11720000" />
       <workItem from="1605468339189" duration="1813000" />
-      <workItem from="1605541463831" duration="18358000" />
+      <workItem from="1605541463831" duration="20753000" />
     </task>
     <task id="LOCAL-00001" summary="Folder with used apis">
       <created>1602433605639</created>
@@ -473,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605640953996</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Streaming modules">
+      <created>1605644160254</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1605644160254</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +516,8 @@
     <MESSAGE value="Saving to file" />
     <MESSAGE value="Streaming from kafka and" />
     <MESSAGE value="Load manipulation and streaming first structures" />
-    <option name="LAST_COMMIT_MESSAGE" value="Load manipulation and streaming first structures" />
+    <MESSAGE value="Streaming modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Streaming modules" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="190" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604675711951">
@@ -531,29 +536,29 @@
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="72" y="184" key="FileDocumentManager.FileCacheConflict/0.23.1792.1011@0.23.1792.1011" timestamp="1602695307519" />
-    <state width="1877" height="230" key="GridCell.Tab.0.bottom" timestamp="1605643891963">
+    <state width="1877" height="230" key="GridCell.Tab.0.bottom" timestamp="1605650101887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.bottom/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1877" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605643891963" />
+    <state width="1877" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605650101887" />
     <state width="1750" height="377" key="GridCell.Tab.0.bottom/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440396" />
-    <state width="1877" height="230" key="GridCell.Tab.0.center" timestamp="1605643891963">
+    <state width="1877" height="230" key="GridCell.Tab.0.center" timestamp="1605650101887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.center/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1877" height="230" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605643891963" />
+    <state width="1877" height="230" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605650101887" />
     <state width="1750" height="377" key="GridCell.Tab.0.center/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440396" />
-    <state width="1877" height="230" key="GridCell.Tab.0.left" timestamp="1605643891963">
+    <state width="1877" height="230" key="GridCell.Tab.0.left" timestamp="1605650101887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.left/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1877" height="230" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605643891963" />
+    <state width="1877" height="230" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605650101887" />
     <state width="1750" height="377" key="GridCell.Tab.0.left/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440395" />
-    <state width="1877" height="230" key="GridCell.Tab.0.right" timestamp="1605643891963">
+    <state width="1877" height="230" key="GridCell.Tab.0.right" timestamp="1605650101887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.right/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1877" height="230" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605643891963" />
+    <state width="1877" height="230" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605650101887" />
     <state width="1750" height="377" key="GridCell.Tab.0.right/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440396" />
     <state x="179" y="113" key="MergeDialog" timestamp="1604772652395">
       <screen x="0" y="23" width="1792" height="1011" />
@@ -572,11 +577,11 @@
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="652" y="251" key="VCS.ChangeListViewerDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1603368773907" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605640958175">
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605644168898">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="709" y="339" key="Vcs.Push.Dialog.v2/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521812923" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605640958175" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605644168898" />
     <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1604862339072" />
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602610822445">
       <screen x="0" y="23" width="1792" height="1011" />
@@ -606,7 +611,7 @@
     <SUITE FILE_PATH="coverage/smart_city_predictions$spark_connection.coverage" NAME="spark_connection Coverage Results" MODIFIED="1604854283158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$random_forest__1_.coverage" NAME="reg_random_forest Coverage Results" MODIFIED="1604434075621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/reggresor" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$random_forest.coverage" NAME="clas_random_forest Coverage Results" MODIFIED="1604434070404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/classificator" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$speed_connection.coverage" NAME="speed_connection Coverage Results" MODIFIED="1605643891954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SpeedLayer" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$speed_connection.coverage" NAME="speed_connection Coverage Results" MODIFIED="1605650101371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SpeedLayer" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$producer.coverage" NAME="producer Coverage Results" MODIFIED="1603371332540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$send_to_cassandra.coverage" NAME="send_to_cassandra Coverage Results" MODIFIED="1603368343826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
   </component>

@@ -13,8 +13,8 @@ def velib_preprocessing(velib_data):
     dane = dane.drop(*['normal_type', 'numbikesavailable', 'numdocksavailable', 'station_code'])
     dane = dane.withColumn("is_installed", dane['is_installed'].cast(StringType())) \
         .withColumn('is_renting', dane['is_renting'].cast(StringType())) \
-        .withColumn('is_returning', dane['is_returning'].cast(StringType()))
-
+        .withColumn('is_returning', dane['is_returning'].cast(StringType())) \
+        .withColumn('station_id', dane['station_id'].cast(StringType()))
 
     return dane
 

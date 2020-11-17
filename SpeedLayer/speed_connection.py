@@ -3,6 +3,7 @@ import pyspark.sql.functions as F
 from kafka_spark_connection import create_sk_connection
 from velib_manipulation import velib_preprocessing
 from powietrze_manipulation import powietrze_preprocessing
+from urzedy_manipulation import urzedy_preprocessing
 from pyspark.sql.types import (
         StructType, StringType, IntegerType, FloatType
         )
@@ -97,7 +98,7 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
         .withColumn('w', stream['w'].cast(FloatType())) \
         .withColumn('timestamp', stream['v'].cast(IntegerType()))
 
-    stream = powietrze_preprocessing(stream)
+    stream = powietrze_preprocessing()(stream)
 
     query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
 
@@ -106,4 +107,46 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
     return stream, query, model_path
 
 
-activate_powietrze_stream()
+def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
+
+    sc = create_sk_connection(topic)
+
+    json_schema = StructType() \
+        .add("timestamp", StringType()) \
+        .add("lp", StringType()) \
+        .add("czasObslugi", StringType()) \
+        .add("liczbaCzynnychStan", StringType()) \
+        .add("nazwaGrupy", StringType()) \
+        .add("literaGrupy", StringType()) \
+        .add("liczbaKlwKolejce", StringType()) \
+        .add("idGrupy", StringType()) \
+        .add("aktualnyNumer", StringType()) \
+        .add("status", StringType()) \
+
+    stream = sc.select(
+       from_json(F.col("value").cast("string"), json_schema).alias("parsed")
+    )
+
+    stream = stream.select("parsed.*")
+
+    stream = stream.withColumn("timestamp", stream['timestamp'].cast(IntegerType())) \
+        .withColumn('l_p', stream['lp'].cast(StringType())) \
+        .withColumn('czasobslugi', stream['czasObslugi'].cast(IntegerType())) \
+        .withColumn('liczbaczynnychstan', stream['liczbaCzynnychStan'].cast(IntegerType())) \
+        .withColumn('nazwagrupy', stream['nazwaGrupy'].cast(StringType())) \
+        .withColumn('literagrupy', stream['literaGrupy'].cast(StringType())) \
+        .withColumn('liczbaklwkolejce', stream['liczbaKlwKolejce'].cast(IntegerType())) \
+        .withColumn('idgrupy', stream['idGrupy'].cast(IntegerType())) \
+        .withColumn('aktualny_numer', stream['aktualnyNumer'].cast(StringType())) \
+        .withColumn('status', stream['status'].cast(StringType()))
+
+    stream = urzedy_preprocessing(stream)
+
+    query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
+
+    query.awaitTermination()
+
+    return stream, query, model_path
+
+
+activate_urzedy_stream()
