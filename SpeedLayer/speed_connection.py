@@ -4,12 +4,15 @@ from kafka_spark_connection import create_sk_connection
 from velib_manipulation import velib_preprocessing
 from powietrze_manipulation import powietrze_preprocessing
 from urzedy_manipulation import urzedy_preprocessing
+from spark_cassandra_connection import writeToCassandra
+from pyspark.ml import PipelineModel
 from pyspark.sql.types import (
         StructType, StringType, IntegerType, FloatType
         )
 
 
-def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
+
+def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model', table = ""):
 
     sc = create_sk_connection(topic)
 
@@ -52,10 +55,11 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Deskto
 
     query.awaitTermination()
 
-    return stream, query, model_path
+    return stream, query, model_path, table
 
 
-def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
+def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
+                              keyspace = "predictions", table = "powietrze_predictions"):
 
     sc = create_sk_connection(topic)
 
@@ -77,7 +81,7 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
         .add("lat", StringType()) \
 
     stream = sc.select(
-       from_json(F.col("value").cast("string"), json_schema).alias("parsed")
+       from_json(F.col("value").cast(StringType()), json_schema).alias("parsed")
     )
 
     stream = stream.select("parsed.*")
@@ -98,16 +102,31 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
         .withColumn('w', stream['w'].cast(FloatType())) \
         .withColumn('timestamp', stream['v'].cast(IntegerType()))
 
-    stream = powietrze_preprocessing()(stream)
+    stream = powietrze_preprocessing(stream)
 
-    query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
+    stream = stream.withColumn("target_column", F.lit("pm25"))
 
-    query.awaitTermination()
+    stream = stream.withColumn("model_path", F.lit(model_path))
 
-    return stream, query, model_path
+    loaded_model = PipelineModel.load(model_path)
+
+    stream = loaded_model.transform(stream)
+
+    stream = stream.withColumn("predictedlabel", stream["predictedLabel"])
+
+    stream = stream.select('predictedlabel', "name", "timestamp", "target_column", "model_path")
+
+    writeToCassandra(stream=stream, keyspace=keyspace, table=table)
+
+    # query = stream.writeStream.outputMode('append').option("truncate", False).format('console')\
+    #     .option("encoding", "UTF-8").start()
+    #
+    # query.awaitTermination()
+
+    return stream
 
 
-def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model'):
+def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model', table = ""):
 
     sc = create_sk_connection(topic)
 
@@ -146,7 +165,7 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desk
 
     query.awaitTermination()
 
-    return stream, query, model_path
+    return stream, query, model_path, table
 
 
-activate_urzedy_stream()
+activate_powietrze_stream()
