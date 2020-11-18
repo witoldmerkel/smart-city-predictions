@@ -4,89 +4,103 @@
     <meta charset="UTF-8">
     <title>Rowery tabela</title>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript">
-
-    var zaladujDane = function () {
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/velib/stacje",
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            for (i=0; i < response.length; i++){
-                var x = document.getElementById("stacje");
-                var option = document.createElement("option");
-                option.text = JSON.parse(response[i][0]).name;
-                option.value = JSON.parse(response[i][0]).station_id;
-                x.add(option);
-
-
-}})};
-    window.onload = zaladujDane();
-
-    var pobierzDane = function () {
-        var stacja = $('#stacje').val();
-        var fromd = Date.parse($('#from').val())/1000;
-        var tod = Date.parse($('#to').val())/1000;
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/velib/dane/" + stacja + "/" + fromd + "/" + tod,
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            var tabela = document.getElementById("tabel");
-            tabela.innerHTML='';
-            var singleRow=document.createElement('tr');
-            singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów" + '</td>';
-            tabela.appendChild(singleRow);
-            for (i=0; i < response.length; i++){
-                var singleRow=document.createElement('tr');
-                const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
-                const humanDateFormat = dateObject.toLocaleString()
-                singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).num_bikes_available + '</td>';
-                tabela.appendChild(singleRow);}
-
-})};
-    </script>
+    <script src="{{url_for('static', filename='rowery_script.js') }}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='rowery_style.css') }}">
 </head>
 <body>
     <nav>
-        <ul class="menu">
+        <div class="menu">
             <li><a href="{{ url_for('home') }}">Strona startowa</a></li>
             <li><a href="{{ url_for('powietrze') }}">Powietrze</a></li>
             <li><a href="{{ url_for('urzedy') }}">Urzędy</a></li>
-        </ul>
+        </div>
     </nav>
 
-
-
-<label for="stacje">Która stacja:</label>
+<div class="split left">
+  <div class="centered">
+      <center><h1>Dane historyczne</h1></center>
+<label for="stacje">Który punkt pomiaru:</label>
 
 <select name="stacje" id="stacje">
 </select>
-
+<br>
 <label for="from">Od kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="from"
        name="from" value="2020-10-31T00:00"
        min="2020-10-01T00:00" max="2020-11-20T00:00">
-
+<br>
 <label for="to">Do kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="to"
        name="to" value="2020-11-30T00:00"
        min="2020-10-01T00:00" max="2020-11-30T00:00">
 
-<button onclick="pobierzDane()", id="rob">Rób</button>
+      <br>
+
+<button onclick="pobierzDane()", id="rob">Pokaż</button>
 
     <table id="tabel">
     </table>
+
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered_r">
+    <center><h1>Predykcja</h1></center>
+<label for="stacje_pred">Który punkt pomiaru:</label>
+
+<select name="stacje_pred" id="stacje_pred">
+</select>
+      <br>
+
+<button onclick="pobierzDane_pred()", id="rob_pred">Pokaż</button>
+
+    <table id="tabel_pred">
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  <div class="leftpanel">
+    <center><h3>Danych</h3></center>
+      <label for="stacje_stat">Który punkt pomiaru:</label>
+
+<select name="stacje_stat" id="stacje_stat">
+</select>
+      <br>
+    <table id="tabel_danych">
+    </table>
+  </div>
+  <div class="middlepanel">
+      <center><h1>Statystyki</h1></center>
+          <div class="middlesubpannel">
+      <label for="from_stat">Od kiedy pokazywać dane:</label>
+
+<input type="datetime-local" id="from_stat"
+       name="from_stat" value="2020-10-31T00:00"
+       min="2020-10-01T00:00" max="2020-11-20T00:00">
+<br>
+<label for="to_stat">Do kiedy pokazywać dane:</label>
+
+<input type="datetime-local" id="to_stat"
+       name="to_stat" value="2020-11-30T00:00"
+       min="2020-10-01T00:00" max="2020-11-30T00:00">
+
+      <br>
+
+<button onclick="pobierzDane_stat()", id="rob_stat">Pokaż</button>
+          </div>
+          </div>
+
+    </div>
+  <div class="rightpanel">
+    <center><h3>Modelu</h3></center>
+      <table id="tabel_modelu">
+    </table>
+  </div>
+</div>
 
 </body>
 </html>
