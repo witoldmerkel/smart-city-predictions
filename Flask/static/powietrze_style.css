@@ -1,4 +1,5 @@
-body {background-color: white;}
+body {background-color: white;
+overflow: hidden;}
 li {display: inline;}
 .menu {
   width: 100%;

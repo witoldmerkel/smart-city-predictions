@@ -1,0 +1,72 @@
+body {background-color: white;
+overflow: hidden;}
+li {display: inline;}
+.menu {
+  width: 100%;
+  height: 5%;
+  overflow: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: cornflowerblue;}
+.menu a {
+  float: left;
+  text-decoration: none;
+  font-size: 17px;
+  width: 33.33%;
+  text-align: center;
+  background-color: cornflowerblue;}
+.menu a:hover {
+  background-color: black;
+  color: white;}
+.split {
+  height: 60%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  margin-top: 60px;
+  border-bottom: 5px solid black;}
+.left {
+  left: 0;
+  padding-left: 10px;
+  border-right: 5px solid black;}
+.right {
+  right: 0}
+.centered_r{
+  padding-left: 25px;}
+.container {
+  width: 100%;
+  height: 35%;}
+.leftpanel {
+  width: 33.33%;
+  height: 30%;
+  float: left;
+  border-collapse: collapse;
+  position: absolute;
+  top: 72%;
+  left: 5%;}
+.middlepanel {
+  width: 33.34%;
+  height: 30%;
+  float: left;
+  border-collapse: collapse;
+  position: absolute;
+  top: 65%;
+  left: 34%;}
+.rightpanel {
+  width: 33.33%;
+  height: 30%;
+  float: right;
+  border-collapse: collapse;
+  position: absolute;
+  top: 72%;
+  left: 62%;}
+.middlesubpannel{
+  width: 33.34%;
+  height: 30%;
+  float: left;
+  border-collapse: collapse;
+  position: absolute;
+  top: 35%;
+  left: 34%;}
