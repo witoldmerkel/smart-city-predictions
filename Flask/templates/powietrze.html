@@ -4,94 +4,70 @@
     <meta charset="UTF-8">
     <title>Powietrze tabela</title>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript">
-
-    var zaladujDane = function () {
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/nazwy",
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            for (i=0; i < response.length; i++){
-                var x = document.getElementById("miasta");
-                var option = document.createElement("option");
-                option.text = response[i][0];
-                option.value = response[i][0];
-                x.add(option);
-            }})};
-    window.onload = zaladujDane();
-
-    var pobierzDane = function () {
-        var miasto = $('#miasta').val();
-        var poczatek = "'"
-        miasto = poczatek.concat(miasto, "'")
-        var fromd = Date.parse($('#from').val())/1000;
-        var tod = Date.parse($('#to').val())/1000;
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto + "/" + fromd + "/" + tod,
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            var tabela = document.getElementById("tabel");
-            tabela.innerHTML='';
-            var singleRow=document.createElement('tr');
-            singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow.innerHTML += '<td>' + "Stan powietrze" + '</td>';
-            tabela.appendChild(singleRow);
-            for (i=0; i < response.length; i++){
-                var stan;
-                if (JSON.parse(response[i][0]).pm25 < 12) {
-                    stan = "Dobre";
-                } else if (JSON.parse(response[i][0]).pm25 <= 35) {
-                    stan = "Umiarkowane";
-                } else if (JSON.parse(response[i][0]).pm25 <= 55) {
-                    stan = "Niezdrowe dla chorych";
-                } else if (JSON.parse(response[i][0]).pm25 <= 150) {
-                    stan = "Niezdrowe";
-                } else if (JSON.parse(response[i][0]).pm25 <= 250) {
-                    stan = "Bardzo niezdrowe";
-                } else {
-                    stan = "Niebezpieczne";
-                }
-                var singleRow=document.createElement('tr');
-                const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
-                const humanDateFormat = dateObject.toLocaleString()
-                singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + stan + '</td>';
-                tabela.appendChild(singleRow);}
-
-})};
-    </script>
+    <script src="{{url_for('static', filename='powietrze_script.js')}}"></script>
+    <style>
+    body {background-color: white;}
+    li {display: inline;}
+    .menu {
+        width: 100%;
+        overflow: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: cornflowerblue;}
+    .menu a {
+        float: left;
+        text-decoration: none;
+        font-size: 17px;
+        width: 33.33%;
+        text-align: center;
+        background-color: cornflowerblue;}
+    .menu a:hover {
+        background-color: black;
+        color: white;}
+    .split {
+        height: 60%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        margin-top: 60px;
+        border-bottom: 5px solid black;}
+    .left {
+        left: 0;
+        padding-left: 10px;
+        border-right: 5px solid black;}
+    .right {
+        right: 0}
+    .centered_r{
+        padding-left: 25px;}
+</style>
 </head>
 <body>
 
     <nav>
-        <ul class="menu">
+        <div class="menu">
             <li><a href="{{ url_for('home') }}">Strona startowa</a></li>
             <li><a href="{{ url_for('velib') }}">Rowery</a></li>
             <li><a href="{{ url_for('urzedy') }}">Urzędy</a></li>
-        </ul>
+        </div>
     </nav>
 
 
-
+<div class="split left">
+  <div class="centered">
+      <center><h1>Dane historyczne</h1></center>
 <label for="miasta">Który punkt pomiaru:</label>
 
 <select name="miasta" id="miasta">
 </select>
-
+<br>
 <label for="from">Od kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="from"
        name="from" value="2020-10-31T00:00"
        min="2020-10-01T00:00" max="2020-11-20T00:00">
-
+<br>
 <label for="to">Do kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="to"
@@ -102,6 +78,16 @@
 
     <table id="tabel">
     </table>
+
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered_r">
+    <center><h1>Predykcja</h1></center>
+
+  </div>
+</div>
 
 </body>
 </html>
