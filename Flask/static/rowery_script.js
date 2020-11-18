@@ -9,13 +9,21 @@
         $.ajax(settings).done(function (response) {
             for (i=0; i < response.length; i++){
                 var x = document.getElementById("stacje");
+                var x_pred = document.getElementById("stacje_pred");
+                var x_stat = document.getElementById("stacje_stat");
                 var option = document.createElement("option");
+                var option_pred = document.createElement("option");
+                var option_stat = document.createElement("option");
                 option.text = JSON.parse(response[i][0]).name;
                 option.value = JSON.parse(response[i][0]).station_id;
+                option_pred.text = JSON.parse(response[i][0]).name;
+                option_pred.value = JSON.parse(response[i][0]).station_id;
+                option_stat.text = JSON.parse(response[i][0]).name;
+                option_stat.value = JSON.parse(response[i][0]).station_id;
                 x.add(option);
+                x_pred.add(option_pred);
+                x_stat.add(option_stat);}})};
 
-
-}})};
 
     window.onload = zaladujDane();
 
