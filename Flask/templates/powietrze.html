@@ -4,44 +4,8 @@
     <meta charset="UTF-8">
     <title>Powietrze tabela</title>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="{{url_for('static', filename='powietrze_script.js')}}"></script>
-    <style>
-    body {background-color: white;}
-    li {display: inline;}
-    .menu {
-        width: 100%;
-        overflow: auto;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        background-color: cornflowerblue;}
-    .menu a {
-        float: left;
-        text-decoration: none;
-        font-size: 17px;
-        width: 33.33%;
-        text-align: center;
-        background-color: cornflowerblue;}
-    .menu a:hover {
-        background-color: black;
-        color: white;}
-    .split {
-        height: 60%;
-        width: 50%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
-        margin-top: 60px;
-        border-bottom: 5px solid black;}
-    .left {
-        left: 0;
-        padding-left: 10px;
-        border-right: 5px solid black;}
-    .right {
-        right: 0}
-    .centered_r{
-        padding-left: 25px;}
-</style>
+    <script src="{{url_for('static', filename='powietrze_script.js') }}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='powietrze_style.css') }}">
 </head>
 <body>
 
@@ -74,7 +38,9 @@
        name="to" value="2020-11-30T00:00"
        min="2020-10-01T00:00" max="2020-11-30T00:00">
 
-<button onclick="pobierzDane()", id="rob">Rób</button>
+      <br>
+
+<button onclick="pobierzDane()", id="rob">Pokaż</button>
 
     <table id="tabel">
     </table>
@@ -85,7 +51,52 @@
 <div class="split right">
   <div class="centered_r">
     <center><h1>Predykcja</h1></center>
+<label for="miasta_pred">Który punkt pomiaru:</label>
 
+<select name="miasta_pred" id="miasta_pred">
+</select>
+      <br>
+
+<button onclick="pobierzDane_pred()", id="rob_pred">Pokaż</button>
+
+    <table id="tabel_pred">
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  <div class="leftpanel">
+    <center><h3>Danych</h3></center>
+      <label for="miasta_stat">Który punkt pomiaru:</label>
+
+<select name="miasta_stat" id="miasta_stat">
+</select>
+      <br>
+    <table id="tabel_danych">
+    </table>
+  </div>
+  <div class="middlepanel">
+      <center><h1>Statystyki</h1></center>
+      <label for="from_stat">Od kiedy pokazywać dane:</label>
+
+<input type="datetime-local" id="from_stat"
+       name="from_stat" value="2020-10-31T00:00"
+       min="2020-10-01T00:00" max="2020-11-20T00:00">
+<br>
+<label for="to_stat">Do kiedy pokazywać dane:</label>
+
+<input type="datetime-local" id="to_stat"
+       name="to_stat" value="2020-11-30T00:00"
+       min="2020-10-01T00:00" max="2020-11-30T00:00">
+
+      <br>
+
+<button onclick="pobierzDane_stat()", id="rob_stat">Pokaż</button>
+  </div>
+  <div class="rightpanel">
+    <center><h3>Modelu</h3></center>
+      <table id="tabel_modelu">
+    </table>
   </div>
 </div>
 

@@ -9,11 +9,21 @@
         $.ajax(settings).done(function (response) {
             for (i=0; i < response.length; i++){
                 var x = document.getElementById("miasta");
+                var x_pred = document.getElementById("miasta_pred");
+                var x_stat = document.getElementById("miasta_stat");
                 var option = document.createElement("option");
+                var option_pred = document.createElement("option");
+                var option_stat = document.createElement("option");
                 option.text = response[i][0];
                 option.value = response[i][0];
+                option_pred.text = response[i][0];
+                option_pred.value = response[i][0];
+                option_stat.text = response[i][0];
+                option_stat.value = response[i][0];
                 x.add(option);
-            }})};
+                x_pred.add(option_pred);
+                x_stat.add(option_stat);}})};
+
     window.onload = zaladujDane();
 
     var pobierzDane = function () {

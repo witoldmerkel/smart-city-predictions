@@ -7,6 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/spark_ml/classificator" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/spark_ml/reggresor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SpeedLayer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Flask/static" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Flask/static/css" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
