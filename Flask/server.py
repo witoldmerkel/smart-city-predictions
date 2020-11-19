@@ -89,7 +89,7 @@ def get_nazwy():
 def get_okienko(nazwa):
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
-    cql = "SELECT nazwagrupy from urzedy where nazwaurzedu =" + nazwa
+    cql = "SELECT json * from urzedy_nazwy where urzad =" + nazwa
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:

@@ -27,7 +27,7 @@
     window.onload = zaladujDane();
 
     var pobierzDane = function () {
-        var urzad = $('#urzedy_i_okienka').val();
+        var urzad = $('#urzedy').val();
         var fromd = Date.parse($('#from').val())/1000;
         var tod = Date.parse($('#to').val())/1000;
         var settings = {
@@ -55,5 +55,64 @@
 })};
 
     var zaladujOkna = function(){
+        var urzad = $('#urzedy').val();
+        var poczatek = "'"
+        urzad = poczatek.concat(urzad, "'")
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/urzedy/" + urzad,
+            "method": "GET",
+            "dataType": 'json'
+        }
+        $.ajax(settings).done(function (response) {
+            var select = document.getElementById("okienka");
+            select.innerHTML = "";
+            for (i=0; i < response.length; i++){
+                var x = document.getElementById("okienka");
+                var option = document.createElement("option");
+                option.text = JSON.parse(response[i][0]).okienko;
+                option.value = JSON.parse(response[i][0]).okienko;
+                x.add(option);}})};
 
-    }
+    var zaladujOkna_pred = function(){
+        var urzad = $('#urzedy_pred').val();
+        var poczatek = "'"
+        urzad = poczatek.concat(urzad, "'")
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/urzedy/" + urzad,
+            "method": "GET",
+            "dataType": 'json'
+        }
+        $.ajax(settings).done(function (response) {
+            var select = document.getElementById("okienka_pred");
+            select.innerHTML = "";
+            for (i=0; i < response.length; i++){
+                var x = document.getElementById("okienka_pred");
+                var option = document.createElement("option");
+                option.text = JSON.parse(response[i][0]).okienko;
+                option.value = JSON.parse(response[i][0]).okienko;
+                x.add(option);}})};
+
+    var zaladujOkna_stat = function(){
+        var urzad = $('#urzedy_stat').val();
+        var poczatek = "'"
+        urzad = poczatek.concat(urzad, "'")
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/urzedy/" + urzad,
+            "method": "GET",
+            "dataType": 'json'
+        }
+        $.ajax(settings).done(function (response) {
+            var select = document.getElementById("okienka_stat");
+            select.innerHTML = "";
+            for (i=0; i < response.length; i++){
+                var x = document.getElementById("okienka_stat");
+                var option = document.createElement("option");
+                option.text = JSON.parse(response[i][0]).okienko;
+                option.value = JSON.parse(response[i][0]).okienko;
+                x.add(option);}})};

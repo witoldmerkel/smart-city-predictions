@@ -57,7 +57,7 @@
     <center><h1>Predykcja</h1></center>
 <label>Który urząd i okienko:</label>
 
-<select name="urzedy_pred" id="urzedy_pred">
+<select onchange="zaladujOkna_pred()" name="urzedy_pred" id="urzedy_pred">
 </select>
       <br>
       <select name="okienka_pred" id="okienka_pred">
@@ -76,7 +76,7 @@
     <center><h3>Danych</h3></center>
       <label>Który urząd i okienko:</label>
 
-<select name="urzedy_stat" id="urzedy_stat">
+<select onchange="zaladujOkna_stat()", name="urzedy_stat" id="urzedy_stat">
 </select>
       <br>
       <select name="okienka_stat" id="okienka_stat">
