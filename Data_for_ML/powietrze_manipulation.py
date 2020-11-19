@@ -42,4 +42,3 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
 
     return dane, sc
 
-load_powietrze()

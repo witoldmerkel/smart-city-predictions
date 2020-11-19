@@ -21,3 +21,5 @@ def writeToCassandra(stream, keyspace, table):
 
     query.awaitTermination()
 
+    return query
+

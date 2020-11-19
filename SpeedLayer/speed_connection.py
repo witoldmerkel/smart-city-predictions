@@ -5,6 +5,7 @@ from velib_manipulation import velib_preprocessing
 from powietrze_manipulation import powietrze_preprocessing
 from urzedy_manipulation import urzedy_preprocessing
 from spark_cassandra_connection import writeToCassandra
+from streams_handling import stream_to_predictions
 from pyspark.ml import PipelineModel
 from pyspark.sql.types import (
         StructType, StringType, IntegerType, FloatType
@@ -59,7 +60,7 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Deskto
 
 
 def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
-                              keyspace = "predictions", table = "powietrze_predictions"):
+                              keyspace = "predictions", table = "powietrze_predictions", target = "pm25"):
 
     sc = create_sk_connection(topic)
 
@@ -104,29 +105,18 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
 
     stream = powietrze_preprocessing(stream)
 
-    stream = stream.withColumn("target_column", F.lit("pm25"))
-
-    stream = stream.withColumn("model_path", F.lit(model_path))
-
-    loaded_model = PipelineModel.load(model_path)
-
-    stream = loaded_model.transform(stream)
-
-    stream = stream.withColumn("predictedlabel", stream["predictedLabel"])
+    stream = stream_to_predictions(stream, model_path, target)
 
     stream = stream.select('predictedlabel', "name", "timestamp", "target_column", "model_path")
 
-    writeToCassandra(stream=stream, keyspace=keyspace, table=table)
-
-    # query = stream.writeStream.outputMode('append').option("truncate", False).format('console')\
-    #     .option("encoding", "UTF-8").start()
-    #
-    # query.awaitTermination()
-
-    return stream
+    query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 
 
-def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model', table = ""):
+    return stream, query, sc
+
+
+def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
+                           table = ""):
 
     sc = create_sk_connection(topic)
 
