@@ -19,25 +19,40 @@
             x.add(option);
             x_pred.add(option_pred);
             x_stat.add(option_stat);
+            var temp = []
             for (i=0; i < response.length; i++){
+                temp.push(JSON.parse(response[i][0]).urzad);}
+            var nazwy = ArrNoDupe(temp);
+            for (i=0; i < nazwy.length; i++){
                 var x = document.getElementById("urzedy");
                 var x_pred = document.getElementById("urzedy_pred");
                 var x_stat = document.getElementById("urzedy_stat");
                 var option = document.createElement("option");
                 var option_pred = document.createElement("option");
                 var option_stat = document.createElement("option");
-                option.text = JSON.parse(response[i][0]).urzad;
-                option.value = JSON.parse(response[i][0]).urzad;
-                option_pred.text = JSON.parse(response[i][0]).urzad;
-                option_pred.value = JSON.parse(response[i][0]).urzad;
-                option_stat.text = JSON.parse(response[i][0]).urzad;
-                option_stat.value = JSON.parse(response[i][0]).urzad;
+                option.text = nazwy[i];
+                option.value = nazwy[i];
+                option_pred.text = nazwy[i];
+                option_pred.value = nazwy[i];
+                option_stat.text = nazwy[i];
+                option_stat.value = nazwy[i];
                 x.add(option);
                 x_pred.add(option_pred);
-                x_stat.add(option_stat);}})};
+                x_stat.add(option_stat);
+            }
+        })};
 
     window.onload = zaladujDane();
 
+    function ArrNoDupe(a) {
+        var temp = {};
+        for (var i = 0; i < a.length; i++)
+            temp[a[i]] = true;
+        var r = [];
+        for (var k in temp)
+            r.push(k);
+        return r;
+}
 
     var pobierzDane = function () {
         var urzad = $('#urzedy').val();
