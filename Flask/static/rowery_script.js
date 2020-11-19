@@ -7,6 +7,18 @@
             "dataType": 'json'
         }
         $.ajax(settings).done(function (response) {
+            var x = document.getElementById("stacje");
+            var x_pred = document.getElementById("stacje_pred");
+            var x_stat = document.getElementById("stacje_stat");
+            var option = document.createElement("option");
+            var option_pred = document.createElement("option");
+            var option_stat = document.createElement("option");
+            option.text = "Prosze wybrac stację";
+            option_pred.text = "Prosze wybrac stację";
+            option_stat.text = "Prosze wybrac stację";
+            x.add(option);
+            x_pred.add(option_pred);
+            x_stat.add(option_stat);
             for (i=0; i < response.length; i++){
                 var x = document.getElementById("stacje");
                 var x_pred = document.getElementById("stacje_pred");
@@ -43,14 +55,16 @@
             tabela.innerHTML='';
             var singleRow=document.createElement('tr');
             singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów" + '</td>';
+            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów mechanicznych" + '</td>';
+            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów elektrycznych" + '</td>';
             tabela.appendChild(singleRow);
             for (i=0; i < response.length; i++){
                 var singleRow=document.createElement('tr');
                 const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
                 const humanDateFormat = dateObject.toLocaleString()
                 singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).num_bikes_available + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).mechanical + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).ebike + '</td>';
                 tabela.appendChild(singleRow);}
 
 })};

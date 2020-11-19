@@ -22,9 +22,12 @@
 <div class="split left">
   <div class="centered">
       <center><h1>Dane historyczne</h1></center>
-<label for="urzedy_i_okienka">Który urząd i okienko:</label>
+<label >Który urząd i okienko:</label>
 
-<select name="urzedy_i_okienka" id="urzedy_i_okienka">
+<select onchange="zaladujOkna()" name="urzedy" id="urzedy">
+</select>
+      <br>
+      <select name="okienka" id="okienka">
 </select>
 <br>
 <label for="from">Od kiedy pokazywać dane:</label>
@@ -52,9 +55,12 @@
 <div class="split right">
   <div class="centered_r">
     <center><h1>Predykcja</h1></center>
-<label for="urzedy_i_okienka_pred">Który urząd i okienko:</label>
+<label>Który urząd i okienko:</label>
 
-<select name="urzedy_i_okienka_pred" id="urzedy_i_okienka_pred">
+<select onchange="zaladujOkna_pred()" name="urzedy_pred" id="urzedy_pred">
+</select>
+      <br>
+      <select name="okienka_pred" id="okienka_pred">
 </select>
       <br>
 
@@ -68,9 +74,12 @@
 <div class="container">
   <div class="leftpanel">
     <center><h3>Danych</h3></center>
-      <label for="urzedy_i_okienka_stat">Który urząd i okienko:</label>
+      <label>Który urząd i okienko:</label>
 
-<select name="urzedy_i_okienka_stat" id="urzedy_i_okienka_stat">
+<select onchange="zaladujOkna_stat()", name="urzedy_stat" id="urzedy_stat">
+</select>
+      <br>
+      <select  name="okienka_stat" id="okienka_stat">
 </select>
       <br>
     <table id="tabel_danych">
