@@ -43,14 +43,16 @@
             tabela.innerHTML='';
             var singleRow=document.createElement('tr');
             singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów" + '</td>';
+            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów mechanicznych" + '</td>';
+            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów elektrycznych" + '</td>';
             tabela.appendChild(singleRow);
             for (i=0; i < response.length; i++){
                 var singleRow=document.createElement('tr');
                 const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
                 const humanDateFormat = dateObject.toLocaleString()
                 singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).num_bikes_available + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).mechanical + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).ebike + '</td>';
                 tabela.appendChild(singleRow);}
 
 })};

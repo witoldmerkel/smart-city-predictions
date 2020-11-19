@@ -8,18 +8,18 @@
         }
         $.ajax(settings).done(function (response) {
             for (i=0; i < response.length; i++){
-                var x = document.getElementById("urzedy_i_okienka");
-                var x_pred = document.getElementById("urzedy_i_okienka_pred");
-                var x_stat = document.getElementById("urzedy_i_okienka_stat");
+                var x = document.getElementById("urzedy");
+                var x_pred = document.getElementById("urzedy_pred");
+                var x_stat = document.getElementById("urzedy_stat");
                 var option = document.createElement("option");
                 var option_pred = document.createElement("option");
                 var option_stat = document.createElement("option");
-                option.text = (JSON.parse(response[i][0]).urzad).concat(": ", JSON.parse(response[i][0]).okienko);
-                option.value = JSON.parse(response[i][0]).idgrupy;
-                option_pred.text = (JSON.parse(response[i][0]).urzad).concat(": ", JSON.parse(response[i][0]).okienko);
-                option_pred.value = JSON.parse(response[i][0]).idgrupy;
-                option_stat.text = (JSON.parse(response[i][0]).urzad).concat(": ", JSON.parse(response[i][0]).okienko);
-                option_stat.value = JSON.parse(response[i][0]).idgrupy;
+                option.text = JSON.parse(response[i][0]).urzad;
+                option.value = JSON.parse(response[i][0]).urzad;
+                option_pred.text = JSON.parse(response[i][0]).urzad;
+                option_pred.value = JSON.parse(response[i][0]).urzad;
+                option_stat.text = JSON.parse(response[i][0]).urzad;
+                option_stat.value = JSON.parse(response[i][0]).urzad;
                 x.add(option);
                 x_pred.add(option_pred);
                 x_stat.add(option_stat);}})};
@@ -53,3 +53,7 @@
                 tabela.appendChild(singleRow);}
 
 })};
+
+    var zaladujOkna = function(){
+
+    }

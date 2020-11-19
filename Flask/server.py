@@ -30,7 +30,7 @@ def urzedy():
 def get_nazwy_punktow():
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
-    cql = "SELECT name from powietrze where timestamp = 1605553200 allow filtering"
+    cql = "SELECT json * from powietrze_nazwy"
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
@@ -79,6 +79,17 @@ def get_nazwy():
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
     cql = "SELECT json * from urzedy_nazwy"
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+@app.route("/urzedy/<nazwa>")
+def get_okienko(nazwa):
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('json')
+    cql = "SELECT nazwagrupy from urzedy where nazwaurzedu =" + nazwa
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:

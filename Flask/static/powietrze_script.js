@@ -14,12 +14,12 @@
                 var option = document.createElement("option");
                 var option_pred = document.createElement("option");
                 var option_stat = document.createElement("option");
-                option.text = response[i][0];
-                option.value = response[i][0];
-                option_pred.text = response[i][0];
-                option_pred.value = response[i][0];
-                option_stat.text = response[i][0];
-                option_stat.value = response[i][0];
+                option.text = JSON.parse(response[i][0]).nazwa;
+                option.value = JSON.parse(response[i][0]).nazwa;
+                option_pred.text = JSON.parse(response[i][0]).nazwa;
+                option_pred.value = JSON.parse(response[i][0]).nazwa;
+                option_stat.text = JSON.parse(response[i][0]).nazwa;
+                option_stat.value = JSON.parse(response[i][0]).nazwa;
                 x.add(option);
                 x_pred.add(option_pred);
                 x_stat.add(option_stat);}})};
@@ -45,6 +45,14 @@
             var singleRow=document.createElement('tr');
             singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
             singleRow.innerHTML += '<td>' + "Stan powietrze" + '</td>';
+            singleRow.innerHTML += '<td>' + "PM2.5 [μg/m3]" + '</td>';
+            singleRow.innerHTML += '<td>' + "PM10 [μg/m3]" + '</td>';
+            singleRow.innerHTML += '<td>' + "CO [μg/m3]" + '</td>';
+            singleRow.innerHTML += '<td>' + "NO2 [μg/m3]" + '</td>';
+            singleRow.innerHTML += '<td>' + "O3 [μg/m3]" + '</td>';
+            singleRow.innerHTML += '<td>' + "SO2 [μg/m3]" + '</td>';
+            singleRow.innerHTML += '<td>' + "Temperatura [°C]" + '</td>';
+            singleRow.innerHTML += '<td>' + "Ciśnienie [hPa]" + '</td>';
             tabela.appendChild(singleRow);
             for (i=0; i < response.length; i++){
                 var stan;
@@ -66,6 +74,14 @@
                 const humanDateFormat = dateObject.toLocaleString()
                 singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
                 singleRow.innerHTML += '<td>' + stan + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm25 + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm10 + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).co + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).no2 + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).o3 + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).so2 + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).t + '</td>';
+                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).p + '</td>';
                 tabela.appendChild(singleRow);}
 
 })};
