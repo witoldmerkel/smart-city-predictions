@@ -7,6 +7,18 @@
             "dataType": 'json'
         }
         $.ajax(settings).done(function (response) {
+            var x = document.getElementById("stacje");
+            var x_pred = document.getElementById("stacje_pred");
+            var x_stat = document.getElementById("stacje_stat");
+            var option = document.createElement("option");
+            var option_pred = document.createElement("option");
+            var option_stat = document.createElement("option");
+            option.text = "Prosze wybrac stację";
+            option_pred.text = "Prosze wybrac stację";
+            option_stat.text = "Prosze wybrac stację";
+            x.add(option);
+            x_pred.add(option_pred);
+            x_stat.add(option_stat);
             for (i=0; i < response.length; i++){
                 var x = document.getElementById("stacje");
                 var x_pred = document.getElementById("stacje_pred");

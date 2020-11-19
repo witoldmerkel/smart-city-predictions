@@ -97,11 +97,23 @@ def get_okienko(nazwa):
     return str(df.to_json(orient="records"))
 
 
-@app.route("/urzedy/dane/<urzad>/<fromd>/<tod>", methods=['GET'])
-def get_urzedy_dane_archiwalne(urzad, fromd, tod):
+@app.route("/urzedy/pomoc/<urzad>", methods=['GET'])
+def get_idgrupy(urzad):
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
-    cql = "SELECT json * FROM urzedy where idgrupy =" + urzad + " and timestamp >" + fromd + " and timestamp <" + tod
+    cql = "SELECT json * FROM urzedy_nazwy where urzad =" + urzad
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+@app.route("/urzedy/dane/<id>/<fromd>/<tod>", methods=['GET'])
+def get_urzedy_dane_archiwalne(id, fromd, tod):
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('json')
+    cql = "SELECT json * FROM urzedy where idgrupy =" + id + " and timestamp >" + fromd + " and timestamp <" + tod
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
