@@ -5,11 +5,12 @@ import os
 def create_sk_connection(topic):
 # All of these jars should be downloaded in spark jars
     os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1,' \
-                                        'org.apache.spark:spark-streaming-kafka-0-10-assembly_2.12:3.0.1,' \
-                                        'org.apache.kafka:kafka-clients:2.6.0,' \
-                                        'org.apache.commons:commons-pool2:2.9.0,' \
-                                        'org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.0.1' \
-                                        '--conf "spark.driver.extraJavaOptions=-Dfile.encoding=utf-8" pyspark-shell'
+                                    'org.apache.spark:spark-streaming-kafka-0-10-assembly_2.12:3.0.1,' \
+                                    'org.apache.kafka:kafka-clients:2.6.0,' \
+                                    'org.apache.commons:commons-pool2:2.9.0,' \
+                                    'com.datastax.spark:spark-cassandra-connector_2.12:3.0.0,' \
+                                    'org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.0.1' \
+                                    ' --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
 
     # Creating spark session
     spark = SparkSession\

@@ -8,6 +8,7 @@ def writeToCassandra(stream, keyspace, table):
                                  ' --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
 
     def forEachCassandra(writeDF, epochId):
+
         writeDF.write \
             .format("org.apache.spark.sql.cassandra") \
             .mode('append') \

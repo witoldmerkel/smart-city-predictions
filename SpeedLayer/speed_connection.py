@@ -13,6 +13,7 @@ from pyspark.sql.types import (
 
 
 
+
 def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model', table = ""):
 
     sc = create_sk_connection(topic)
@@ -158,4 +159,4 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desk
     return stream, query, model_path, table
 
 
-activate_powietrze_stream()
+spark, query, sc = activate_powietrze_stream()
