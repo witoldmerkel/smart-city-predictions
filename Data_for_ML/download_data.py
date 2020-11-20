@@ -1,13 +1,22 @@
+from flask import Flask, render_template
 from cassandra.cluster import Cluster
 import pandas as pd
-from datetime import datetime
-import time
+from jinjasql import JinjaSql
+
+j = JinjaSql(param_style='pyformat')
+user_transaction_template = ''' select json urzad from urzedy_nazwy'''
+params = {}
+query, bind_params = j.prepare_query(user_transaction_template, params)
+cql = query % bind_params
 cluster = Cluster(['127.0.0.1'], "9042")
 session = cluster.connect('json')
-nazwa = "'UD Urus'"
-cql = "SELECT json * from urzedy_nazwy where urzad =" + nazwa
 r = session.execute(cql)
 df = pd.DataFrame()
 for row in r:
     df = df.append(pd.DataFrame(row))
-print(df)
+
+df.columns = ["urzad"]
+df = df.urzad.unique()
+print(type(df))
+df = pd.DataFrame(df)
+print(type(df))
