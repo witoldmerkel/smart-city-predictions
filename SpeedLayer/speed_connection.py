@@ -53,7 +53,7 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
 
     stream = stream_to_predictions(stream, model_path, target)
 
-    stream = stream.select('predictions', "station_id", "timestamp", "target_column", "model_path")
+    stream = stream.select('prediction', "station_id", "timestamp", "target_column", "model_path")
 
     query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 

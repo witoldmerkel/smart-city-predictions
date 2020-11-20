@@ -22,6 +22,7 @@
     <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpeedLayer/speed_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedLayer/speed_connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpeedLayer/streams_handling.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedLayer/streams_handling.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -511,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605874103440</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="bug fixes">
+      <created>1605874628108</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1605874628108</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,11 +625,11 @@
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="652" y="251" key="VCS.ChangeListViewerDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1603368773907" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605874107674">
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605874631777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="709" y="339" key="Vcs.Push.Dialog.v2/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521812923" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605874107674" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605874631777" />
     <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1604862339072" />
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602610822445">
       <screen x="0" y="23" width="1792" height="1011" />
