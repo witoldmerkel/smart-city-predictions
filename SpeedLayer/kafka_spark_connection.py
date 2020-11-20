@@ -20,6 +20,7 @@ def create_sk_connection(topic):
 
     # Consume Kafka topic
     sc = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092")\
-        .option("subscribe", topic).option("startingOffsets", "earliest").option("encoding", "UTF-8").load()
+        .option("subscribe", topic).option("startingOffsets", "earliest").option("encoding", "UTF-8")\
+        .option("failOnDataLoss", "false").load()
 
     return sc
