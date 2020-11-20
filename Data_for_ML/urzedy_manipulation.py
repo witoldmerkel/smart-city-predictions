@@ -11,7 +11,7 @@ def urzedy_preprocessing(urzedy_data):
     urzedy_temp = urzedy_data.drop(*['czasobslugi', 'l_p', 'status', 'aktualny_numer'])
     urzedy = common_manipulations.timestamp_to_date(urzedy_temp)
 
-    dane = urzedy.drop(*['normal_type'])
+    dane = urzedy.drop(*['normal_type']).na.drop()
 
 
     return dane

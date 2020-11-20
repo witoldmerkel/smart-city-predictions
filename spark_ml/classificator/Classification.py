@@ -40,7 +40,8 @@ def make_class_model(data, sc, model_path, keyspace="", table=""):
     )
     assembler_cat = VectorAssembler(
         inputCols=encoder.getOutputCols(),
-        outputCol="categorical-features"
+        outputCol="categorical-features",
+        handleInvalid="skip"
     )
 
     stages += indexers
@@ -50,7 +51,8 @@ def make_class_model(data, sc, model_path, keyspace="", table=""):
 
     assembler_num = VectorAssembler(
         inputCols=numCols,
-        outputCol="numerical-features"
+        outputCol="numerical-features",
+        handleInvalid="skip"
     )
 
     # Standardize numerical variables
@@ -59,7 +61,8 @@ def make_class_model(data, sc, model_path, keyspace="", table=""):
     # Combine all features in one vector
     assembler_all = VectorAssembler(
         inputCols=['categorical-features', 'numerical-features_scaled'],
-        outputCol='features'
+        outputCol='features',
+        handleInvalid="skip"
     )
 
     stages += [assembler_num, scaler, assembler_all]
