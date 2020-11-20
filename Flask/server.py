@@ -100,7 +100,7 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 
 @app.route("/urzedy/nazwy")
 def get_nazwy():
-    user_transaction_template = ''' select json * from urzedy_nazwy'''
+    user_transaction_template = ''' select json urzad from urzedy_nazwy'''
     params = {}
     query, bind_params = j.prepare_query(user_transaction_template, params)
     cql = query % bind_params
@@ -110,6 +110,9 @@ def get_nazwy():
     df = pd.DataFrame()
     for row in r:
         df = df.append(pd.DataFrame(row))
+    df.columns = ["urzad"]
+    df = df.urzad.unique()
+    df = pd.DataFrame(df)
     return str(df.to_json(orient="records"))
 
 @app.route("/urzedy/<nazwa>")
