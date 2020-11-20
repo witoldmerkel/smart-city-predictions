@@ -18,7 +18,6 @@ def powietrze_preprocessing(pow_data):
 
     dane = powietrze.drop(*['tz', 'normal_type', 'minuta'])
 
-
     return dane
 
 

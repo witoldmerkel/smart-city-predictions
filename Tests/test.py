@@ -27,4 +27,4 @@ data_vel, sc_vel = Data_for_ML.velib_manipulation.load_velib()
 
 model_vel = spark_ml.reggresor.Regression.make_regr_model(data_vel, sc_vel, r'D:\velib_model')
 
-spark_vel, query_vel, ssc_vel = SpeedLayer.speed_connection.activate_powietrze_stream()
+spark_vel, query_vel, ssc_vel = SpeedLayer.speed_connection.activate_velib_stream()
