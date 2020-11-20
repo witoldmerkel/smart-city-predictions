@@ -11,7 +11,7 @@ from pyspark.sql.types import (
         )
 
 
-def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
+def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
                           keyspace="predictions", table="velib_predictions", target="numbikesavailable"):
 
     sc = create_sk_connection(topic)
@@ -115,7 +115,7 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
     return stream, query, sc
 
 
-def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
+def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model',
                            keyspace="predictions", table="urzedy_predictions", target="liczbaKlwKolejce"):
 
     sc = create_sk_connection(topic)
