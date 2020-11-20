@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="3 prediction modules working" />
+    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="3 prediction modules working">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/smart-city-predictions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smart-city-predictions.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpeedLayer/speed_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/SpeedLayer/speed_connection.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -543,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605898423857</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="3 prediction modules working">
+      <created>1605898456040</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1605898456040</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,10 +646,10 @@
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="179" y="113" key="MergeDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1604772652395" />
-    <state x="572" y="282" key="MultipleFileMergeDialog" timestamp="1605822198148">
+    <state x="572" y="282" key="MultipleFileMergeDialog" timestamp="1605898466226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="572" y="282" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605822198148" />
+    <state x="572" y="282" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605898466226" />
     <state x="534" y="297" key="MultipleFileMergeDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1604430329016" />
     <state x="645" y="224" key="SettingsEditor" timestamp="1605723117150">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -645,15 +657,16 @@
     <state x="33" y="223" key="SettingsEditor/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521377092" />
     <state x="645" y="224" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605723117150" />
     <state x="602" y="241" key="SettingsEditor/0.23.1792.1011@0.23.1792.1011" timestamp="1604786681732" />
-    <state x="652" y="251" key="VCS.ChangeListViewerDialog" timestamp="1603368773907">
-      <screen x="0" y="23" width="1792" height="1011" />
+    <state x="699" y="235" key="VCS.ChangeListViewerDialog" timestamp="1605898447248">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="699" y="235" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605898447248" />
     <state x="652" y="251" key="VCS.ChangeListViewerDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1603368773907" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605876771678">
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605898479508">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="709" y="339" key="Vcs.Push.Dialog.v2/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521812923" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605876771678" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605898479508" />
     <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1604862339072" />
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602610822445">
       <screen x="0" y="23" width="1792" height="1011" />

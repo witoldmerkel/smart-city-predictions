@@ -60,7 +60,7 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
     return stream, query, sc
 
 
-def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
+def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model',
                               keyspace="predictions", table="powietrze_predictions", target="pm25"):
 
     sc = create_sk_connection(topic)
