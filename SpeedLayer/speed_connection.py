@@ -9,13 +9,13 @@ from streams_handling import stream_to_predictions
 from pyspark.sql.types import (
         StructType, StringType, IntegerType, FloatType
         )
-
+# W tym pliku znajdują się funkcje, które zajmują się tworzeniem i obsługą strumieni danych dla każdego źródła danych
 
 def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
                           keyspace="predictions", table="velib_predictions", target="numbikesavailable"):
-
+    # Stworzenie połączenia kafka-spark dla wybranego tematu
     sc = create_sk_connection(topic)
-
+    # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("station_code", StringType()) \
         .add("station_id", StringType(), False) \
@@ -29,13 +29,13 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
         .add("is_returning", StringType()) \
         .add("is_renting", StringType()) \
         .add("timestamp", StringType(), False)
-
+    # Parsowanie otrzymanego pliku
     stream = sc.select(
        from_json(F.col("value").cast("string"), json_schema).alias("parsed")
     )
 
     stream = stream.select("parsed.*")
-
+    # Uzgadnianie typów
     stream = stream.withColumn("is_installed", stream['is_installed'].cast(StringType())) \
         .withColumn('is_renting', stream['is_renting'].cast(StringType())) \
         .withColumn('is_returning', stream['is_returning'].cast(StringType())) \
@@ -48,13 +48,13 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
         .withColumn('station_code', stream['station_code'].cast(IntegerType())) \
         .withColumn('station_id', stream['station_id'].cast(IntegerType())) \
         .withColumn('timestamp', stream['timestamp'].cast(IntegerType()))
-
+    # Wstępne przetwarzanie danych wspólne dla przygotowania danych do uczenia modelu oraz dla wykonywania predykcji
     stream = velib_preprocessing(stream)
-
+    # Przekształcanie strumienia danych do predykcji
     stream = stream_to_predictions(stream, model_path, target)
 
     stream = stream.select('prediction', "station_id", "timestamp", "target_column", "model_path")
-
+    # Zapisywanie strumienia do tablicy w bazie danych Cassandra
     query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 
     return stream, query, sc
@@ -62,9 +62,9 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
 
 def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model',
                               keyspace="predictions", table="powietrze_predictions", target="pm25"):
-
+    # Stworzenie połączenia kafka-spark dla wybranego tematu
     sc = create_sk_connection(topic)
-
+    # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("o3", StringType()) \
         .add("tz", StringType()) \
@@ -81,13 +81,13 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
         .add("w", StringType()) \
         .add("name", StringType()) \
         .add("lat", StringType()) \
-
+    # Parsowanie otrzymanego pliku
     stream = sc.select(
        from_json(F.col("value").cast(StringType()), json_schema).alias("parsed")
     )
 
     stream = stream.select("parsed.*")
-
+    # Uzgadnianie typów
     stream = stream.withColumn("co", stream['co'].cast(FloatType())) \
         .withColumn('h', stream['h'].cast(FloatType())) \
         .withColumn('lat', stream['lat'].cast(FloatType())) \
@@ -103,13 +103,13 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
         .withColumn('tz', stream['tz'].cast(StringType())) \
         .withColumn('w', stream['w'].cast(FloatType())) \
         .withColumn('timestamp', stream['v'].cast(IntegerType()))
-
+    # Wstępne przetwarzanie danych wspólne dla przygotowania danych do uczenia modelu oraz dla wykonywania predykcji
     stream = powietrze_preprocessing(stream)
-
+    # Przekształcanie strumienia danych do predykcji
     stream = stream_to_predictions(stream, model_path, target)
 
     stream = stream.select('predictedlabel', "name", "timestamp", "target_column", "model_path")
-
+    # Zapisywanie strumienia do tablicy w bazie danych Cassandra
     query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 
     return stream, query, sc
@@ -117,9 +117,9 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
 
 def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model',
                            keyspace="predictions", table="urzedy_predictions", target="liczbaKlwKolejce"):
-
+    # Stworzenie połączenia kafka-spark dla wybranego tematu
     sc = create_sk_connection(topic)
-
+    # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("timestamp", StringType()) \
         .add("lp", StringType()) \
@@ -131,13 +131,13 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model',
         .add("idGrupy", StringType()) \
         .add("aktualnyNumer", StringType()) \
         .add("status", StringType()) \
-
+    # Parsowanie otrzymanego pliku
     stream = sc.select(
        from_json(F.col("value").cast("string"), json_schema).alias("parsed")
     )
 
     stream = stream.select("parsed.*")
-
+    # Uzgadnianie typów
     stream = stream.withColumn("timestamp", stream['timestamp'].cast(IntegerType())) \
         .withColumn('l_p', stream['lp'].cast(StringType())) \
         .withColumn('czasobslugi', stream['czasObslugi'].cast(IntegerType())) \
@@ -148,13 +148,13 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model',
         .withColumn('idgrupy', stream['idGrupy'].cast(IntegerType())) \
         .withColumn('aktualny_numer', stream['aktualnyNumer'].cast(StringType())) \
         .withColumn('status', stream['status'].cast(StringType()))
-
+    # Wstępne przetwarzanie danych wspólne dla przygotowania danych do uczenia modelu oraz dla wykonywania predykcji
     stream = urzedy_preprocessing(stream)
-
+    # Przekształcanie strumienia danych do predykcji
     stream = stream_to_predictions(stream, model_path, target)
 
     stream = stream.select('prediction', "idgrupy", "timestamp", "target_column", "model_path")
-
+    # Zapisywanie strumienia do tablicy w bazie danych Cassandra
     query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 
     return stream, query, sc

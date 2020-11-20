@@ -1,9 +1,7 @@
-import os
-from pyspark.sql import SparkSession
-
+# W tym pliku znajdują się funkcje odpowiedzialne za tworzenie i obsługę połączeń na lini spark-cassadnra
 
 def writeToCassandra(stream, keyspace, table):
-
+    # Tworzenia połączenia spark-cassandra oraz zapisywanie strumienia danych do bazy danych Casandra
     query = stream.writeStream \
         .format("org.apache.spark.sql.cassandra") \
         .outputMode('append') \
