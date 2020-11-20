@@ -3,12 +3,15 @@ import spark_ml.reggresor.Regression
 import Data_for_ML.powietrze_manipulation
 import Data_for_ML.urzedy_manipulation
 import Data_for_ML.velib_manipulation
+import SpeedLayer.speed_connection
 
 # Powietrze
 
 data_pow, sc_pow = Data_for_ML.powietrze_manipulation.load_powietrze()
 
 model_pow = spark_ml.classificator.Classification.make_class_model(data_pow, sc_pow, "json", "powietrze_models")
+
+spark_pow, query_pow, ssc_pow = SpeedLayer.speed_connection.activate_powietrze_stream()
 
 # Urzedy
 

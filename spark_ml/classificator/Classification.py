@@ -10,7 +10,7 @@ import platform
 import os
 
 
-def make_class_model(data, sc, keyspace, table):
+def make_class_model(data, sc, model_path, keyspace="", table=""):
 
     t0 = time()
     # Stages for pipline
@@ -94,7 +94,7 @@ def make_class_model(data, sc, keyspace, table):
     # Final model saving
     tt = time() - t0
     timestamp = int(time())
-    model.write().overwrite().save(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
+    model.write().overwrite().save(model_path)
 
 
     # loaded_model = PipelineModel.load(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')

@@ -7,7 +7,7 @@ import platform
 import os
 
 
-def make_regr_model(data, sc):
+def make_regr_model(data, sc, model_path, keyspace="", json=""):
 
     t0 = time()
     # Stages for pipline
@@ -82,7 +82,7 @@ def make_regr_model(data, sc):
     # Final model saving
     tt = time() - t0
     timestamp = int(time())
-    model.write().overwrite().save(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
+    model.write().overwrite().save(model_path)
 
     # Stop spark session
     sc.stop()

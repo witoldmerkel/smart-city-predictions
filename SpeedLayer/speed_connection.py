@@ -6,15 +6,13 @@ from powietrze_manipulation import powietrze_preprocessing
 from urzedy_manipulation import urzedy_preprocessing
 from spark_cassandra_connection import writeToCassandra
 from streams_handling import stream_to_predictions
-from pyspark.ml import PipelineModel
 from pyspark.sql.types import (
         StructType, StringType, IntegerType, FloatType
         )
 
 
-
-
-def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model', table = ""):
+def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
+                          keyspace="predictions", table="velib_predictions", target="numbikesavailable"):
 
     sc = create_sk_connection(topic)
 
@@ -53,15 +51,17 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'C:\Users\jaiko\Deskto
 
     stream = velib_preprocessing(stream)
 
-    query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
+    stream = stream_to_predictions(stream, model_path, target)
 
-    query.awaitTermination()
+    stream = stream.select('predictedlabel', "station_id", "timestamp", "target_column", "model_path")
 
-    return stream, query, model_path, table
+    query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
+
+    return stream, query, sc
 
 
 def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
-                              keyspace = "predictions", table = "powietrze_predictions", target = "pm25"):
+                              keyspace="predictions", table="powietrze_predictions", target="pm25"):
 
     sc = create_sk_connection(topic)
 
@@ -112,12 +112,11 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'C:\Users\jaik
 
     query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 
-
     return stream, query, sc
 
 
 def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desktop\Inżynierka\class_model',
-                           table = ""):
+                           keyspace="predictions", table="urzedy_predictions", target="liczbaKlwKolejce"):
 
     sc = create_sk_connection(topic)
 
@@ -152,11 +151,10 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'C:\Users\jaiko\Desk
 
     stream = urzedy_preprocessing(stream)
 
-    query = stream.writeStream.outputMode('append').option("truncate", False).format('console').start()
+    stream = stream_to_predictions(stream, model_path, target)
 
-    query.awaitTermination()
+    stream = stream.select('predictedlabel', "idgrupy", "timestamp", "target_column", "model_path")
 
-    return stream, query, model_path, table
+    query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
 
-
-spark, query, sc = activate_powietrze_stream()
+    return stream, query, sc
