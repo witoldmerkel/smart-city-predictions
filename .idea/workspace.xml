@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="time_frame parameter">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/smart-city-predictions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smart-city-predictions.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark_ml/classificator/Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark_ml/classificator/Classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark_ml/reggresor/Regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark_ml/reggresor/Regression.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -577,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605984244102</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="time_frame parameter">
+      <created>1605987450473</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1605987450473</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,9 +624,9 @@
     <MESSAGE value="Fail on data loss spark kafka" />
     <MESSAGE value="handle invalid = skip" />
     <MESSAGE value="3 prediction modules working" />
-    <MESSAGE value="time_frame parameter" />
     <MESSAGE value="Working time filtering for data loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working time filtering for data loading" />
+    <MESSAGE value="time_frame parameter" />
+    <option name="LAST_COMMIT_MESSAGE" value="time_frame parameter" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="190" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604675711951">
@@ -684,11 +689,11 @@
     </state>
     <state x="699" y="235" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605898447248" />
     <state x="652" y="251" key="VCS.ChangeListViewerDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1603368773907" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605984245772">
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605987634340">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="709" y="339" key="Vcs.Push.Dialog.v2/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521812923" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605984245772" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605987634340" />
     <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1604862339072" />
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602610822445">
       <screen x="0" y="23" width="1792" height="1011" />
