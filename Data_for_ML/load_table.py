@@ -1,5 +1,6 @@
 import os
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as f
 import calendar
 import time
 # W tym pliku znajdują się funkcje odpowiedzialne za tworzenie połączenia oraz wczytywanie tabel z bazy danych Cassandra
@@ -19,6 +20,6 @@ def load_and_get_table_df(keys_space_name, table_name, time_frame=None):
 
     if time_frame is None:
         time_frame = calendar.timegm(time.gmtime()) - 1209600
-    table_df = table_df.filter(table_df("timestamp") > time_frame)
+    table_df = table_df.filter(f.col("timestamp") > time_frame)
 
     return table_df, spark
