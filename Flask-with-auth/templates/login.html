@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+</head>
+<body>
+<div >
+    <h3 >Login</h3>
+
+    <div >
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div>
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/login">
+            <div >
+                <div >
+                    <input  type="email" name="email" placeholder="Your Email" autofocus="">
+                </div>
+            </div>
+
+            <div >
+                <div >
+                    <input  type="password" name="password" placeholder="Your Password">
+                </div>
+            </div>
+            <div >
+                <label >
+                    <input type="checkbox">
+                    Remember me
+                </label>
+            </div>
+            <button >Login</button>
+<br>
+            Wróć do strony startowej: <a href="{{ url_for('index') }}" >Powrót</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

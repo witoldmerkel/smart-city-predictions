@@ -1,45 +1,131 @@
-from flask import Flask, render_template
+from flask import Flask
+from flask_login import UserMixin
+from flask import Blueprint, render_template, redirect, url_for, request, flash
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, logout_user, login_required
 from cassandra.cluster import Cluster
 import pandas as pd
 from jinjasql import JinjaSql
 from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 j = JinjaSql(param_style='pyformat')
-
+db = SQLAlchemy()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
+app.config['SECRET_KEY'] = 'thisisimportantsomehow'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+db.init_app(app)
+login_manager = LoginManager()
 login_manager.login_view = 'login'
-login_manager.login_message_category = 'info'
-app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+login_manager.init_app(app)
 
-@app.route("/")
+
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(1000))
+
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/index')
+def index_powrot():
+    return render_template('index.html')
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/login', methods=['POST'])
+def login_post():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+
+    user = User.query.filter_by(email=email).first()
+
+    if not user and not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
+        return redirect(url_for('login'))
+
+    login_user(user, remember=remember)
+
+    return redirect(url_for('home'))
+
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+
+@app.route('/signup', methods=['POST'])
+def signup_post():
+    email = request.form.get('email')
+    name = request.form.get('name')
+    password = request.form.get('password')
+
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        flash('Email address already exists.')
+        return redirect(url_for('signup'))
+
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return redirect(url_for('login'))
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return render_template("logout.html")
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+@app.route('/home')
+@login_required
 def home():
-    return render_template("home.html")
+    return render_template('home.html')
 
 
 @app.route("/powietrze")
+@login_required
 def powietrze():
     return render_template("powietrze.html")
 
 
 @app.route("/velib")
+@login_required
 def velib():
     return render_template("velib.html")
 
 
 @app.route("/urzedy")
+@login_required
 def urzedy():
     return render_template("urzedy.html")
 
-
 @app.route("/powietrze/nazwy")
+@login_required
 def get_nazwy_punktow():
     user_transaction_template = ''' select json * from powietrze_nazwy'''
     params = {}
@@ -55,6 +141,7 @@ def get_nazwy_punktow():
 
 
 @app.route("/powietrze/dane/<miasto>/<fromd>/<tod>", methods=['GET'])
+@login_required
 def get_powietrze_dane_archiwalne(miasto, fromd, tod):
     user_transaction_template = '''SELECT json * FROM powietrze where name = {{miasto}} and timestamp > {{fromd}} and timestamp < {{tod}}'''
     params = {
@@ -74,6 +161,7 @@ def get_powietrze_dane_archiwalne(miasto, fromd, tod):
 
 
 @app.route("/velib/stacje")
+@login_required
 def get_stacje():
     user_transaction_template = ''' select json * from velib_stations'''
     params = {}
@@ -89,6 +177,7 @@ def get_stacje():
 
 
 @app.route("/velib/dane/<stacja>/<fromd>/<tod>", methods=['GET'])
+@login_required
 def get_rowery_dane_archiwalne(stacja, fromd, tod):
     user_transaction_template = '''SELECT json * FROM velib where station_id = {{stacja}} and timestamp > {{fromd}} and timestamp < {{tod}}'''
     params = {
@@ -108,6 +197,7 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 
 
 @app.route("/urzedy/nazwy")
+@login_required
 def get_nazwy():
     user_transaction_template = ''' select json urzad from urzedy_nazwy'''
     params = {}
@@ -125,6 +215,7 @@ def get_nazwy():
     return str(df.to_json(orient="records"))
 
 @app.route("/urzedy/<nazwa>")
+@login_required
 def get_okienko(nazwa):
     user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{nazwa}}'''
     params = {
@@ -142,6 +233,7 @@ def get_okienko(nazwa):
 
 
 @app.route("/urzedy/pomoc/<urzad>", methods=['GET'])
+@login_required
 def get_idgrupy(urzad):
     user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{urzad}}'''
     params = {
@@ -159,6 +251,7 @@ def get_idgrupy(urzad):
 
 
 @app.route("/urzedy/dane/<id>/<fromd>/<tod>", methods=['GET'])
+@login_required
 def get_urzedy_dane_archiwalne(id, fromd, tod):
     user_transaction_template = '''SELECT json * FROM urzedy where idgrupy = {{id}} and timestamp > {{fromd}} and timestamp < {{tod}}'''
     params = {
@@ -175,7 +268,6 @@ def get_urzedy_dane_archiwalne(id, fromd, tod):
     for row in r:
         df = df.append(pd.DataFrame(row))
     return str(df.to_json(orient="records"))
-
 
 if __name__ == '__main__':
     app.run()
