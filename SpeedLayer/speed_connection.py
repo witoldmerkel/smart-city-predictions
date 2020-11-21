@@ -11,8 +11,7 @@ from pyspark.sql.types import (
         )
 # W tym pliku znajdują się funkcje, które zajmują się tworzeniem i obsługą strumieni danych dla każdego źródła danych
 
-def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
-                          keyspace="predictions", table="velib_predictions", target="numbikesavailable",
+def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', target="numbikesavailable",
                           source_name="velib"):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     sc = create_sk_connection(topic)
@@ -58,13 +57,12 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model',
 
     stream = stream.select('prediction', 'individual', "source_name", "timestamp", "target_column", "model_path")
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
-    query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
+    query = writeToCassandra(stream=stream)
 
     return stream, query, sc
 
 
-def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model',
-                              keyspace="predictions", table="powietrze_predictions", target="pm25",
+def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model', target="pm25",
                               source_name="powietrze"):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     sc = create_sk_connection(topic)
@@ -113,15 +111,15 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
     # One table
     stream = stream.withColumn('individual', stream['name'])
 
-    stream = stream.select('predictedlabel', "name", "timestamp", "target_column", "model_path")
+
+    stream = stream.select('prediction', 'individual', "source_name", "timestamp", "target_column", "model_path")
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
-    query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
+    query = writeToCassandra(stream=stream)
 
     return stream, query, sc
 
 
-def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model',
-                           keyspace="predictions", table="urzedy_predictions", target="liczbaKlwKolejce",
+def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model', target="liczbaKlwKolejce",
                            source_name="urzedy"):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     sc = create_sk_connection(topic)
@@ -160,8 +158,8 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model',
     # One table
     stream = stream.withColumn('individual', stream['idgrupy'])
 
-    stream = stream.select('prediction', "idgrupy", "timestamp", "target_column", "model_path")
+    stream = stream.select('prediction', 'individual', "source_name", "timestamp", "target_column", "model_path")
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
-    query = writeToCassandra(stream=stream, keyspace=keyspace, table=table)
+    query = writeToCassandra(stream=stream)
 
     return stream, query, sc

@@ -13,7 +13,7 @@ def stream_to_predictions(stream, model_path, target, source_name):
     stream = loaded_model.transform(stream)
     # Zmiana nazwy kolumn w celu zachowania spójności z nazewnictwem kolumn w bazie danych Cassandra
     if "predictedLabel" in stream.columns:
-        stream = stream.withColumn("predictedlabel", stream["predictedLabel"])
+        stream = stream.withColumn("prediction", stream["predictedLabel"])
     return stream
 
 
