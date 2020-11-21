@@ -1,16 +1,14 @@
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
-from pyspark.ml import PipelineModel
 from pyspark.ml.feature import IndexToString, OneHotEncoder, StringIndexer, VectorAssembler, StandardScaler
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from cassandra.cluster import Cluster
 from time import time
-import pickle
 import platform
 import os
 
 
-def make_class_model(data, sc, model_path, keyspace="", table=""):
+def make_class_model(data, sc, model_path, model_name, target):
 
     t0 = time()
     # Stages for pipline
@@ -94,20 +92,18 @@ def make_class_model(data, sc, model_path, keyspace="", table=""):
     accuracy = evaluator.evaluate(predictions)
     print("Accuracy = %g" % (0.0 + accuracy))
 
-    # Final model saving
+    # Final model saving and statistics writing
     tt = time() - t0
     timestamp = int(time())
     model.write().overwrite().save(model_path)
 
-
-    # loaded_model = PipelineModel.load(r'C:\Users\jaiko\Desktop\Inżynierka\class_model')
-    # model_pickle = pickle.dumps(loaded_model).hex()
-    # cluster = Cluster(['127.0.0.1'], "9042")
-    # session = cluster.connect(keyspace)
-    # query = ("INSERT INTO %s (timestamp, model, stat, learning_time, model_name)") % (table)
-    # query = query + " VALUES (%s, %s, %s, %s, %s)"
-    # session.execute(query, (timestamp, model_pickle, accuracy, tt, "RandomForest"))
-
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect("models")
+    query = ("INSERT INTO %s (model_name, timestamp, target, learning_time, model_path, stat)") % ("models_statistics")
+    query = query + " VALUES (%s, %s, %s, %s, %s, %s)"
+    session.execute(query, (model_name, timestamp, target, tt, model_path, accuracy))
+    session.shutdown()
+    cluster.shutdown()
 
     # Stop spark session
     sc.stop()

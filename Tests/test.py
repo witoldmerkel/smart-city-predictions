@@ -13,7 +13,8 @@ import SpeedLayer.speed_connection
 data_pow, sc_pow = Data_for_ML.powietrze_manipulation.load_powietrze()
 
 # Wytrenowanie modelu klsyfikacyjnego na wcześniej załadowanych danych
-model_pow = spark_ml.classificator.Classification.make_class_model(data_pow, sc_pow, r'D:\powietrze_model')
+model_pow = spark_ml.classificator.Classification.make_class_model(data_pow, sc_pow, r'D:\powietrze_model', 'RF_pow',
+                                                                   'pm25')
 
 # Uruchomienia modułu szybkiego przetwarzania dla powietrza, który korzysta z wcześniej nauczonych modeli
 spark_pow, query_pow, ssc_pow = SpeedLayer.speed_connection.activate_powietrze_stream()
