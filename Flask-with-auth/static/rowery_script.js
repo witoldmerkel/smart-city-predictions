@@ -1,3 +1,4 @@
+// Funkcja odpowiadająca za załadowanie opcji do listy, aby użytkownik mógł wybrać
     var zaladujDane = function () {
         var settings = {
             "async": true,
@@ -36,9 +37,10 @@
                 x_pred.add(option_pred);
                 x_stat.add(option_stat);}})};
 
-
+// Przy załadowaniu okienka dane zostaną wczytane do opcji wyboru
     window.onload = zaladujDane();
-
+// Funkcja pobierająca dane dotyczace wybranego przez użytkownika punktu oraz okresu czasu
+// Następnie te dane są ładowane do wygenerowanej tabeli
     var pobierzDane = function () {
         var stacja = $('#stacje').val();
         var fromd = Date.parse($('#from').val())/1000;
