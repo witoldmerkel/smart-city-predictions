@@ -165,7 +165,7 @@ def get_nazwy_punktow():
 @app.route("/powietrze/dane/<miasto>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_powietrze_dane_archiwalne(miasto, fromd, tod):
-    user_transaction_template = '''SELECT json * FROM powietrze where name = {{miasto}} and timestamp > {{fromd}} and timestamp < {{tod}}'''
+    user_transaction_template = '''SELECT json * FROM powietrze where name = {{miasto}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
     params = {
         'miasto': miasto,
         'fromd': fromd,
@@ -203,7 +203,7 @@ def get_stacje():
 @app.route("/velib/dane/<stacja>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_rowery_dane_archiwalne(stacja, fromd, tod):
-    user_transaction_template = '''SELECT json * FROM velib where station_id = {{stacja}} and timestamp > {{fromd}} and timestamp < {{tod}}'''
+    user_transaction_template = '''SELECT json * FROM velib where station_id = {{stacja}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
     params = {
         'stacja': stacja,
         'fromd': fromd,
@@ -224,7 +224,7 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 @app.route("/urzedy/nazwy")
 @login_required
 def get_nazwy():
-    user_transaction_template = ''' select json urzad from urzedy_nazwy'''
+    user_transaction_template = ''' select json urzad from urzedy_nazwy '''
     params = {}
     query, bind_params = j.prepare_query(user_transaction_template, params)
     cql = query % bind_params
@@ -263,7 +263,7 @@ def get_okienko(nazwa):
 @app.route("/urzedy/pomoc/<urzad>", methods=['GET'])
 @login_required
 def get_idgrupy(urzad):
-    user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{urzad}}'''
+    user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{urzad}}  allow filtering'''
     params = {
         'urzad': urzad,
     }
@@ -282,7 +282,7 @@ def get_idgrupy(urzad):
 @app.route("/urzedy/dane/<id>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_urzedy_dane_archiwalne(id, fromd, tod):
-    user_transaction_template = '''SELECT json * FROM urzedy where idgrupy = {{id}} and timestamp > {{fromd}} and timestamp < {{tod}}'''
+    user_transaction_template = '''SELECT json * FROM urzedy where idgrupy = {{id}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
     params = {
         'id': id,
         'fromd': fromd,
