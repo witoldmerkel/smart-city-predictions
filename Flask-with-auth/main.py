@@ -1,6 +1,7 @@
+# Poniżej ładowane są biblioteki potrzebne do poprawnej pracy interfejsu
 from flask import Flask
 from flask_login import UserMixin
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from cassandra.cluster import Cluster
@@ -9,6 +10,7 @@ from jinjasql import JinjaSql
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
+# Ogólne parametry wykorzystywane w poniższych endpoitach
 j = JinjaSql(param_style='pyformat')
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -20,6 +22,7 @@ login_manager.login_view = 'login'
 login_manager.init_app(app)
 
 
+# Model tabeli znajdującej się w bazie danych, przechowuje zarejstrowanych użytkowników
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
@@ -27,35 +30,41 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(1000))
 
 
+# Przy pierwszym uruchomieniu tworzona jest baza i tabela
 @app.before_first_request
 def create_tables():
     db.create_all()
 
 
+# Pierwsza strona jaka się ładuje po wejściu, formualrz w którym można przejść do logowania lub rejstracji
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
+# Odpowiada za przekierowanie do strony startowej
 @app.route('/index')
 def index_powrot():
     return render_template('index.html')
 
 
+# Przekierowuje na formularz odpowiadający za logowanie
 @app.route('/login')
 def login():
     return render_template('login.html')
 
 
+# Odpowaida za mechanizm logowania
 @app.route('/login', methods=['POST'])
 def login_post():
+    # Poniżej fragment czytający dane wypełnione przez użytkownika
     email = request.form.get('email')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
-
+    # Sprawdzenie w bazie danych czy jest taki użytkownik
     user = User.query.filter_by(email=email).first()
-
-    if not user and not check_password_hash(user.password, password):
+    # Sprawdzenie czy taki użytkownik ma to hasło
+    if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('login'))
 
@@ -64,66 +73,78 @@ def login_post():
     return redirect(url_for('home'))
 
 
+# Przekierowuje na formularz odpowiadający za rejstracje
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
 
 
+# Odpowaida za mechanizm logowania
 @app.route('/signup', methods=['POST'])
 def signup_post():
+    # Poniżej fragment czytający wypełnione dane
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
-
+    # Sprawdzenie czy taki użytkownik już istnieje
     user = User.query.filter_by(email=email).first()
-
+    # Jeżeli istnieje to przesyłamy jeszcze raz na rejstracje
     if user:
         flash('Email address already exists.')
         return redirect(url_for('signup'))
-
+    # Tworzenie nowego wpisu do bazy danych
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-
+    # Zapisanie wpisu do bazy danych
     db.session.add(new_user)
     db.session.commit()
 
     return redirect(url_for('login'))
 
 
+# Przekierowuje na forumalrz po wylogowaniu się
 @app.route('/logout')
-@login_required
+@login_required # To oznacza, że trzeba być zalogowanym, aby móv wykonać tę akcję, poniżej wszystkie endpointy tak mają
+# Zatem nie można się do nich dostać bez wcześniejszego zalogowania
 def logout():
     logout_user()
     return render_template("logout.html")
 
 
+# Załądowanie użytkownika
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+# Strona na, którą jesteśmy przekierowani po zalogowaniu
 @app.route('/home')
 @login_required
 def home():
     return render_template('home.html')
 
 
+# Część interfejsu odpowiadająca za interakcje z danymi o powietrzu
 @app.route("/powietrze")
 @login_required
 def powietrze():
     return render_template("powietrze.html")
 
 
+# Część interfejsu odpowiadająca za interakcje z danymi o rowerach
 @app.route("/velib")
 @login_required
 def velib():
     return render_template("velib.html")
 
 
+# Część interfejsu odpowiadająca za interakcje z danymi o urzędach
 @app.route("/urzedy")
 @login_required
 def urzedy():
     return render_template("urzedy.html")
 
+
+# Pobranie z bazy danych Cassandra nazw stacji pomiaru zanieczyszczenia powietrza
 @app.route("/powietrze/nazwy")
 @login_required
 def get_nazwy_punktow():
@@ -140,6 +161,7 @@ def get_nazwy_punktow():
     return str(df.to_json(orient="records"))
 
 
+# Pobranie z bazy danych Cassandra danych dotczących zanieczyszczenia powietrza, w podanym przez użytkownika mieście i okresie czasowym
 @app.route("/powietrze/dane/<miasto>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_powietrze_dane_archiwalne(miasto, fromd, tod):
@@ -160,6 +182,7 @@ def get_powietrze_dane_archiwalne(miasto, fromd, tod):
     return str(df.to_json(orient="records"))
 
 
+# Pobranie z bazy danych Cassandra nazw stacji z rowerami
 @app.route("/velib/stacje")
 @login_required
 def get_stacje():
@@ -176,6 +199,7 @@ def get_stacje():
     return str(df.to_json(orient="records"))
 
 
+# Pobranie z bazy danych Cassandra danych dotczących zaopatrzenia stacji, w podanym przez użytkownika punkcie i okresie czasowym
 @app.route("/velib/dane/<stacja>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_rowery_dane_archiwalne(stacja, fromd, tod):
@@ -196,6 +220,7 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
     return str(df.to_json(orient="records"))
 
 
+#Pobranie z bazy danych Cassandra nazw urzędów
 @app.route("/urzedy/nazwy")
 @login_required
 def get_nazwy():
@@ -214,6 +239,8 @@ def get_nazwy():
     df = pd.DataFrame(df)
     return str(df.to_json(orient="records"))
 
+
+# Pobranie z bazy danych Cassandra danych o podanym przez użytkownika urzędzie
 @app.route("/urzedy/<nazwa>")
 @login_required
 def get_okienko(nazwa):
@@ -232,6 +259,7 @@ def get_okienko(nazwa):
     return str(df.to_json(orient="records"))
 
 
+# Pobranie z bazy danych Cassandra danych pomocniczych o urzędzie podanym przez użytkownika
 @app.route("/urzedy/pomoc/<urzad>", methods=['GET'])
 @login_required
 def get_idgrupy(urzad):
@@ -250,6 +278,7 @@ def get_idgrupy(urzad):
     return str(df.to_json(orient="records"))
 
 
+# Pobranie z bazy danych Cassandra danych dotczących kolejek urzędowych, w podanym przez użytkownika punkcie i okresie czasowym
 @app.route("/urzedy/dane/<id>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_urzedy_dane_archiwalne(id, fromd, tod):
@@ -269,5 +298,7 @@ def get_urzedy_dane_archiwalne(id, fromd, tod):
         df = df.append(pd.DataFrame(row))
     return str(df.to_json(orient="records"))
 
+
+# W przypadku wywołania kodu, odpalamy aplikacje
 if __name__ == '__main__':
     app.run()
