@@ -244,7 +244,7 @@ def get_nazwy():
 @app.route("/urzedy/<nazwa>")
 @login_required
 def get_okienko(nazwa):
-    user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{nazwa}}'''
+    user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{nazwa}} allow filtering'''
     params = {
         'nazwa': nazwa,
     }
