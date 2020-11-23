@@ -113,5 +113,3 @@ def make_class_model(data, sc, model_path, model_name, target):
 
     if plt == "Windows":
         os.system('rmdir /q /s "D:\SparkTEMP"')
-
-    return model
