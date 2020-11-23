@@ -14,7 +14,7 @@ from pyspark.sql.types import (
 def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', target="numbikesavailable",
                           source_name="velib"):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
-    sc = create_sk_connection(topic)
+    sc, spark = create_sk_connection(topic)
     # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("station_code", StringType()) \
@@ -59,13 +59,13 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', targ
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
     query = writeToCassandra(stream=stream)
 
-    return stream, query, sc
+    return query, spark
 
 
 def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model', target="pm25",
                               source_name="powietrze"):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
-    sc = create_sk_connection(topic)
+    sc, spark = create_sk_connection(topic)
     # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("o3", StringType()) \
@@ -116,13 +116,13 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
     query = writeToCassandra(stream=stream)
 
-    return stream, query, sc
+    return query, spark
 
 
 def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model', target="liczbaKlwKolejce",
                            source_name="urzedy"):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
-    sc = create_sk_connection(topic)
+    sc, spark = create_sk_connection(topic)
     # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("timestamp", StringType()) \
@@ -162,4 +162,4 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model', t
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
     query = writeToCassandra(stream=stream)
 
-    return stream, query, sc
+    return query, spark

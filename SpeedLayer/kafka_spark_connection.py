@@ -24,4 +24,4 @@ def create_sk_connection(topic):
         .option("subscribe", topic).option("startingOffsets", "earliest").option("encoding", "UTF-8")\
         .option("failOnDataLoss", "false").load()
 
-    return sc
+    return sc, spark
