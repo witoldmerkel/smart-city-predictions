@@ -10,32 +10,23 @@
         $.ajax(settings).done(function (response) {
             var x = document.getElementById("miasta");
             var x_pred = document.getElementById("miasta_pred");
-            var x_stat = document.getElementById("miasta_stat");
             var option = document.createElement("option");
             var option_pred = document.createElement("option");
-            var option_stat = document.createElement("option");
             option.text = "Prosze wybrac punkt";
             option_pred.text = "Prosze wybrac punkt";
-            option_stat.text = "Prosze wybrac punkt";
             x.add(option);
             x_pred.add(option_pred);
-            x_stat.add(option_stat);
             for (i=0; i < response.length; i++){
                 var x = document.getElementById("miasta");
                 var x_pred = document.getElementById("miasta_pred");
-                var x_stat = document.getElementById("miasta_stat");
                 var option = document.createElement("option");
                 var option_pred = document.createElement("option");
-                var option_stat = document.createElement("option");
                 option.text = JSON.parse(response[i][0]).nazwa;
                 option.value = JSON.parse(response[i][0]).nazwa;
                 option_pred.text = JSON.parse(response[i][0]).nazwa;
                 option_pred.value = JSON.parse(response[i][0]).nazwa;
-                option_stat.text = JSON.parse(response[i][0]).nazwa;
-                option_stat.value = JSON.parse(response[i][0]).nazwa;
                 x.add(option);
-                x_pred.add(option_pred);
-                x_stat.add(option_stat);}})};
+                x_pred.add(option_pred);}})};
 
 // Przy załadowaniu okienka dane zostaną wczytane do opcji wyboru
     window.onload = zaladujDane();

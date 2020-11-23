@@ -33,24 +33,24 @@ mail = Mail(app)
 s = URLSafeTimedSerializer('akceptacjamailem')
 
 # Funkcja, która wysyła link potwierdzający na podany adres email
-def send_mail_confirmation(user):
-    token = user.get_mail_confirm_token()
+def wyslij_potwierdzenie_email(osoba):
+    token = osoba.get_mail_confirm_token()
     msg = Message(
         "Zaakceptuj maila",
-        sender="noreply@demo.com",
-        recipients=[user.email])
-    link = url_for('confirm_email', token=token, _external=True)
-    msg.body = 'Your link is {}'.format(link)
+        sender="nieodpowiadaj@pw.com",
+        recipients=[osoba.email])
+    link = url_for('potwierdz_email', token=token, _external=True)
+    msg.body = 'Twój link aktywacyjny to: {}'.format(link)
     mail.send(msg)
 
 # Endpoint odpowiedzialny za potwierdzenie adesru email
-@app.route('/confirm_email/<token>')
-def confirm_email(token):
-    email = User.verify_mail_confirm_token(token)
+@app.route('/potwierdz_email/<token>')
+def potwierdz_email(token):
+    email = Osoba.verify_mail_confirm_token(token)
     if email:
-        user = db.session.query(User).filter(User.email == email).one_or_none()
-        user.email_confirmed = True
-        db.session.add(user)
+        osoba = db.session.query(Osoba).filter(Osoba.email == email).one_or_none()
+        osoba.email_potwierdzenie = True
+        db.session.add(osoba)
         db.session.commit()
         flash(
             "Gratualcje, udało ci się potwierdzić mail!",
@@ -62,12 +62,11 @@ def confirm_email(token):
 
 
 # Model tabeli znajdującej się w bazie danych, przechowuje zarejstrowanych użytkowników
-class User(UserMixin, db.Model):
+class Osoba(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
-    email_confirmed = db.Column(db.Boolean(), nullable=False, default=False)
-    password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
+    email_potwierdzenie = db.Column(db.Boolean(), nullable=False, default=False)
+    haslo = db.Column(db.String(100))
 
 # Przekazanie tokenu, który służy do potwierdzenia adresu email
     def get_mail_confirm_token(self):
@@ -117,18 +116,18 @@ def login():
 def login_post():
     # Poniżej fragment czytający dane wypełnione przez użytkownika
     email = request.form.get('email')
-    password = request.form.get('password')
+    haslo = request.form.get('haslo')
     remember = True if request.form.get('remember') else False
     # Sprawdzenie w bazie danych czy jest taki użytkownik
-    user = User.query.filter_by(email=email).first()
+    osoba = Osoba.query.filter_by(email=email).first()
     # Sprawdzenie czy taki użytkownik ma to hasło
-    if not user or not check_password_hash(user.password, password):
+    if not osoba or not check_password_hash(osoba.haslo, haslo):
         flash('Sprawdz wprowadzone dane.')
         return redirect(url_for('login'))
-    if not user.email_confirmed:
+    if not osoba.email_potwierdzenie:
         flash('Potwierdz konto.')
         return redirect(url_for('login'))
-    login_user(user, remember=remember)
+    login_user(osoba, remember=remember)
 
     return redirect(url_for('home'))
 
@@ -144,20 +143,19 @@ def signup():
 def signup_post():
     # Poniżej fragment czytający wypełnione dane
     email = request.form.get('email')
-    name = request.form.get('name')
-    password = request.form.get('password')
+    haslo = request.form.get('haslo')
     # Sprawdzenie czy taki użytkownik już istnieje
-    user = User.query.filter_by(email=email).first()
+    osoba = Osoba.query.filter_by(email=email).first()
     # Jeżeli istnieje to przesyłamy jeszcze raz na rejstracje
-    if user:
+    if osoba:
         flash('Mail zajęty.')
         return redirect(url_for('signup'))
     # Tworzenie nowego wpisu do bazy danych
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    nowa_osoba = Osoba(email=email, haslo=generate_password_hash(haslo, method='sha256'))
     # Zapisanie wpisu do bazy danych
-    db.session.add(new_user)
+    db.session.add(nowa_osoba)
     db.session.commit()
-    send_mail_confirmation(new_user)
+    wyslij_potwierdzenie_email(nowa_osoba)
 
     return redirect(url_for('login'))
 
@@ -167,14 +165,14 @@ def signup_post():
 @login_required  # To oznacza, że trzeba być zalogowanym, aby móv wykonać tę akcję, poniżej wszystkie endpointy tak mają
 # Zatem nie można się do nich dostać bez wcześniejszego zalogowania
 def logout():
-    logout_user()
+    logout_uzyt()
     return render_template("logout.html")
 
 
 # Załądowanie użytkownika
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+def logout_uzyt(uzyt_id):
+    return Osoba.query.get(int(uzyt_id))
 
 
 # Strona na, którą jesteśmy przekierowani po zalogowaniu
@@ -209,9 +207,9 @@ def urzedy():
 @app.route("/powietrze/nazwy")
 @login_required
 def get_nazwy_punktow():
-    user_transaction_template = ''' select json * from powietrze_nazwy'''
+    zapytanie_uzytkownika = ''' select json * from powietrze_nazwy'''
     params = {}
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
@@ -226,16 +224,55 @@ def get_nazwy_punktow():
 @app.route("/powietrze/dane/<miasto>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_powietrze_dane_archiwalne(miasto, fromd, tod):
-    user_transaction_template = '''SELECT json * FROM powietrze where name = {{miasto}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM powietrze where name = {{miasto}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
     params = {
         'miasto': miasto,
         'fromd': fromd,
         'tod': tod,
     }
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących predykcji zanieczyszczenia powietrza w wybranym punkcie
+@app.route("/powietrze/predykcja/<miasto>", methods=['GET'])
+@login_required
+def get_powietrze_predykcje(miasto):
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} limit 4 allow filtering'''
+    params = {
+        'miasto': miasto,
+    }
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('predictions')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących statystyk danych o zanieczyszczeniu powietrza
+@app.route("/powietrze/staty/<fromd_stat>/<tod_stat>")
+@login_required
+def get_powietrze_stat_danych(fromd_stat, tod_stat):
+    zapytanie_uzytkownika = '''SELECT json * FROM dane where module = 'powietrze' and timestamp0 > {{fromd_stat}} and timestamp0 < {{tod_stat}} allow filtering'''
+    params = {
+        'fromd_stat': fromd_stat,
+        'tod_stat' : tod_stat,
+    }
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('datastats')
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
@@ -247,9 +284,9 @@ def get_powietrze_dane_archiwalne(miasto, fromd, tod):
 @app.route("/velib/stacje")
 @login_required
 def get_stacje():
-    user_transaction_template = ''' select json * from velib_stations'''
+    zapytanie_uzytkownika = ''' select json * from velib_stations'''
     params = {}
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
@@ -264,16 +301,55 @@ def get_stacje():
 @app.route("/velib/dane/<stacja>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_rowery_dane_archiwalne(stacja, fromd, tod):
-    user_transaction_template = '''SELECT json * FROM velib where station_id = {{stacja}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM velib where station_id = {{stacja}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
     params = {
         'stacja': stacja,
         'fromd': fromd,
         'tod': tod,
     }
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących predykcji stanu stacji z rowerami w wybranym punkcie
+@app.route("/velib/predykcja/<stacja>", methods=['GET'])
+@login_required
+def get_velib_predykcje(stacja):
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} limit 4 allow filtering'''
+    params = {
+        'stacja': stacja,
+    }
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('predictions')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących statystyk danych o rowerach
+@app.route("/velib/staty/<fromd_stat>/<tod_stat>")
+@login_required
+def get_velib_stat_danych(fromd_stat, tod_stat):
+    zapytanie_uzytkownika = '''SELECT json * FROM dane where module = 'velib' and timestamp0 > {{fromd_stat}} and timestamp0 < {{tod_stat}} allow filtering'''
+    params = {
+        'fromd_stat': fromd_stat,
+        'tod_stat' : tod_stat,
+    }
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('datastats')
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
@@ -285,9 +361,9 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 @app.route("/urzedy/nazwy")
 @login_required
 def get_nazwy():
-    user_transaction_template = ''' select json urzad from urzedy_nazwy '''
+    zapytanie_uzytkownika = ''' select json urzad from urzedy_nazwy '''
     params = {}
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
@@ -305,11 +381,11 @@ def get_nazwy():
 @app.route("/urzedy/<nazwa>")
 @login_required
 def get_okienko(nazwa):
-    user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{nazwa}} allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM urzedy_nazwy where urzad = {{nazwa}} allow filtering'''
     params = {
         'nazwa': nazwa,
     }
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
@@ -324,11 +400,11 @@ def get_okienko(nazwa):
 @app.route("/urzedy/pomoc/<urzad>", methods=['GET'])
 @login_required
 def get_idgrupy(urzad):
-    user_transaction_template = '''SELECT json * FROM urzedy_nazwy where urzad = {{urzad}}  allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM urzedy_nazwy where urzad = {{urzad}}  allow filtering'''
     params = {
         'urzad': urzad,
     }
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
@@ -343,16 +419,55 @@ def get_idgrupy(urzad):
 @app.route("/urzedy/dane/<id>/<fromd>/<tod>", methods=['GET'])
 @login_required
 def get_urzedy_dane_archiwalne(id, fromd, tod):
-    user_transaction_template = '''SELECT json * FROM urzedy where idgrupy = {{id}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM urzedy where idgrupy = {{id}} and timestamp > {{fromd}} and timestamp < {{tod}}  allow filtering'''
     params = {
         'id': id,
         'fromd': fromd,
         'tod': tod,
     }
-    query, bind_params = j.prepare_query(user_transaction_template, params)
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('json')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących predykcji stanu stacji z rowerami w wybranym punkcie
+@app.route("/urzedy/predykcja/<grupa>", methods=['GET'])
+@login_required
+def get_urzedy_predykcje(grupa):
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'urzedy' and individual = {{grupa}} limit 4 allow filtering'''
+    params = {
+        'grupa': grupa,
+    }
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('predictions')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących statystyk danych o kolejkach w urzedach
+@app.route("/urzedy/staty/<fromd_stat>/<tod_stat>")
+@login_required
+def get_urzedy_stat_danych(fromd_stat, tod_stat):
+    zapytanie_uzytkownika = '''SELECT json * FROM dane where module = 'urzedy' and timestamp0 > {{fromd_stat}} and timestamp0 < {{tod_stat}} allow filtering'''
+    params = {
+        'fromd_stat': fromd_stat,
+        'tod_stat' : tod_stat,
+    }
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('datastats')
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
