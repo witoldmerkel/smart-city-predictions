@@ -19,7 +19,7 @@ def load_and_get_table_df(keys_space_name, table_name, time_frame=None):
         .load()
 
     if time_frame is None:
-        time_frame = calendar.timegm(time.gmtime()) - 1209600
+        time_frame = calendar.timegm(time.gmtime()) - 691200 #Zmienione z dwóch tygodni na jeden w celu testów
     table_df = table_df.filter(f.col("timestamp") > time_frame)
 
     return table_df, spark

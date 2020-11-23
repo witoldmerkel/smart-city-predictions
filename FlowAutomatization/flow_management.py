@@ -17,7 +17,7 @@ def start_flow(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=86
     # Inicjalizacja pierwszych modeli
     for source in list_of_sources:
         load_and_train(source)
-        time.sleep(5)
+        time.sleep(10)
 
 
 
