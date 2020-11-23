@@ -280,6 +280,23 @@ def get_powietrze_stat_danych(fromd_stat, tod_stat):
     return str(df.to_json(orient="records"))
 
 
+# Pobieranie z bazy danych Cassandra danych dotyczących statystyk modeli
+@app.route('/powietrze/staty')
+@login_required
+def get_powietrze_stat_modeli():
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_pow' limit 1 allow filtering'''
+    params = {}
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('models')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
 # Pobranie z bazy danych Cassandra nazw stacji z rowerami
 @app.route("/velib/stacje")
 @login_required
@@ -350,6 +367,23 @@ def get_velib_stat_danych(fromd_stat, tod_stat):
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('datastats')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących statystyk modeli
+@app.route('/velib/staty')
+@login_required
+def get_velib_stat_modeli():
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_vel' limit 1 allow filtering'''
+    params = {}
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('models')
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
@@ -468,6 +502,23 @@ def get_urzedy_stat_danych(fromd_stat, tod_stat):
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect('datastats')
+    r = session.execute(cql)
+    df = pd.DataFrame()
+    for row in r:
+        df = df.append(pd.DataFrame(row))
+    return str(df.to_json(orient="records"))
+
+
+# Pobieranie z bazy danych Cassandra danych dotyczących statystyk modeli
+@app.route('/urzedy/staty')
+@login_required
+def get_urzedy_stat_modeli():
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_urz' limit 1 allow filtering'''
+    params = {}
+    query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
+    cql = query % bind_params
+    cluster = Cluster(['127.0.0.1'], "9042")
+    session = cluster.connect('models')
     r = session.execute(cql)
     df = pd.DataFrame()
     for row in r:
