@@ -1,12 +1,4 @@
-import SpeedLayer.speed_connection
-import os
-import findspark
-import spark_ml.classificator.Classification
-import spark_ml.reggresor.Regression
-import Data_for_ML.powietrze_manipulation
-import Data_for_ML.urzedy_manipulation
-import Data_for_ML.velib_manipulation
-from functions_wrapers import load_and_train
+from functions_wrapers import load_and_train, activate_stream
 import time
 
 # Funkcja automatyzująca cykliczne wykonywania pobierania danych i uczenia modeli oraz ciągłego wykonywania predykcji
@@ -18,6 +10,24 @@ def start_flow(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=86
     for source in list_of_sources:
         load_and_train(source)
         time.sleep(10)
+
+    while True:
+        connections = []
+        for source in list_of_sources:
+            query, spark = activate_stream(source)
+            time.sleep(10)
+            connections.append([query, spark])
+        time.sleep(refresh_time)
+
+        for connection in connections:
+            query, spark = connection
+            query.stop()
+            spark.stop()
+            time.sleep(10)
+
+        for source in list_of_sources:
+            load_and_train(source)
+            time.sleep(10)
 
 
 
