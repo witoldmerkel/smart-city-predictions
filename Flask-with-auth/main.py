@@ -32,6 +32,7 @@ login_manager.init_app(app)
 mail = Mail(app)
 s = URLSafeTimedSerializer('akceptacjamailem')
 
+# Funkcja, która wysyła link potwierdzający na podany adres email
 def send_mail_confirmation(user):
     token = user.get_mail_confirm_token()
     msg = Message(
@@ -42,6 +43,7 @@ def send_mail_confirmation(user):
     msg.body = 'Your link is {}'.format(link)
     mail.send(msg)
 
+# Endpoint odpowiedzialny za potwierdzenie adesru email
 @app.route('/confirm_email/<token>')
 def confirm_email(token):
     email = User.verify_mail_confirm_token(token)
@@ -67,11 +69,13 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
 
+# Przekazanie tokenu, który służy do potwierdzenia adresu email
     def get_mail_confirm_token(self):
         s = URLSafeTimedSerializer(
             app.config["SECRET_KEY"], salt="email-comfirm")
         return s.dumps(self.email, salt="email-confirm")
 
+# Mechanizm weryfikacji adresu email na podstawie tokenu
     @staticmethod
     def verify_mail_confirm_token(token):
         try:
