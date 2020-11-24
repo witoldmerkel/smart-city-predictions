@@ -71,3 +71,51 @@ li {display: inline;}
   position: absolute;
   top: 35%;
   left: 34%;}
+.tablica {
+  border: 1px solid #262AA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+.tablica td, table.tablica th {
+  border: 1px solid #000000;
+  padding: 3px 3px;
+}
+.tablica tbody td {
+  font-size: 13px;
+}
+.tablica tr:nth-child(even) {
+  background: #D0E4F5;
+}
+.tablica thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+.tablica thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+.tablica thead th:first-child {
+  border-left: none;
+}
+
+.tablica tfoot td {
+  font-size: 14px;
+}
+.tablica tfoot .links {
+  text-align: right;
+}
+.tablica tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
