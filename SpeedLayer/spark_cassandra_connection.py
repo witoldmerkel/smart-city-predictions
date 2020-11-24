@@ -10,9 +10,9 @@ def writeToCassandra(stream):
     query = stream.writeStream \
         .format("org.apache.spark.sql.cassandra") \
         .outputMode('append') \
-        .options(table="predictions", keyspace="predictions", checkpointLocation=checkpointLocation) \
-        .start() \
-        .awaitTermination()
+        .options(table="predictions", keyspace="predictions", checkpointLocation=checkpointLocation, failOnDataLoss="false") \
+        .start() #\
+        #.awaitTermination()
 
     return query
 

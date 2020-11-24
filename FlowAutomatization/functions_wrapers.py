@@ -33,20 +33,23 @@ def load_and_train(source):
         spark_ml.reggresor.Regression.make_regr_model(data_vel, sc_vel, velib_path, 'RF_vel', 'numbikesavailable')
 
 
-def activate_stream(source):
+def activate_stream(source, spark, sk_connection):
     path = findspark.find()
 
     if source == "powietrze":
         powietrze_path = os.path.join(path, 'powietrze_model')
         # Uruchomienia modułu szybkiego przetwarzania dla powietrza, który korzysta z wcześniej nauczonych modeli
-        query, spark = SpeedLayer.speed_connection.activate_powietrze_stream(model_path=powietrze_path)
+        query, _ = SpeedLayer.speed_connection.activate_powietrze_stream(model_path=powietrze_path, spark=spark,
+                                                                         sk_connection=sk_connection)
 
     elif source == "urzedy":
         urzedy_path = os.path.join(path, 'urzedy_model')
-        query, spark = SpeedLayer.speed_connection.activate_urzedy_stream(model_path=urzedy_path)
+        query, _ = SpeedLayer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, spark=spark,
+                                                                         sk_connection=sk_connection)
 
     elif source == "velib":
         velib_path = os.path.join(path, 'velib_model')
-        query, spark = SpeedLayer.speed_connection.activate_velib_stream(model_path=velib_path)
+        query, _ = SpeedLayer.speed_connection.activate_velib_stream(model_path=velib_path, spark=spark,
+                                                                         sk_connection=sk_connection)
 
-    return query, spark
+    return query

@@ -12,9 +12,12 @@ from pyspark.sql.types import (
 # W tym pliku znajdują się funkcje, które zajmują się tworzeniem i obsługą strumieni danych dla każdego źródła danych
 
 def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', target="numbikesavailable",
-                          source_name="velib"):
+                          source_name="velib", spark=None, sk_connection=None, put_cassandra=False):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
-    sc, spark = create_sk_connection(topic)
+    if sk_connection is None:
+        sc, spark = create_sk_connection(topic, spark)
+    else:
+        sc = sk_connection
     # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("station_code", StringType()) \
@@ -56,16 +59,21 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', targ
     stream = stream.withColumn('individual', stream['station_id'])
 
     stream = stream.select('prediction', 'individual', "source_name", "timestamp", "target_column", "model_path")
+    query = stream
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
-    query = writeToCassandra(stream=stream)
+    if put_cassandra:
+        query = writeToCassandra(stream=stream)
 
     return query, spark
 
 
 def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model', target="pm25",
-                              source_name="powietrze"):
+                              source_name="powietrze", spark=None, sk_connection=None, put_cassandra=False):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
-    sc, spark = create_sk_connection(topic)
+    if sk_connection is None:
+        sc, spark = create_sk_connection(topic, spark)
+    else:
+        sc = sk_connection
     # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("o3", StringType()) \
@@ -111,18 +119,23 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
     # One table
     stream = stream.withColumn('individual', stream['name'])
 
-
     stream = stream.select('prediction', 'individual', "source_name", "timestamp", "target_column", "model_path")
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
-    query = writeToCassandra(stream=stream)
+    query = stream
+    # Zapisywanie strumienia do tablicy w bazie danych Cassandra
+    if put_cassandra:
+        query = writeToCassandra(stream=stream)
 
     return query, spark
 
 
 def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model', target="liczbaKlwKolejce",
-                           source_name="urzedy"):
+                           source_name="urzedy", spark=None, sk_connection=None, put_cassandra=False):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
-    sc, spark = create_sk_connection(topic)
+    if sk_connection is None:
+        sc, spark = create_sk_connection(topic, spark)
+    else:
+        sc = sk_connection
     # Definicja struktury pliku json, który zostanie pobrany
     json_schema = StructType() \
         .add("timestamp", StringType()) \
@@ -160,6 +173,9 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model', t
 
     stream = stream.select('prediction', 'individual', "source_name", "timestamp", "target_column", "model_path")
     # Zapisywanie strumienia do tablicy w bazie danych Cassandra
-    query = writeToCassandra(stream=stream)
+    query = stream
+    # Zapisywanie strumienia do tablicy w bazie danych Cassandra
+    if put_cassandra:
+        query = writeToCassandra(stream=stream)
 
     return query, spark
