@@ -169,25 +169,25 @@
             tabela_danych.appendChild(singleRow_danych);
 
 })
-    var settings1 = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/staty",
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings1).done(function (response) {
-            var tabela_danych = document.getElementById("tabel_modelu");
-            tabela_danych.innerHTML='';
-            var singleRow_danych=document.createElement('tr');
-            singleRow_danych.innerHTML += '<td>' + "Czas uczenia [s]" + '</td>';
-            singleRow_danych.innerHTML += '<td>' + "Dokładność" + '</td>';
-            singleRow_danych.innerHTML += '<td>' + "Rodzaj" + '</td>';
-            tabela_danych.appendChild(singleRow_danych);
-            var singleRow_danych=document.createElement('tr');
-            singleRow_danych.innerHTML += '<td>' + JSON.parse(response[0][0]).learning_time + '</td>';
-            singleRow_danych.innerHTML += '<td>' + JSON.parse(response[0][0]).stat + '</td>';
-            singleRow_danych.innerHTML += '<td>' + "Klasyfikator" + '</td>';
-            tabela_danych.appendChild(singleRow_danych);
-        })
-    };
+        var settings1 = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://127.0.0.1:5000/powietrze/staty",
+                "method": "GET",
+                "dataType": 'json'
+            }
+            $.ajax(settings1).done(function (response) {
+                var tabela_danych = document.getElementById("tabel_modelu");
+                tabela_danych.innerHTML='';
+                var singleRow_danych=document.createElement('tr');
+                singleRow_danych.innerHTML += '<td>' + "Czas uczenia [s]" + '</td>';
+                singleRow_danych.innerHTML += '<td>' + "Dokładność" + '</td>';
+                singleRow_danych.innerHTML += '<td>' + "Rodzaj" + '</td>';
+                tabela_danych.appendChild(singleRow_danych);
+                var singleRow_danych=document.createElement('tr');
+                singleRow_danych.innerHTML += '<td>' + JSON.parse(response[0][0]).learning_time + '</td>';
+                singleRow_danych.innerHTML += '<td>' + JSON.parse(response[0][0]).stat + '</td>';
+                singleRow_danych.innerHTML += '<td>' + "Klasyfikator" + '</td>';
+                tabela_danych.appendChild(singleRow_danych);
+            })
+        };
