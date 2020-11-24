@@ -181,11 +181,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.flow_management" />
       <item itemvalue="Python.powietrze_manipulation" />
       <item itemvalue="Python.speed_connection" />
       <item itemvalue="Python.urzedy_manipulation" />
       <item itemvalue="Python.velib_manipulation (1)" />
-      <item itemvalue="Python.flow_management" />
     </list>
     <recent_temporary>
       <list>
