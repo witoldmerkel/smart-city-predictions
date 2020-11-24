@@ -165,13 +165,13 @@ def signup_post():
 @login_required  # To oznacza, że trzeba być zalogowanym, aby móv wykonać tę akcję, poniżej wszystkie endpointy tak mają
 # Zatem nie można się do nich dostać bez wcześniejszego zalogowania
 def logout():
-    logout_uzyt()
+    logout_user()
     return render_template("logout.html")
 
 
 # Załądowanie użytkownika
 @login_manager.user_loader
-def logout_uzyt(uzyt_id):
+def load_uzyt(uzyt_id):
     return Osoba.query.get(int(uzyt_id))
 
 
