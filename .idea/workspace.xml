@@ -19,13 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="Flow aoutomatization working - comments">
-      <change afterPath="$PROJECT_DIR$/FlowAutomatization/constant_prediction.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowAutomatization/periodic_learning.py" afterDir="false" />
+    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="Deleting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowAutomatization/flow_management.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlowAutomatization/flow_management.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark_ml/classificator/Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark_ml/classificator/Classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark_ml/reggresor/Regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark_ml/reggresor/Regression.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,10 +162,10 @@
     </configuration>
     <list>
       <item itemvalue="JavaScript Debug.powietrze.html" />
-      <item itemvalue="Python.constant_prediction" />
-      <item itemvalue="Python.flow_management" />
-      <item itemvalue="Python.periodic_learning" />
       <item itemvalue="Python.speed_connection" />
+      <item itemvalue="Python.flow_management" />
+      <item itemvalue="Python.constant_prediction" />
+      <item itemvalue="Python.periodic_learning" />
     </list>
     <recent_temporary>
       <list>
@@ -236,20 +231,6 @@
       <workItem from="1605387849206" duration="11720000" />
       <workItem from="1605468339189" duration="1813000" />
       <workItem from="1605541463831" duration="20753000" />
-    </task>
-    <task id="LOCAL-00007" summary="kafka-faza-pierwsza">
-      <created>1602617562164</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1602617562164</updated>
-    </task>
-    <task id="LOCAL-00008" summary="kafka-faza-pierwsza-koniec">
-      <created>1602618058723</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1602618058723</updated>
     </task>
     <task id="LOCAL-00009" summary="kafka-faza-druga">
       <created>1602693943580</created>
@@ -580,7 +561,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606252437778</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Two functions - predictions and learning">
+      <created>1606333518070</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333518071</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Deleting">
+      <created>1606333735006</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1606333735006</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,8 +594,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="poweitrze gotowe do modelu" />
-    <MESSAGE value="make class model comments" />
     <MESSAGE value="make class model comments 2" />
     <MESSAGE value="Working model for powietrze" />
     <MESSAGE value="Saving to Cassandra - pickle doesnt work" />
@@ -624,7 +617,9 @@
     <MESSAGE value="flow_management testing" />
     <MESSAGE value="Flow aoutomatization working" />
     <MESSAGE value="Flow aoutomatization working - comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Flow aoutomatization working - comments" />
+    <MESSAGE value="Two functions - predictions and learning" />
+    <MESSAGE value="Deleting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleting" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="190" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604675711951">
@@ -687,11 +682,11 @@
     </state>
     <state x="699" y="235" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605898447248" />
     <state x="652" y="251" key="VCS.ChangeListViewerDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1603368773907" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1606252440933">
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1606333744031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="709" y="339" key="Vcs.Push.Dialog.v2/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521812923" />
-    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606252440933" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606333744031" />
     <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1604862339072" />
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602610822445">
       <screen x="0" y="23" width="1792" height="1011" />
