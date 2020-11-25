@@ -111,5 +111,5 @@ def make_class_model(data, sc, model_path, model_name, target):
     # Deleting temp files for Windows systems
     plt = platform.system()
 
-    if plt == "Windows":
-        os.system('rmdir /q /s "D:\SparkTEMP"')
+    # if plt == "Windows":
+        # os.system('rmdir /q /s "D:\SparkTEMP"')
