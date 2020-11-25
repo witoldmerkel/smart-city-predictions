@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Rejstracja</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='signup_style.css') }}">
 </head>
 <body>
-<div >
-    <h3 >Sign Up</h3>
-    <div >
+<div class = 'main'>
+    <p class="sign" align="center">Zarejstruj się</p>
+    <div align="center">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div >
@@ -18,19 +19,21 @@
         <form action="/signup" method="POST">
             <div >
                 <div >
-                    <input  type="email" name="email" placeholder="Email" autofocus="">
+                    <input class = 'email' type="email" name="email" placeholder="Email" autofocus="">
                 </div>
             </div>
 
             <div >
                 <div >
-                    <input  type="password" name="haslo" placeholder="Hasło">
+                    <input class = "haslo" type="password" name="haslo" placeholder="Hasło">
                 </div>
             </div>
 
-            <button >Sign Up</button>
+            <button class = 'guzik'>Zarejstruj</button>
             <br>
+            <div class = 'napis' align="center">
             Wróć do strony startowej: <a href="{{ url_for('index') }}" >Powrót</a>
+            </div>
         </form>
     </div>
 </div>

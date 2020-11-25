@@ -73,7 +73,7 @@ li {display: inline;}
   left: 34%;}
 .tablica {
   border: 1px solid #262AA4;
-  background-color: #EEEEEE;
+  background-color: #D0E4F5;
   width: 100%;
   text-align: center;
   border-collapse: collapse;
@@ -86,7 +86,7 @@ li {display: inline;}
   font-size: 13px;
 }
 .tablica tr:nth-child(even) {
-  background: #D0E4F5;
+  background: #EEEEEE;
 }
 .tablica thead {
   background: #1C6EA4;

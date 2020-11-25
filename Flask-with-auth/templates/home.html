@@ -3,20 +3,20 @@
    <head>
       <meta charset="utf-8">
       <title>Strona główna</title>
-      <link rel="stylesheet" href="{{ url_for('static', filename='home_style.css') }}">
+      <link rel="stylesheet" href="{{url_for('static', filename='home_style.css') }}">
    </head>
    <body>
       <header>
          <div class="container">
-            <h1 class="logo">Początek</h1>
-            <h2>Praca inżynierska: System predykcyjny dla danych inteligentnych miast</h2>
+            <center><h1 class="logo">Witamy w stronie zarządzającej dostępem do pozostałych części projektu!</h1></center>
             <strong>
-               <nav>
-                  <ul class="menu">
-                     <li><a href="{{ url_for('powietrze') }}">Powietrze</a></li>
-                     <li><a href="{{ url_for('velib') }}">Rowery</a></li>
-                     <li><a href="{{ url_for('urzedy') }}">Urzędy</a></li>
-                     <li><a href="{{ url_for('logout') }} ">Wyloguj</a></li>
+               <nav class="menu">
+                  <h2>Poniżej można przenieść się do poszczególnych sekcji.</h2>
+                  <ul class="options">
+                     Tutaj można przeanalizować dane dotyczące poziomu zanieczyszczenia <a href="{{ url_for('powietrze') }}">powietrza</a>.<br>
+                     Tutaj można przeanalizować dane dotyczące stanu zaopatrzenia stacji w <a href="{{ url_for('velib') }}">rowery</a>.<br>
+                     Tutaj można przeanalizować dane dotyczące długości kolejek w <a href="{{ url_for('urzedy') }}">urzędach</a>.<br>
+                     Tutaj można się <a href="{{ url_for('logout') }} ">wylogować</a> po skończonej pracy,<br>
                   </ul>
                </nav>
             </strong>

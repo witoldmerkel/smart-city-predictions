@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Logowanie</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='login_style.css') }}">
 </head>
 <body>
-<div >
-    <h3 >Login</h3>
+<div class = 'main'>
+    <p class="sign" align="center">Zaloguj się</p>
 
     <div >
         {% with messages = get_flashed_messages() %}
@@ -19,24 +20,26 @@
         <form method="POST" action="/login">
             <div >
                 <div >
-                    <input  type="email" name="email" placeholder="Twój mail" autofocus="">
+                    <input class = 'email' type="email" name="email" placeholder="Twój mail" autofocus="">
                 </div>
             </div>
 
             <div >
                 <div >
-                    <input  type="password" name="haslo" placeholder="Twoje haslo">
+                    <input class = "haslo"  type="password" name="haslo" placeholder="Twoje haslo">
                 </div>
             </div>
-            <div >
+            <div class="pamiec" align="center">
                 <label >
                     <input type="checkbox">
                     Remember me
                 </label>
             </div>
-            <button >Login</button>
+            <button class = 'guzik'>Zaloguj</button>
 <br>
+            <div class = 'napis' align="center">
             Wróć do strony startowej: <a href="{{ url_for('index') }}" >Powrót</a>
+                </div>
         </form>
     </div>
 </div>

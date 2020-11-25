@@ -1,2 +1,10 @@
-/*W tym pliku będzię znajdował się fragment kodu odpowiadającego za styl strony głównej*/
-/*Zostanie on dodany jak cała aplikacja będzie już działać*/
+/*W tym pliku znajduje się fragment kodu odpowiadającego za styl strony głównej*/
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  overflow: hidden;
+}
