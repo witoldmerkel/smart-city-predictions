@@ -1,4 +1,4 @@
-from functions_wrapers import load_and_train, activate_stream
+from functions_wrapers import activate_stream
 from shared_connection import prepare_sk_connection
 from pyspark.sql import functions as F
 from pyspark.sql import SparkSession
@@ -6,17 +6,12 @@ from SpeedLayer import spark_cassandra_connection
 import time
 import os
 
-# Funkcja automatyzująca cykliczne wykonywania pobierania danych i uczenia modeli oraz ciągłego wykonywania predykcji
+# Funkcja automatyzująca ciągłe wykonywanie predykcji
 # Przed dodoaniem nowych źródeł wyczyścić folder "checkpoints" w lokalizacji Spark
 
 
-def start_flow(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=1200):
+def start_flow_predictions(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=86400):
 
-    #Inicjalizacja pierwszych modeli
-    for source in list_of_sources:
-        load_and_train(source)
-        time.sleep(10)
-    # Ciągłe wykonywanie predykcji oraz okresowe uczenie modeli
     while True:
         # Wymagane pakiety
         os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1,' \
@@ -26,17 +21,13 @@ def start_flow(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=12
                                             'com.datastax.spark:spark-cassandra-connector_2.12:3.0.0,' \
                                             'org.apache.spark:spark-token-provider-kafka-0-10_2.12:3.0.1,' \
                                             ' --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
-        # sessions = []
+
         # Stworzenie sesji Spark zarządzającej strumieniami
         spark = SparkSession \
             .builder \
             .appName("StreamingApp") \
             .getOrCreate()
 
-        # sessions.append(spark)
-        #
-        # for _ in list_of_sources[1:]:
-        #     sessions.append(spark.newSession())
         # Stworzenie wspólnego połączenia czytającego z wielu topiców Kafka
         sk_connection, spark, topics = prepare_sk_connection(list_of_sources, spark)
         streams = []
@@ -61,15 +52,12 @@ def start_flow(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=12
 
         # Aktywacja strumieni i połączenia z bazą danych Cassandra
         query = spark_cassandra_connection.writeToCassandra(result_stream)
+        print("starting...")
         spark.streams.awaitAnyTermination(refresh_time)
         time.sleep(10)
-        # Zamykanie otwrtych połączeń ze Spark
+        # Zamykanie otwartych połączeń ze Spark
         query.stop()
         spark.stop()
-        # Ponowne ładowanie danych i trening modeli
-        for source in list_of_sources:
-            load_and_train(source)
-            time.sleep(10)
 
 
-start_flow(list_of_sources=["powietrze", "urzedy"])
+start_flow_predictions(list_of_sources=["powietrze", "urzedy"])
