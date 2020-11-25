@@ -1,5 +1,4 @@
 # Poniżej ładowane są biblioteki potrzebne do poprawnej pracy interfejsu
-
 from flask_mail import Mail, Message
 from flask import Flask
 from flask_login import UserMixin
@@ -37,7 +36,7 @@ def wyslij_potwierdzenie_email(osoba):
     token = osoba.get_mail_confirm_token()
     msg = Message(
         "Zaakceptuj maila",
-        sender="nieodpowiadaj@pw.com",
+        sender="nieodpowiadaj@gmail.com",
         recipients=[osoba.email])
     link = url_for('potwierdz_email', token=token, _external=True)
     msg.body = 'Twój link aktywacyjny to: {}'.format(link)

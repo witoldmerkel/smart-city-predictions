@@ -136,7 +136,7 @@
             var tabela_danych = document.getElementById("tabel_danych");
             tabela_danych.innerHTML='';
             var singleRow_danych=document.createElement('tr');
-            singleRow_danych.innerHTML += '<td>' + "Moda zmiennej celu" + '</td>';
+            singleRow_danych.innerHTML += '<td>' + "Najczęściej występujący stan zanieczyszczenia powietrza" + '</td>';
             singleRow_danych.innerHTML += '<td>' + "Ile danych napłyneło" + '</td>';
             singleRow_danych.innerHTML += '<td>' + "Ile danych nie napłyneło" + '</td>';
             tabela_danych.appendChild(singleRow_danych);
