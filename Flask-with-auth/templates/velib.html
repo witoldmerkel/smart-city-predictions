@@ -21,24 +21,24 @@
       <center><h1>Dane historyczne</h1></center>
 <label for="stacje">Który punkt pomiaru:</label>
 
-<select name="stacje" id="stacje">
+<select name="stacje" id="stacje" class = 'wybor'>
 </select>
 <br>
 <label for="from">Od kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="from"
        name="from" value="2020-10-31T00:00"
-       min="2020-10-01T00:00" max="2030-11-01T00:00">
+       min="2020-10-01T00:00" max="2030-11-01T00:00" class = 'wybor_czasu'>
 <br>
 <label for="to">Do kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="to"
        name="to" value="2020-11-30T00:00"
-       min="2020-10-01T00:00" max="2030-11-01T00:00">
+       min="2020-10-01T00:00" max="2030-11-01T00:00" class = 'wybor_czasu'>
 
       <br>
 
-<button onclick="pobierzDane()", id="rob">Pokaż</button>
+<button onclick="pobierzDane()", id="rob", class="guzik">Pokaż</button>
 
     <table id="tabel"  class="tablica">
     </table>
@@ -51,11 +51,11 @@
     <center><h1>Predykcja</h1></center>
 <label for="stacje_pred">Który punkt pomiaru:</label>
 
-<select name="stacje_pred" id="stacje_pred">
+<select name="stacje_pred" id="stacje_pred"class = 'wybor'>
 </select>
       <br>
 
-<button onclick="pobierzDane_pred()", id="rob_pred">Pokaż</button>
+<button onclick="pobierzDane_pred()", id="rob_pred", class="guzik">Pokaż</button>
 
     <table id="tabel_pred"  class="tablica">
     </table>
@@ -77,17 +77,17 @@
 
 <input type="datetime-local" id="from_stat"
        name="from_stat" value="2020-10-31T00:00"
-       min="2020-10-01T00:00" max="2030-11-01T00:00">
+       min="2020-10-01T00:00" max="2030-11-01T00:00" class = 'wybor_czasu'>
 <br>
 <label for="to_stat">Do kiedy pokazywać dane:</label>
 
 <input type="datetime-local" id="to_stat"
        name="to_stat" value="2020-11-30T00:00"
-       min="2020-10-01T00:00" max="2030-11-01T00:00">
+       min="2020-10-01T00:00" max="2030-11-01T00:00" class = 'wybor_czasu'>
 
       <br>
 
-<button onclick="pobierzDane_stat()", id="rob_stat">Pokaż</button>
+              <center><button onclick="pobierzDane_stat()", id="rob_stat", class="guzik">Pokaż</button></center>
           </div>
           </div>
 

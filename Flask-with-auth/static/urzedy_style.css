@@ -119,3 +119,20 @@ li {display: inline;}
   padding: 2px 8px;
   border-radius: 5px;
 }
+
+.guzik{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.wybor_czasu{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.wybor{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
