@@ -70,7 +70,7 @@
                 tabela.appendChild(singleRow);
                 for (i=0; i < response.length; i++){
                     var singleRow=document.createElement('tr');
-                    const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
+                    const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
                     const humanDateFormat = dateObject.toLocaleString()
                     singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
                     singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).liczbaklwkolejce + '</td>';
@@ -216,7 +216,7 @@
                srednia = srednia + JSON.parse(response[i][0]).mean_target;}
             var singleRow_danych=document.createElement('tr');
             srednia = srednia/response.length;
-            singleRow_danych.innerHTML += '<td>' + srednia + '</td>';
+            singleRow_danych.innerHTML += '<td>' + Math.round(srednia * 100) / 100 + '</td>';
             singleRow_danych.innerHTML += '<td>' + liczba_rekordow + '</td>';
             singleRow_danych.innerHTML += '<td>' + roznica_rekordow + '</td>';
             tabela_danych.appendChild(singleRow_danych);
@@ -238,8 +238,8 @@
                 singleRow_danych.innerHTML += '<td>' + "Rodzaj" + '</td>';
                 tabela_danych.appendChild(singleRow_danych);
                 var singleRow_danych=document.createElement('tr');
-                singleRow_danych.innerHTML += '<td>' + JSON.parse(response[0][0]).learning_time + '</td>';
-                singleRow_danych.innerHTML += '<td>' + JSON.parse(response[0][0]).stat + '</td>';
+                singleRow_danych.innerHTML += '<td>' + Math.round(JSON.parse(response[0][0]).learning_time * 100) / 100 + '</td>';
+                singleRow_danych.innerHTML += '<td>' + Math.round(JSON.parse(response[0][0]).stat * 100) / 100 + '</td>';
                 singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
                 tabela_danych.appendChild(singleRow_danych);
         })

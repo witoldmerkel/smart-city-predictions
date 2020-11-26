@@ -140,12 +140,15 @@ li {display: inline;}
   position: absolute;
   left: 200px;
   width: 300px;
-  margin-bottom: 15px;
 }
 
 .wybor1{
   position: absolute;
   left: 200px;
   width: 305px;
-  margin-bottom: 15px;
+}
+.wybor2{
+  position: absolute;
+  left: 130px;
+  width: 305px;
 }
