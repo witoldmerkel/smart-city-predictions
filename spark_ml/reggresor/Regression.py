@@ -75,7 +75,7 @@ def make_regr_model(data, sc, model_path, model_name, target):
     predictions = model.transform(testData)
 
     # Select example rows to display.
-    predictions.select("prediction", "target", "features").show(5)
+    #predictions.select("prediction", "target", "features").show(5)
 
     # Select (prediction, true label) and compute test error
     evaluator = RegressionEvaluator(

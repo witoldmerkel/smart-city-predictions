@@ -84,7 +84,7 @@ def make_class_model(data, sc, model_path, model_name, target):
     predictions = model.transform(testData)
 
     # Select example rows to display.
-    predictions.select("predictedLabel", "target", "features").show(5)
+    #predictions.select("predictedLabel", "target", "features").show(5)
 
     # Select (prediction, true label) and compute test error
     evaluator = MulticlassClassificationEvaluator(
