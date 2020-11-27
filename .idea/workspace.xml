@@ -19,17 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="poprawy interfejsu">
+    <list default="true" id="7e5f4b93-d052-4bdd-8b13-6142c95b17e9" name="Default Changelist" comment="Deleting">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/smart-city-predictions.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/smart-city-predictions.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-with-auth/static/powietrze_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Flask-with-auth/static/powietrze_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-with-auth/static/rowery_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Flask-with-auth/static/rowery_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-with-auth/static/urzedy_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Flask-with-auth/static/urzedy_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-with-auth/templates/powietrze.html" beforeDir="false" afterPath="$PROJECT_DIR$/Flask-with-auth/templates/powietrze.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-with-auth/templates/urzedy.html" beforeDir="false" afterPath="$PROJECT_DIR$/Flask-with-auth/templates/urzedy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask-with-auth/templates/velib.html" beforeDir="false" afterPath="$PROJECT_DIR$/Flask-with-auth/templates/velib.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flask/server.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +32,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Python Script" />
-        <option value="HTML File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -58,21 +48,9 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
-  </component>
-  <component name="JupyterTrust" id="72bc9c72-4d7f-4966-aaf4-f99d6ef5f0ce" />
+  <component name="JupyterTrust" id="eef28f1f-a836-498c-a61a-411c1ed047f3" />
   <component name="ProjectId" id="1ijuioruzrAmTMGt74RyJ4w2YJe" />
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
@@ -83,28 +61,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="node.js.detected.package.stylelint" value="true" />
-    <property name="node.js.path.for.package.stylelint" value="project" />
-    <property name="node.js.selected.package.stylelint" value="" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Flask-with-auth" />
-      <recent name="$PROJECT_DIR$/Flask-with-auth/templates" />
-      <recent name="$PROJECT_DIR$/Flask/static" />
-      <recent name="$PROJECT_DIR$/Flask/templates" />
-      <recent name="$PROJECT_DIR$/Flask/static/css" />
+      <recent name="$PROJECT_DIR$/spark_ml/classificator" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="powietrze.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/smart-city-predictions/powietrze.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="constant_prediction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="smart-city-predictions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -112,12 +82,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Flask-with-auth" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowAutomatization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Flask-with-auth/__init__.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowAutomatization/constant_prediction.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -126,7 +96,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="kafka_spark_connection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="flow_management" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="smart-city-predictions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -134,12 +104,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SpeedLayer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowAutomatization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SpeedLayer/kafka_spark_connection.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowAutomatization/flow_management.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,9 +125,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/.conda/envs/smart-city-predictions/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Flask-with-auth" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -170,7 +140,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="periodic_learning" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="smart-city-predictions" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -178,34 +148,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FlowAutomatization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="velib_streaming" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="smart-city-predictions" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SparkStreaming" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SparkStreaming/velib_streaming.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FlowAutomatization/periodic_learning.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -215,19 +163,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.__init__" />
+      <item itemvalue="JavaScript Debug.powietrze.html" />
+      <item itemvalue="Python.flow_management" />
+      <item itemvalue="Python.constant_prediction" />
+      <item itemvalue="Python.periodic_learning" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.velib_streaming" />
-      <item itemvalue="Python.kafka_spark_connection" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.kafka_spark_connection" />
-        <item itemvalue="Python.velib_streaming" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.periodic_learning" />
+        <item itemvalue="Python.constant_prediction" />
+        <item itemvalue="JavaScript Debug.powietrze.html" />
+        <item itemvalue="Python.flow_management" />
       </list>
     </recent_temporary>
   </component>
@@ -278,46 +226,55 @@
       <workItem from="1604691397520" duration="5965000" />
       <workItem from="1604781794942" duration="1276000" />
       <workItem from="1604783539363" duration="19874000" />
-      <workItem from="1605379651830" duration="4268000" />
-      <workItem from="1605465649907" duration="1953000" />
-      <workItem from="1605473798925" duration="1178000" />
-      <workItem from="1605539345552" duration="236000" />
-      <workItem from="1605556324551" duration="3053000" />
-      <workItem from="1605564073853" duration="229000" />
-      <workItem from="1605698591583" duration="6642000" />
-      <workItem from="1605713700687" duration="238000" />
-      <workItem from="1605714001824" duration="359000" />
-      <workItem from="1605714385002" duration="3869000" />
-      <workItem from="1605718847011" duration="704000" />
-      <workItem from="1605719604840" duration="1516000" />
-      <workItem from="1605721182783" duration="6993000" />
-      <workItem from="1605787328722" duration="2576000" />
-      <workItem from="1605800661887" duration="3377000" />
-      <workItem from="1605807364073" duration="4574000" />
-      <workItem from="1605870608640" duration="2833000" />
-      <workItem from="1605882843513" duration="266000" />
-      <workItem from="1605889477759" duration="1181000" />
-      <workItem from="1605891766946" duration="4632000" />
-      <workItem from="1605956331536" duration="7582000" />
-      <workItem from="1605970695808" duration="1147000" />
-      <workItem from="1605994666350" duration="173000" />
-      <workItem from="1606058039574" duration="2672000" />
-      <workItem from="1606068031676" duration="690000" />
-      <workItem from="1606068792341" duration="161000" />
-      <workItem from="1606069839410" duration="558000" />
-      <workItem from="1606070413844" duration="751000" />
-      <workItem from="1606071181666" duration="290000" />
-      <workItem from="1606071498951" duration="148000" />
-      <workItem from="1606071664134" duration="254000" />
-      <workItem from="1606073060203" duration="696000" />
-      <workItem from="1606074242071" duration="1875000" />
-      <workItem from="1606143787583" duration="10517000" />
-      <workItem from="1606216710762" duration="1918000" />
-      <workItem from="1606221369460" duration="1826000" />
-      <workItem from="1606225695292" duration="5645000" />
-      <workItem from="1606306494525" duration="4239000" />
-      <workItem from="1606320873322" duration="1905000" />
-      <workItem from="1606326411037" duration="3582000" />
+      <workItem from="1605363963565" duration="3858000" />
+      <workItem from="1605372180708" duration="687000" />
+      <workItem from="1605372885784" duration="4771000" />
+      <workItem from="1605387681429" duration="148000" />
+      <workItem from="1605387849206" duration="11720000" />
+      <workItem from="1605468339189" duration="1813000" />
+      <workItem from="1605541463831" duration="20753000" />
+    </task>
+    <task id="LOCAL-00009" summary="kafka-faza-druga">
+      <created>1602693943580</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1602693943580</updated>
+    </task>
+    <task id="LOCAL-00010" summary="kafka-faza-druga">
+      <created>1602694035554</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1602694035554</updated>
+    </task>
+    <task id="LOCAL-00011" summary="kafka-faza-druga">
+      <created>1602695214049</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1602695214049</updated>
+    </task>
+    <task id="LOCAL-00012" summary="kafka-faza-druga">
+      <created>1602695421044</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1602695421044</updated>
+    </task>
+    <task id="LOCAL-00013" summary="kafka-faza-druga">
+      <created>1602695780949</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1602695780949</updated>
+    </task>
+    <task id="LOCAL-00014" summary="kafka-faza-druga">
+      <created>1602697028399</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1602697028399</updated>
     </task>
     <task id="LOCAL-00015" summary="spark-ml-test">
       <created>1604430296033</created>
@@ -382,287 +339,245 @@
       <option name="project" value="LOCAL" />
       <updated>1604862333357</updated>
     </task>
-    <task id="LOCAL-00024" summary="interfejs, uzytkownik wybiera z jakiego pkt dane">
-      <created>1605293189021</created>
+    <task id="LOCAL-00024" summary="make class model comments">
+      <created>1605216680117</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1605293189021</updated>
+      <updated>1605216680117</updated>
     </task>
-    <task id="LOCAL-00025" summary="interfejs, gotowe archiwalne dane dla powietrza">
-      <created>1605295044380</created>
+    <task id="LOCAL-00025" summary="make class model comments 2">
+      <created>1605216694312</created>
       <option name="number" value="00025" />
       <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1605295044380</updated>
+      <updated>1605216694312</updated>
     </task>
-    <task id="LOCAL-00026" summary="interfejs, gotowe archiwalne dane dla powietrza i  rowerów">
-      <created>1605383857693</created>
+    <task id="LOCAL-00026" summary="Working model for powietrze">
+      <created>1605363196023</created>
       <option name="number" value="00026" />
       <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1605383857693</updated>
+      <updated>1605363196033</updated>
     </task>
-    <task id="LOCAL-00027" summary="pokazywanie danych archiwalnych w interfejsie">
-      <created>1605468393767</created>
+    <task id="LOCAL-00027" summary="Saving to Cassandra - pickle doesnt work">
+      <created>1605388168970</created>
       <option name="number" value="00027" />
       <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1605468393767</updated>
+      <updated>1605388168970</updated>
     </task>
-    <task id="LOCAL-00028" summary="interfejs do kontroli">
-      <created>1605476315845</created>
+    <task id="LOCAL-00028" summary="Saving to file">
+      <created>1605469129139</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1605476315845</updated>
+      <updated>1605469129139</updated>
     </task>
-    <task id="LOCAL-00029" summary="interfejs ladowanie danych archiwalnych">
-      <created>1605558897827</created>
+    <task id="LOCAL-00029" summary="Streaming from kafka and">
+      <created>1605561013424</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1605558897827</updated>
+      <updated>1605561013450</updated>
     </task>
-    <task id="LOCAL-00030" summary="interfejs zmiany kosmetyczne">
-      <created>1605559003939</created>
+    <task id="LOCAL-00030" summary="Streaming from kafka and">
+      <created>1605562339778</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1605559003939</updated>
+      <updated>1605562339778</updated>
     </task>
-    <task id="LOCAL-00031" summary="interfejs zmiany kosmetyczne v.2">
-      <created>1605562128239</created>
+    <task id="LOCAL-00031" summary="Load manipulation and streaming first structures">
+      <created>1605640953996</created>
       <option name="number" value="00031" />
       <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1605562128239</updated>
+      <updated>1605640953996</updated>
     </task>
-    <task id="LOCAL-00032" summary="interfejs zgodnie z zaleceniami PEP">
-      <created>1605564318148</created>
+    <task id="LOCAL-00032" summary="Streaming modules">
+      <created>1605644160254</created>
       <option name="number" value="00032" />
       <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1605564318148</updated>
+      <updated>1605644160254</updated>
     </task>
-    <task id="LOCAL-00033" summary="cleanup part 1">
-      <created>1605698989778</created>
+    <task id="LOCAL-00033" summary="Ready saving predictions!">
+      <created>1605735488168</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1605698989778</updated>
+      <updated>1605735488168</updated>
     </task>
-    <task id="LOCAL-00034" summary="interfejs zmiany wizualne i wprowadzenie nowych funkcjonalnosci part1">
-      <created>1605708271415</created>
+    <task id="LOCAL-00034" summary="Function for generating predictions from stream">
+      <created>1605803010440</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1605708271415</updated>
+      <updated>1605803010451</updated>
     </task>
-    <task id="LOCAL-00035" summary="interfejs walka">
-      <created>1605721129189</created>
+    <task id="LOCAL-00035" summary="Function for generating predictions from stream">
+      <created>1605822151792</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1605721129190</updated>
+      <updated>1605822151792</updated>
     </task>
-    <task id="LOCAL-00036" summary="interfejs ready for futher endpoints">
-      <created>1605723112560</created>
+    <task id="LOCAL-00036" summary="Working predicting modules">
+      <created>1605873105186</created>
       <option name="number" value="00036" />
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1605723112560</updated>
+      <updated>1605873105186</updated>
     </task>
-    <task id="LOCAL-00037" summary="interfejs przygotowanie do modernizacji pozostalych okien">
-      <created>1605723537658</created>
+    <task id="LOCAL-00037" summary="bug fixes">
+      <created>1605874103440</created>
       <option name="number" value="00037" />
       <option name="presentableId" value="LOCAL-00037" />
       <option name="project" value="LOCAL" />
-      <updated>1605723537658</updated>
+      <updated>1605874103440</updated>
     </task>
-    <task id="LOCAL-00038" summary="interfejs dodanie nowej wersji interfejsu dla urzedow">
-      <created>1605728684560</created>
+    <task id="LOCAL-00038" summary="bug fixes">
+      <created>1605874628108</created>
       <option name="number" value="00038" />
       <option name="presentableId" value="LOCAL-00038" />
       <option name="project" value="LOCAL" />
-      <updated>1605728684561</updated>
+      <updated>1605874628108</updated>
     </task>
-    <task id="LOCAL-00039" summary="hotfix scrolla">
-      <created>1605728867608</created>
+    <task id="LOCAL-00039" summary="case predictedLabel">
+      <created>1605875031126</created>
       <option name="number" value="00039" />
       <option name="presentableId" value="LOCAL-00039" />
       <option name="project" value="LOCAL" />
-      <updated>1605728867608</updated>
+      <updated>1605875031127</updated>
     </task>
-    <task id="LOCAL-00040" summary="interfejs, rowery part 1">
-      <created>1605729256258</created>
+    <task id="LOCAL-00040" summary="Fail on data loss spark kafka">
+      <created>1605875512885</created>
       <option name="number" value="00040" />
       <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1605729256258</updated>
+      <updated>1605875512885</updated>
     </task>
-    <task id="LOCAL-00041" summary="interfejs; 3 sekcje maja zakonczona pierwsza faze">
-      <created>1605730838880</created>
+    <task id="LOCAL-00041" summary="handle invalid = skip">
+      <created>1605876759501</created>
       <option name="number" value="00041" />
       <option name="presentableId" value="LOCAL-00041" />
       <option name="project" value="LOCAL" />
-      <updated>1605730838880</updated>
+      <updated>1605876759501</updated>
     </task>
-    <task id="LOCAL-00042" summary="interfejs pierwsze poprawki">
-      <created>1605806667219</created>
+    <task id="LOCAL-00042" summary="3 prediction modules working">
+      <created>1605898423857</created>
       <option name="number" value="00042" />
       <option name="presentableId" value="LOCAL-00042" />
       <option name="project" value="LOCAL" />
-      <updated>1605806667220</updated>
+      <updated>1605898423857</updated>
     </task>
-    <task id="LOCAL-00043" summary="interfejs ostatnia uwaga do frontu do dodania">
-      <created>1605808246556</created>
+    <task id="LOCAL-00043" summary="3 prediction modules working">
+      <created>1605898456040</created>
       <option name="number" value="00043" />
       <option name="presentableId" value="LOCAL-00043" />
       <option name="project" value="LOCAL" />
-      <updated>1605808246556</updated>
+      <updated>1605898456040</updated>
     </task>
-    <task id="LOCAL-00044" summary="prawie koniec popraw frontu">
-      <created>1605810798485</created>
+    <task id="LOCAL-00044" summary="3 prediction modules working">
+      <created>1605898977243</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1605810798485</updated>
+      <updated>1605898977243</updated>
     </task>
-    <task id="LOCAL-00045" summary="koniec popraw we froncie">
-      <created>1605812113819</created>
+    <task id="LOCAL-00045" summary="time_frame parameter">
+      <created>1605983136654</created>
       <option name="number" value="00045" />
       <option name="presentableId" value="LOCAL-00045" />
       <option name="project" value="LOCAL" />
-      <updated>1605812113819</updated>
+      <updated>1605983136654</updated>
     </task>
-    <task id="LOCAL-00046" summary="koniec poprawek w interfejsie: front i back">
-      <created>1605877723035</created>
+    <task id="LOCAL-00046" summary="Working time filtering for data loading">
+      <created>1605984244102</created>
       <option name="number" value="00046" />
       <option name="presentableId" value="LOCAL-00046" />
       <option name="project" value="LOCAL" />
-      <updated>1605877723035</updated>
+      <updated>1605984244102</updated>
     </task>
-    <task id="LOCAL-00047" summary="filtorwanie po stronie serwera">
-      <created>1605894938293</created>
+    <task id="LOCAL-00047" summary="time_frame parameter">
+      <created>1605987450473</created>
       <option name="number" value="00047" />
       <option name="presentableId" value="LOCAL-00047" />
       <option name="project" value="LOCAL" />
-      <updated>1605894938293</updated>
+      <updated>1605987450473</updated>
     </task>
-    <task id="LOCAL-00048" summary="mechanizm logowania do interfejsu">
-      <created>1605971940317</created>
+    <task id="LOCAL-00048" summary="models_statistics">
+      <created>1605988453923</created>
       <option name="number" value="00048" />
       <option name="presentableId" value="LOCAL-00048" />
       <option name="project" value="LOCAL" />
-      <updated>1605971940317</updated>
+      <updated>1605988453924</updated>
     </task>
-    <task id="LOCAL-00049" summary="Okomentowanie endpointów">
-      <created>1606059751841</created>
+    <task id="LOCAL-00049" summary="Flow aoutmatization cassandra error">
+      <created>1606157781608</created>
       <option name="number" value="00049" />
       <option name="presentableId" value="LOCAL-00049" />
       <option name="project" value="LOCAL" />
-      <updated>1606059751841</updated>
+      <updated>1606157781608</updated>
     </task>
-    <task id="LOCAL-00050" summary="Okomentowanie plików css">
-      <created>1606060274959</created>
+    <task id="LOCAL-00050" summary="Fixed error">
+      <created>1606158703395</created>
       <option name="number" value="00050" />
       <option name="presentableId" value="LOCAL-00050" />
       <option name="project" value="LOCAL" />
-      <updated>1606060274959</updated>
+      <updated>1606158703395</updated>
     </task>
-    <task id="LOCAL-00051" summary="Okomentowanie plików js">
-      <created>1606060600903</created>
+    <task id="LOCAL-00051" summary="Fixed error">
+      <created>1606159944107</created>
       <option name="number" value="00051" />
       <option name="presentableId" value="LOCAL-00051" />
       <option name="project" value="LOCAL" />
-      <updated>1606060600903</updated>
+      <updated>1606159944108</updated>
     </task>
-    <task id="LOCAL-00052" summary="update">
-      <created>1606073393417</created>
+    <task id="LOCAL-00052" summary="flow_management testing">
+      <created>1606161688184</created>
       <option name="number" value="00052" />
       <option name="presentableId" value="LOCAL-00052" />
       <option name="project" value="LOCAL" />
-      <updated>1606073393418</updated>
+      <updated>1606161688184</updated>
     </task>
-    <task id="LOCAL-00053" summary="update2">
-      <created>1606073544063</created>
+    <task id="LOCAL-00053" summary="Flow aoutomatization working">
+      <created>1606247131517</created>
       <option name="number" value="00053" />
       <option name="presentableId" value="LOCAL-00053" />
       <option name="project" value="LOCAL" />
-      <updated>1606073544063</updated>
+      <updated>1606247131518</updated>
     </task>
-    <task id="LOCAL-00054" summary="potwierdzenie adresu email, poprzez wysłany link na maila">
-      <created>1606152859846</created>
+    <task id="LOCAL-00054" summary="Flow aoutomatization working - comments">
+      <created>1606252359452</created>
       <option name="number" value="00054" />
       <option name="presentableId" value="LOCAL-00054" />
       <option name="project" value="LOCAL" />
-      <updated>1606152859847</updated>
+      <updated>1606252359452</updated>
     </task>
-    <task id="LOCAL-00055" summary="komentrz do weryfikacji emaila">
-      <created>1606153044720</created>
+    <task id="LOCAL-00055" summary="Flow aoutomatization working - comments">
+      <created>1606252437778</created>
       <option name="number" value="00055" />
       <option name="presentableId" value="LOCAL-00055" />
       <option name="project" value="LOCAL" />
-      <updated>1606153044720</updated>
+      <updated>1606252437778</updated>
     </task>
-    <task id="LOCAL-00056" summary="wystawione endpointy do predykcji i statystyk danych">
-      <created>1606162194777</created>
+    <task id="LOCAL-00056" summary="Two functions - predictions and learning">
+      <created>1606333518070</created>
       <option name="number" value="00056" />
       <option name="presentableId" value="LOCAL-00056" />
       <option name="project" value="LOCAL" />
-      <updated>1606162194777</updated>
+      <updated>1606333518071</updated>
     </task>
-    <task id="LOCAL-00057" summary="wszystkie endpointy w REST API">
-      <created>1606163515417</created>
+    <task id="LOCAL-00057" summary="Deleting">
+      <created>1606333735006</created>
       <option name="number" value="00057" />
       <option name="presentableId" value="LOCAL-00057" />
       <option name="project" value="LOCAL" />
-      <updated>1606163515417</updated>
+      <updated>1606333735006</updated>
     </task>
-    <task id="LOCAL-00058" summary="część powietrza gotowa w interfejsie">
-      <created>1606225872426</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1606225872426</updated>
-    </task>
-    <task id="LOCAL-00059" summary="część powietrza i rowerów gotowa w interfejsie">
-      <created>1606236534112</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1606236534112</updated>
-    </task>
-    <task id="LOCAL-00060" summary="interfejs, czesc funkcyjna done">
-      <created>1606248039395</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1606248039396</updated>
-    </task>
-    <task id="LOCAL-00061" summary="stylizacja wyswietlanych tablic">
-      <created>1606252243485</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1606252243485</updated>
-    </task>
-    <task id="LOCAL-00062" summary="interfejs praca z css">
-      <created>1606312476506</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1606312476506</updated>
-    </task>
-    <task id="LOCAL-00063" summary="poprawy interfejsu">
-      <created>1606325174186</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1606325174186</updated>
-    </task>
-    <option name="localTasksCounter" value="64" />
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,51 +596,42 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="hotfix scrolla" />
-    <MESSAGE value="interfejs, rowery part 1" />
-    <MESSAGE value="interfejs; 3 sekcje maja zakonczona pierwsza faze" />
-    <MESSAGE value="interfejs pierwsze poprawki" />
-    <MESSAGE value="interfejs ostatnia uwaga do frontu do dodania" />
-    <MESSAGE value="prawie koniec popraw frontu" />
-    <MESSAGE value="koniec popraw we froncie" />
-    <MESSAGE value="koniec poprawek w interfejsie: front i back" />
-    <MESSAGE value="filtorwanie po stronie serwera" />
-    <MESSAGE value="mechanizm logowania do interfejsu" />
-    <MESSAGE value="Okomentowanie endpointów" />
-    <MESSAGE value="Okomentowanie plików css" />
-    <MESSAGE value="Okomentowanie plików js" />
-    <MESSAGE value="update" />
-    <MESSAGE value="update2" />
-    <MESSAGE value="potwierdzenie adresu email, poprzez wysłany link na maila" />
-    <MESSAGE value="komentrz do weryfikacji emaila" />
-    <MESSAGE value="wystawione endpointy do predykcji i statystyk danych" />
-    <MESSAGE value="wszystkie endpointy w REST API" />
-    <MESSAGE value="część powietrza gotowa w interfejsie" />
-    <MESSAGE value="część powietrza i rowerów gotowa w interfejsie" />
-    <MESSAGE value="interfejs, czesc funkcyjna done" />
-    <MESSAGE value="stylizacja wyswietlanych tablic" />
-    <MESSAGE value="interfejs praca z css" />
-    <MESSAGE value="poprawy interfejsu" />
-    <option name="LAST_COMMIT_MESSAGE" value="poprawy interfejsu" />
+    <MESSAGE value="make class model comments 2" />
+    <MESSAGE value="Working model for powietrze" />
+    <MESSAGE value="Saving to Cassandra - pickle doesnt work" />
+    <MESSAGE value="Saving to file" />
+    <MESSAGE value="Streaming from kafka and" />
+    <MESSAGE value="Load manipulation and streaming first structures" />
+    <MESSAGE value="Streaming modules" />
+    <MESSAGE value="Ready saving predictions!" />
+    <MESSAGE value="Function for generating predictions from stream" />
+    <MESSAGE value="Working predicting modules" />
+    <MESSAGE value="bug fixes" />
+    <MESSAGE value="case predictedLabel" />
+    <MESSAGE value="Fail on data loss spark kafka" />
+    <MESSAGE value="handle invalid = skip" />
+    <MESSAGE value="3 prediction modules working" />
+    <MESSAGE value="Working time filtering for data loading" />
+    <MESSAGE value="time_frame parameter" />
+    <MESSAGE value="models_statistics" />
+    <MESSAGE value="Flow aoutmatization cassandra error" />
+    <MESSAGE value="Fixed error" />
+    <MESSAGE value="flow_management testing" />
+    <MESSAGE value="Flow aoutomatization working" />
+    <MESSAGE value="Flow aoutomatization working - comments" />
+    <MESSAGE value="Two functions - predictions and learning" />
+    <MESSAGE value="Deleting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleting" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="611" y="355" key="#Notifications" timestamp="1605963619760">
-      <screen x="0" y="25" width="1792" height="1004" />
-    </state>
-    <state x="611" y="355" key="#Notifications/0.25.1792.1004@0.25.1792.1004" timestamp="1605963619760" />
     <state x="360" y="190" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604675711951">
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="360" y="190" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1604675711951" />
-    <state x="599" y="337" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605963797824">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state x="599" y="337" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604772012293">
+      <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="599" y="337" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1011@0.23.1792.1011" timestamp="1604772012293" />
-    <state x="599" y="337" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1792.1004@0.25.1792.1004" timestamp="1605963797824" />
-    <state x="100" y="125" width="1592" height="804" key="DiffContextDialog" timestamp="1606157312272">
-      <screen x="0" y="25" width="1792" height="1004" />
-    </state>
-    <state x="100" y="125" width="1592" height="804" key="DiffContextDialog/0.25.1792.1004@0.25.1792.1004" timestamp="1606157312272" />
     <state x="855" y="486" key="FileChooserDialogImpl" timestamp="1604675426413">
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
@@ -734,101 +640,91 @@
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="72" y="184" key="FileDocumentManager.FileCacheConflict/0.23.1792.1011@0.23.1792.1011" timestamp="1602695307519" />
-    <state width="1750" height="206" key="GridCell.Tab.0.bottom" timestamp="1606337813737">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state width="1877" height="230" key="GridCell.Tab.0.bottom" timestamp="1606385715253">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.bottom/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1750" height="284" key="GridCell.Tab.0.bottom/0.23.1792.1011@0.23.1792.1011" timestamp="1605295062682" />
-    <state width="1750" height="206" key="GridCell.Tab.0.bottom/0.25.1792.1004@0.25.1792.1004" timestamp="1606337813737" />
-    <state width="1750" height="206" key="GridCell.Tab.0.center" timestamp="1606337813737">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state width="1877" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606385715253" />
+    <state width="1750" height="377" key="GridCell.Tab.0.bottom/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440396" />
+    <state width="1877" height="230" key="GridCell.Tab.0.center" timestamp="1606385715253">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.center/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1750" height="284" key="GridCell.Tab.0.center/0.23.1792.1011@0.23.1792.1011" timestamp="1605295062682" />
-    <state width="1750" height="206" key="GridCell.Tab.0.center/0.25.1792.1004@0.25.1792.1004" timestamp="1606337813737" />
-    <state width="1750" height="206" key="GridCell.Tab.0.left" timestamp="1606337813736">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state width="1877" height="230" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606385715253" />
+    <state width="1750" height="377" key="GridCell.Tab.0.center/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440396" />
+    <state width="1877" height="230" key="GridCell.Tab.0.left" timestamp="1606385715252">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.left/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1750" height="284" key="GridCell.Tab.0.left/0.23.1792.1011@0.23.1792.1011" timestamp="1605295062682" />
-    <state width="1750" height="206" key="GridCell.Tab.0.left/0.25.1792.1004@0.25.1792.1004" timestamp="1606337813736" />
-    <state width="1750" height="206" key="GridCell.Tab.0.right" timestamp="1606337813737">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state width="1877" height="230" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606385715252" />
+    <state width="1750" height="377" key="GridCell.Tab.0.left/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440395" />
+    <state width="1877" height="230" key="GridCell.Tab.0.right" timestamp="1606385715253">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="2517" height="282" key="GridCell.Tab.0.right/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604522394753" />
-    <state width="1750" height="284" key="GridCell.Tab.0.right/0.23.1792.1011@0.23.1792.1011" timestamp="1605295062682" />
-    <state width="1750" height="206" key="GridCell.Tab.0.right/0.25.1792.1004@0.25.1792.1004" timestamp="1606337813737" />
-    <state width="1750" height="342" key="GridCell.Tab.1.bottom" timestamp="1606312525323">
-      <screen x="0" y="25" width="1792" height="1004" />
-    </state>
-    <state width="1750" height="342" key="GridCell.Tab.1.bottom/0.25.1792.1004@0.25.1792.1004" timestamp="1606312525323" />
-    <state width="1750" height="342" key="GridCell.Tab.1.center" timestamp="1606312525323">
-      <screen x="0" y="25" width="1792" height="1004" />
-    </state>
-    <state width="1750" height="342" key="GridCell.Tab.1.center/0.25.1792.1004@0.25.1792.1004" timestamp="1606312525323" />
-    <state width="1750" height="342" key="GridCell.Tab.1.left" timestamp="1606312525322">
-      <screen x="0" y="25" width="1792" height="1004" />
-    </state>
-    <state width="1750" height="342" key="GridCell.Tab.1.left/0.25.1792.1004@0.25.1792.1004" timestamp="1606312525322" />
-    <state width="1750" height="342" key="GridCell.Tab.1.right" timestamp="1606312525323">
-      <screen x="0" y="25" width="1792" height="1004" />
-    </state>
-    <state width="1750" height="342" key="GridCell.Tab.1.right/0.25.1792.1004@0.25.1792.1004" timestamp="1606312525323" />
-    <state x="179" y="114" key="MergeDialog" timestamp="1606312460452">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state width="1877" height="230" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606385715253" />
+    <state width="1750" height="377" key="GridCell.Tab.0.right/0.23.1792.1011@0.23.1792.1011" timestamp="1604928440396" />
+    <state x="179" y="113" key="MergeDialog" timestamp="1604772652395">
+      <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="179" y="113" key="MergeDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1604772652395" />
-    <state x="179" y="114" key="MergeDialog/0.25.1792.1004@0.25.1792.1004" timestamp="1606312460452" />
-    <state x="534" y="297" key="MultipleFileMergeDialog" timestamp="1604430329016">
-      <screen x="0" y="23" width="1792" height="1011" />
+    <state x="572" y="282" key="MultipleFileMergeDialog" timestamp="1606252388701">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="572" y="282" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606252388701" />
     <state x="534" y="297" key="MultipleFileMergeDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1604430329016" />
-    <state x="354" y="194" key="SettingsEditor" timestamp="1606068324775">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state x="645" y="224" key="SettingsEditor" timestamp="1605723117150">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="33" y="223" key="SettingsEditor/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521377092" />
+    <state x="645" y="224" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605723117150" />
     <state x="602" y="241" key="SettingsEditor/0.23.1792.1011@0.23.1792.1011" timestamp="1604786681732" />
-    <state x="354" y="194" key="SettingsEditor/0.25.1792.1004@0.25.1792.1004" timestamp="1606068324775" />
-    <state x="652" y="251" key="VCS.ChangeListViewerDialog" timestamp="1603368773907">
-      <screen x="0" y="23" width="1792" height="1011" />
+    <state x="699" y="235" key="VCS.ChangeListViewerDialog" timestamp="1605898447248">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="699" y="235" key="VCS.ChangeListViewerDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605898447248" />
     <state x="652" y="251" key="VCS.ChangeListViewerDialog/0.23.1792.1011@0.23.1792.1011" timestamp="1603368773907" />
-    <state x="496" y="268" key="Vcs.Push.Dialog.v2" timestamp="1606325179300">
-      <screen x="0" y="25" width="1792" height="1004" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2" timestamp="1606333744031">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="709" y="339" key="Vcs.Push.Dialog.v2/-1920.804.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1604521812923" />
-    <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1605295049806" />
-    <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.25.1792.1004@0.25.1792.1004" timestamp="1606325179300" />
+    <state x="531" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606333744031" />
+    <state x="496" y="268" key="Vcs.Push.Dialog.v2/0.23.1792.1011@0.23.1792.1011" timestamp="1604862339072" />
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602610822445">
       <screen x="0" y="23" width="1792" height="1011" />
     </state>
     <state x="694" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1011@0.23.1792.1011" timestamp="1602610822445" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605386383693">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605386383693" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/smart_city_predictions$producer.coverage" NAME="producer Coverage Results" MODIFIED="1603748313338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$download_data__1_.coverage" NAME="download_data (1) Coverage Results" MODIFIED="1605894781442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$download_data.coverage" NAME="download_data Coverage Results" MODIFIED="1605381265767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$pow_manipulation.coverage" NAME="pow_manipulation Coverage Results" MODIFIED="1604927172978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$velib_streaming.coverage" NAME="velib_streaming Coverage Results" MODIFIED="1604869616720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SparkStreaming" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$velib_manipulation.coverage" NAME="velib_manipulation Coverage Results" MODIFIED="1605194627807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$constant_prediction.coverage" NAME="constant_prediction Coverage Results" MODIFIED="1606384270616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlowAutomatization" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$periodic_learning.coverage" NAME="periodic_learning Coverage Results" MODIFIED="1606381044458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlowAutomatization" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$spark_reader.coverage" NAME="spark_reader Coverage Results" MODIFIED="1602768698613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$reg_random_forest.coverage" NAME="reg_random_forest Coverage Results" MODIFIED="1604435926136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/reggresor" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1605958784736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask-with-auth" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$velib_streaming.coverage" NAME="velib_streaming Coverage Results" MODIFIED="1606070992336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SparkStreaming" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$send_to_cassandra.coverage" NAME="send_to_cassandra Coverage Results" MODIFIED="1603368343826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$spark_configuration.coverage" NAME="spark_configuration Coverage Results" MODIFIED="1603039553489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$flow_management.coverage" NAME="flow_management Coverage Results" MODIFIED="1606323348032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlowAutomatization" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$main.coverage" NAME="main Coverage Results" MODIFIED="1606384737301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask-with-auth" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$velib_manipulation__1_.coverage" NAME="velib_manipulation (1) Coverage Results" MODIFIED="1605638335902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$functions_wrapers.coverage" NAME="functions_wrapers Coverage Results" MODIFIED="1606156633573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlowAutomatization" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$clas_random_forest.coverage" NAME="clas_random_forest Coverage Results" MODIFIED="1604770502588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/classificator" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$spark_connection.coverage" NAME="spark_connection Coverage Results" MODIFIED="1604854283158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$random_forest__1_.coverage" NAME="reg_random_forest Coverage Results" MODIFIED="1604434075621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/reggresor" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$kafka_spark_connection.coverage" NAME="kafka_spark_connection Coverage Results" MODIFIED="1606071088127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SpeedLayer" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$main.coverage" NAME="main Coverage Results" MODIFIED="1606337813728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask-with-auth" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$consumer.coverage" NAME="consumer Coverage Results" MODIFIED="1604248927442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$kafka_wordcount.coverage" NAME="kafka_wordcount Coverage Results" MODIFIED="1603368934626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$spark_connection.coverage" NAME="spark_connection Coverage Results" MODIFIED="1604783647510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$powietrze_manipulation.coverage" NAME="powietrze_manipulation Coverage Results" MODIFIED="1605191241107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$test.coverage" NAME="test Coverage Results" MODIFIED="1606068195795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$server.coverage" NAME="server Coverage Results" MODIFIED="1605894886928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$spark_reader.coverage" NAME="spark_reader Coverage Results" MODIFIED="1603045950627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$urzedy_manipulation.coverage" NAME="urzedy_manipulation Coverage Results" MODIFIED="1604926318981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$clas_random_forest.coverage" NAME="clas_random_forest Coverage Results" MODIFIED="1604769037883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/classificator" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$logreg.coverage" NAME="logreg Coverage Results" MODIFIED="1604432347922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/reggresor" />
     <SUITE FILE_PATH="coverage/smart_city_predictions$random_forest.coverage" NAME="clas_random_forest Coverage Results" MODIFIED="1604434070404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/classificator" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$run.coverage" NAME="run Coverage Results" MODIFIED="1605902525185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask_with_login" />
-    <SUITE FILE_PATH="coverage/smart_city_predictions$velib_manipulation.coverage" NAME="velib_manipulation Coverage Results" MODIFIED="1604927722433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$speed_connection.coverage" NAME="speed_connection Coverage Results" MODIFIED="1606158285304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SpeedLayer" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$producer.coverage" NAME="producer Coverage Results" MODIFIED="1603371332540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$send_to_cassandra.coverage" NAME="send_to_cassandra Coverage Results" MODIFIED="1603368343826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$urzedy_manipulation.coverage" NAME="urzedy_manipulation Coverage Results" MODIFIED="1605639933478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$logreg.coverage" NAME="logreg Coverage Results" MODIFIED="1604517468664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark_ml/reggresor" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$spark_configuration.coverage" NAME="spark_configuration Coverage Results" MODIFIED="1604767685092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$download_data.coverage" NAME="download_data Coverage Results" MODIFIED="1604524342073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Cassandra" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$pow_manipulation.coverage" NAME="pow_manipulation Coverage Results" MODIFIED="1605113791289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$test.coverage" NAME="test Coverage Results" MODIFIED="1605362737753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$consumer.coverage" NAME="consumer Coverage Results" MODIFIED="1603652047006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$kafka_wordcount.coverage" NAME="kafka_wordcount Coverage Results" MODIFIED="1603140918462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kafka" />
+    <SUITE FILE_PATH="coverage/smart_city_predictions$powietrze_manipulation.coverage" NAME="powietrze_manipulation Coverage Results" MODIFIED="1605723361033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data_for_ML" />
   </component>
 </project>
