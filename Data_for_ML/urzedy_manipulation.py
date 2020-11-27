@@ -30,7 +30,7 @@ def load_urzedy(keys_space_name="json", table_name="urzedy"):
     w = Window().partitionBy("idgrupy").orderBy("timestamp")
     dane = urzedy.withColumn("target", lead("liczbaklwkolejce", 240).over(w)).na.drop()
 
-    dane.sort("idgrupy", "timestamp").show(300)
-    print(dane.dtypes)
+    #dane.sort("idgrupy", "timestamp").show(300)
+    #print(dane.dtypes)
 
     return dane, sc

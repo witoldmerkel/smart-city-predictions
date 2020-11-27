@@ -36,8 +36,8 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
     w = Window().partitionBy("name").orderBy("timestamp")
     dane = powietrze.withColumn("target", lead("target_temp", 4).over(w)).na.drop()
 
-    dane.sort("name", "timestamp").show(200)
-    print(dane.dtypes)
+    #dane.sort("name", "timestamp").show(200)
+    #print(dane.dtypes)
 
     return dane, sc
 
