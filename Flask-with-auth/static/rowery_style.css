@@ -77,9 +77,11 @@ li {display: inline;}
 .tablica {
   border: 1px solid #262AA4;
   background-color: #EEEEEE;
-  width: 100%;
+  width: 97%;
   text-align: center;
   border-collapse: collapse;
+  position: absolute;
+  top: 40%;
 }
 .tablica td, table.tablica th {
   border: 1px solid #000000;
@@ -141,12 +143,20 @@ li {display: inline;}
 }
 .wybor_czasu1{
   position: absolute;
-  left: 200px;
+  left: 205px;
   width: 300px;
 }
 
 .wybor1{
   position: absolute;
-  left: 200px;
+  left: 205px;
   width: 305px;
+}
+.guzik1{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: absolute;
+  top: 31%;
 }

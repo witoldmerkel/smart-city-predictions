@@ -240,8 +240,8 @@
                 var sr_czas_ucz = 0;
                 var sr_wart_stat = 0;
                 for (i=0; i < response.length; i++){
-                    sr_czas_ucz = sr_czas_ucz + JSON.parse(response[i][0].learning_time);
-                    sr_wart_stat = sr_wart_stat + JSON.parse(response[i][0].stat);
+                    sr_czas_ucz = sr_czas_ucz + JSON.parse(response[i][0]).learning_time;
+                    sr_wart_stat = sr_wart_stat + JSON.parse(response[i][0]).stat;
                 }
                 sr_czas_ucz = sr_czas_ucz/response.length;
                 sr_wart_stat = sr_wart_stat/response.length;
