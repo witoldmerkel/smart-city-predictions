@@ -1,6 +1,9 @@
 /*Kod odpowaiadający za styl strony o powietrzu*/
-body {background-color: white;
-overflow: hidden;}
+body {
+  background-color: white;
+  overflow: hidden;
+  font-family: 'Ubuntu', sans-serif;
+}
 li {display: inline;}
 .menu {
   width: 100%;

@@ -77,3 +77,8 @@
     color: royalblue;
     font-size: 17px;
 }
+body {
+  background-color: white;
+  overflow: hidden;
+  font-family: 'Ubuntu', sans-serif;
+}
