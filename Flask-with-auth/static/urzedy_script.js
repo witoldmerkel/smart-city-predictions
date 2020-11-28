@@ -225,7 +225,7 @@
         var settings1 = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://127.0.0.1:5000/urzedy/staty",
+                "url": "http://127.0.0.1:5000/urzedy/statymod/" + from_stat + '/' + to_stat,
                 "method": "GET",
                 "dataType": 'json'
             }
@@ -237,10 +237,18 @@
                 singleRow_danych.innerHTML += '<td>' + "Dokładność" + '</td>';
                 singleRow_danych.innerHTML += '<td>' + "Rodzaj" + '</td>';
                 tabela_danych.appendChild(singleRow_danych);
+                var sr_czas_ucz = 0;
+                var sr_wart_stat = 0;
+                for (i=0; i < response.length; i++){
+                    sr_czas_ucz = sr_czas_ucz + JSON.parse(response[i][0].learning_time);
+                    sr_wart_stat = sr_wart_stat + JSON.parse(response[i][0].stat);
+                }
+                sr_czas_ucz = sr_czas_ucz/response.length;
+                sr_wart_stat = sr_wart_stat/response.length;
                 var singleRow_danych=document.createElement('tr');
-                singleRow_danych.innerHTML += '<td>' + Math.round(JSON.parse(response[0][0]).learning_time * 100) / 100 + '</td>';
-                singleRow_danych.innerHTML += '<td>' + Math.round(JSON.parse(response[0][0]).stat * 100) / 100 + '</td>';
+                singleRow_danych.innerHTML += '<td>' + Math.round(sr_czas_ucz * 100) / 100 + '</td>';
+                singleRow_danych.innerHTML += '<td>' + Math.round(sr_wart_stat * 100) / 100 + '</td>';
                 singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
                 tabela_danych.appendChild(singleRow_danych);
-        })
-    };
+            })
+        };

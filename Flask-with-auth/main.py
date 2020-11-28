@@ -280,11 +280,15 @@ def get_powietrze_stat_danych(fromd_stat, tod_stat):
 
 
 # Pobieranie z bazy danych Cassandra danych dotyczących statystyk modeli
-@app.route('/powietrze/staty')
+@app.route('/powietrze/statymod/<fromd_stat>/<tod_stat>')
 @login_required
-def get_powietrze_stat_modeli():
-    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_pow' limit 1 allow filtering'''
-    params = {}
+def get_powietrze_stat_modeli(fromd_stat,tod_stat):
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_pow' and timestamp > 
+    {{fromd_stat}} and timestamp < {{tod_stat}} allow filtering'''
+    params = {
+        'fromd_stat': fromd_stat,
+        'tod_stat': tod_stat,
+    }
     query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
@@ -374,11 +378,15 @@ def get_velib_stat_danych(fromd_stat, tod_stat):
 
 
 # Pobieranie z bazy danych Cassandra danych dotyczących statystyk modeli
-@app.route('/velib/staty')
+@app.route('/velib/statymod/<fromd_stat>/<tod_stat>')
 @login_required
-def get_velib_stat_modeli():
-    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_vel' limit 1 allow filtering'''
-    params = {}
+def get_velib_stat_modeli(fromd_stat, tod_stat):
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_vel' and timestamp > 
+    {{fromd_stat}} and timestamp < {{tod_stat}} allow filtering'''
+    params = {
+        'fromd_stat': fromd_stat,
+        'tod_stat': tod_stat,
+    }
     query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
@@ -509,11 +517,15 @@ def get_urzedy_stat_danych(fromd_stat, tod_stat):
 
 
 # Pobieranie z bazy danych Cassandra danych dotyczących statystyk modeli
-@app.route('/urzedy/staty')
+@app.route('/urzedy/statymod/<fromd_stat>/<tod_stat>')
 @login_required
-def get_urzedy_stat_modeli():
-    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_urz' limit 1 allow filtering'''
-    params = {}
+def get_urzedy_stat_modeli(fromd_stat, tod_stat):
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_urz' and timestamp > 
+    {{fromd_stat}} and timestamp < {{tod_stat}} allow filtering'''
+    params = {
+        'fromd_stat': fromd_stat,
+        'tod_stat': tod_stat,
+    }
     query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
     cluster = Cluster(['127.0.0.1'], "9042")
