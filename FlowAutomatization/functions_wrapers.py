@@ -1,4 +1,3 @@
-import os
 import findspark
 import spark_ml.classificator.Classification
 import spark_ml.reggresor.Regression
