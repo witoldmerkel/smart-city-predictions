@@ -10,6 +10,7 @@ from cassandra.cluster import Cluster
 import tempfile
 import itertools as IT
 import os
+from time import time
 #W tym pliku definujemy procesy ładowania danych z głównego zbioru danych oraz uczenie modeli dla róźnych zbiorów danych
 #dla których zdefiniowane są funkcje wstępnego przetwarzania oraz ładowania tabeli
 
@@ -25,21 +26,21 @@ def load_and_train(source):
         # Wytrenowanie modelu klsyfikacyjnego na wcześniej załadowanych danych
 
         powietrze_path = os.path.join(path, 'powietrze_model')
-        powietrze_path = uniquify(powietrze_path)
+        powietrze_path = powietrze_path + '_' + str(int(time()))
         spark_ml.classificator.Classification.make_class_model(data_pow, sc_pow, powietrze_path, 'RF_pow', 'pm25')
 
     elif source == "urzedy":
         data_urz, sc_urz = Data_for_ML.urzedy_manipulation.load_urzedy()
 
         urzedy_path = os.path.join(path, 'urzedy_model')
-        urzedy_path = uniquify(urzedy_path)
+        urzedy_path = urzedy_path + '_' + str(int(time()))
         spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz', "liczbaKlwKolejce")
 
     elif source == "velib":
         data_vel, sc_vel = Data_for_ML.velib_manipulation.load_velib()
 
         velib_path = os.path.join(path, 'velib_model')
-        velib_path = uniquify(velib_path)
+        velib_path = velib_path + '_' + str(int(time()))
         spark_ml.reggresor.Regression.make_regr_model(data_vel, sc_vel, velib_path, 'RF_vel', 'numbikesavailable')
 
 
