@@ -5,24 +5,35 @@
       <title>Strona główna</title>
       <link rel="stylesheet" href="{{url_for('static', filename='home_style.css') }}">
    </head>
-   <body>
-      <header>
-         <div class="container">
-            <center><h1 class="logo">Witamy w stronie zarządzającej dostępem do pozostałych części projektu!</h1></center>
-            <strong>
-               <nav class="menu">
-                  <h2>Poniżej można przenieść się do poszczególnych sekcji.</h2>
-                  <ul class="options">
-                     Tutaj można przeanalizować dane dotyczące poziomu zanieczyszczenia <a href="{{ url_for('powietrze') }}">powietrza</a>.<br>
-                     Tutaj można przeanalizować dane dotyczące stanu zaopatrzenia stacji w <a href="{{ url_for('velib') }}">rowery</a>.<br>
-                     Tutaj można przeanalizować dane dotyczące długości kolejek w <a href="{{ url_for('urzedy') }}">urzędach</a>.<br>
-                     Tutaj można się <a href="{{ url_for('logout') }} ">wylogować</a> po skończonej pracy,<br>
-                  </ul>
-               </nav>
-            </strong>
-         </div>
-      </header>
-      {% block content %}
-      {% endblock %}
-   </body>
+<body>
+<div class="main">
+<h1 class="naglowek">
+  <center>Witamy w stronie zarządzającej dostępem do pozostałych części projektu!</center>
+</h1>
+
+    <div class="pojemnik1">
+  <h3>Analiza danych dotyczących poziomu zanieczyszczenia
+      <br>
+      <center><a class="link" href="{{ url_for('powietrze') }}">Powietrza</a></center>
+  </h3>  </div>
+    <div class="pojemnik2">
+  <h3>Analiza danych dotyczących stanu zaopatrzenia stacji z
+      <br>
+      <center><a class="link" href="{{ url_for('velib') }}" >Rowerami</a></center>
+  </h3>
+</div>
+   <div class="pojemnik3">
+  <h3>Analiza danych dotyczących kolejek w
+      <br>
+      <center><a class="link" href="{{ url_for('urzedy') }}" >Urzędach</a></center>
+  </h3>
+</div>
+   <div class="pojemnik4">
+  <h3>Jeżeli to koniec pracy z aplikacją, można się
+      <br>
+      <center><a class="link" href="{{ url_for('logout') }}" >Wylogować</a></center>
+  </h3>
+</div>
+    </div>
+</body>
 </html>
