@@ -48,18 +48,18 @@ def activate_stream(source, spark, sk_connection):
 
     if source == "powietrze":
 
-        powietrze_path = get_best_model_path("'RF_pow'")
+        powietrze_path = get_best_model_path("'RF_pow'", 'max')
         # Uruchomienia modułu szybkiego przetwarzania dla powietrza, który korzysta z wcześniej nauczonych modeli
         query, _ = SpeedLayer.speed_connection.activate_powietrze_stream(model_path=powietrze_path, spark=spark,
                                                                          sk_connection=sk_connection)
 
     elif source == "urzedy":
-        urzedy_path = get_best_model_path("'RF_urz'")
+        urzedy_path = get_best_model_path("'RF_urz'", 'min')
         query, _ = SpeedLayer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, spark=spark,
                                                                          sk_connection=sk_connection)
 
     elif source == "velib":
-        velib_path = get_best_model_path("'RF_vel'")
+        velib_path = get_best_model_path("'RF_vel'", 'min')
         query, _ = SpeedLayer.speed_connection.activate_velib_stream(model_path=velib_path, spark=spark,
                                                                          sk_connection=sk_connection)
 
@@ -74,16 +74,22 @@ def pandas_factory(colnames, rows):
 # Funkcja która zwraca ścieżkę do aktulanie najlepszego modelu pod względem stat dla wybranych modeli
 
 
-def get_best_model_path(model_name):
+def get_best_model_path(model_name, stat):
     # Szukanie modelu z najlepszą skutecznością
     cluster = Cluster(['127.0.0.1'], "9042")
     session = cluster.connect("models")
     session.row_factory = pandas_factory
     session.default_fetch_size = None
-    query_max = ("Select Max(stat) from models_statistics where model_name = %s")
+    if stat == 'max':
+        query_max = ("Select Max(stat) from models_statistics where model_name = %s")
+    else:
+        query_max = ("Select Min(stat) from models_statistics where model_name = %s")
     query_path = ("Select model_path from models_statistics where stat = %s ALLOW FILTERING")
     query_max = query_max % model_name
-    max_stat = session.execute(query_max, timeout=None)._current_rows.iloc[0]['system.max(stat)']
+    if stat == 'max':
+        max_stat = session.execute(query_max, timeout=None)._current_rows.iloc[0]['system.max(stat)']
+    else:
+        max_stat = session.execute(query_max, timeout=None)._current_rows.iloc[0]['system.min(stat)']
     query_path = query_path % max_stat
     path = session.execute(query_path, timeout=None)._current_rows.iloc[0]['model_path']
     return path
