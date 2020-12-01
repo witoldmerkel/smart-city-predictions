@@ -8,7 +8,7 @@ import platform
 import os
 
 
-def make_class_model(data, sc, model_path, model_name, target):
+def make_class_model(data, sc, model_path, model_name, target, ml_model='default'):
 
     t0 = time()
     # Stages for pipline
@@ -65,8 +65,11 @@ def make_class_model(data, sc, model_path, model_name, target):
 
     stages += [assembler_num, scaler, assembler_all]
 
-    # Train a RandomForest model.
-    rf = RandomForestClassifier(labelCol="indexedTarget", featuresCol="features", numTrees=10)
+    # Train a RandomForest model by default or another specified model.
+    if ml_model == 'default':
+        rf = RandomForestClassifier(labelCol="indexedTarget", featuresCol="features", numTrees=10)
+    else:
+        rf = ml_model
 
     # Convert indexed labels back to original labels.
     labelConverter = IndexToString(inputCol="prediction", outputCol="predictedLabel",

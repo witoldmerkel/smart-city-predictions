@@ -8,7 +8,7 @@ import platform
 import os
 
 
-def make_regr_model(data, sc, model_path, model_name, target):
+def make_regr_model(data, sc, model_path, model_name, target, ml_model='default'):
 
     t0 = time()
     # Stages for pipline
@@ -61,7 +61,10 @@ def make_regr_model(data, sc, model_path, model_name, target):
     stages += [assembler_num, scaler, assembler_all]
 
     # Train a RandomForest model.
-    rf = RandomForestRegressor(labelCol="target", featuresCol="features")
+    if ml_model == 'default':
+        rf = RandomForestRegressor(labelCol="target", featuresCol="features")
+    else:
+        rf = ml_model
 
     stages += [rf]
 
