@@ -244,7 +244,7 @@ def get_powietrze_dane_archiwalne(miasto, fromd, tod):
 @app.route("/powietrze/predykcja/<miasto>", methods=['GET'])
 @login_required
 def get_powietrze_predykcje(miasto):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} limit 4 allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} limit 240 allow filtering'''
     params = {
         'miasto': miasto,
     }
@@ -342,7 +342,7 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 @app.route("/velib/predykcja/<stacja>", methods=['GET'])
 @login_required
 def get_velib_predykcje(stacja):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} limit 4 allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} limit 240 allow filtering'''
     params = {
         'stacja': stacja,
     }
@@ -481,7 +481,7 @@ def get_urzedy_dane_archiwalne(id, fromd, tod):
 @app.route("/urzedy/predykcja/<grupa>", methods=['GET'])
 @login_required
 def get_urzedy_predykcje(grupa):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'urzedy' and individual = {{grupa}} limit 4 allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'urzedy' and individual = {{grupa}} limit 240 allow filtering'''
     params = {
         'grupa': grupa,
     }

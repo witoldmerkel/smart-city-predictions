@@ -180,7 +180,7 @@
                 singleRow_pred.innerHTML += '<td>' + "Data i godzina" + '</td>';
                 singleRow_pred.innerHTML += '<td>' + "Liczba osób w kolejce" + '</td>';
                 tabela_pred.appendChild(singleRow_pred);
-                for (i=0; i < response.length; i++){
+                for (i=0; i < response.length; i=i+15){
                     var singleRow_pred = document.createElement('tr');
                     const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
                     const humanDateFormat = dateObject.toLocaleString()
