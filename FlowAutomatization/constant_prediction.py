@@ -7,7 +7,7 @@ import time
 import os
 
 # Funkcja automatyzująca ciągłe wykonywanie predykcji
-# Przed dodoaniem nowych źródeł wyczyścić folder "checkpoints" w lokalizacji Spark
+# Przed modyfikacją źródeł wyczyścić folder "checkpoints" w lokalizacji Spark!
 
 
 def start_flow_predictions(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=86400):
@@ -60,4 +60,4 @@ def start_flow_predictions(list_of_sources=["velib", "powietrze", "urzedy"], ref
         spark.stop()
 
 
-start_flow_predictions(list_of_sources=["powietrze", "urzedy"])
+start_flow_predictions(list_of_sources=["powietrze", "urzedy", "velib"])
