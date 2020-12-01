@@ -16,7 +16,7 @@ li {display: inline;}
   float: left;
   text-decoration: none;
   font-size: 17px;
-  width: 33.33%;
+  width: 25%;
   text-align: center;
   background-color: cornflowerblue;}
 .menu a:hover {
@@ -160,3 +160,6 @@ li {display: inline;}
   position: absolute;
   top: 31%;
 }
+.tu_jestes{
+  background-color: yellow;
+  color: yellow}

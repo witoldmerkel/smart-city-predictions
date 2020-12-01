@@ -16,9 +16,12 @@ li {display: inline;}
   float: left;
   text-decoration: none;
   font-size: 17px;
-  width: 33.33%;
+  width: 25%;
   text-align: center;
   background-color: cornflowerblue;}
+.tu_jestes{
+  background-color: yellow;
+  color: yellow}
 .menu a:hover {
   background-color: black;
   color: white;}
