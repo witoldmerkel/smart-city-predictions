@@ -1,8 +1,4 @@
-import os
-import tempfile
-import sqlalchemy
 import webtest
-
 from main import app
 import unittest
 
@@ -70,35 +66,15 @@ class TestFlaskPobieranieDanych(unittest.TestCase):
         app.config['LOGIN_DISABLED'] = True
         self.client = webtest.TestApp(app)
 
-    def test_pob_home(self):
-        tester = app.test_client(self)
-        odpowiedz = tester.get("/home", content_type='html/text')
-        self.assertEqual(odpowiedz.status_code, 200)
-
-    def test_pob_logout(self):
-        tester = app.test_client(self)
-        odpowiedz = tester.get("/logout", content_type='html/text')
-        self.assertEqual(odpowiedz.status_code, 200)
-
-    def test_pob_pow(self):
-        tester = app.test_client(self)
-        odpowiedz = tester.get("/powietrze", content_type='html/text')
-        self.assertEqual(odpowiedz.status_code, 200)
-
-    def test_pob_urzedy(self):
-        tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy", content_type='html/text')
-        self.assertEqual(odpowiedz.status_code, 200)
-
-    def test_pob_velib(self):
-        tester = app.test_client(self)
-        odpowiedz = tester.get("/velib", content_type='html/text')
-        self.assertEqual(odpowiedz.status_code, 200)
-
     def test_pob_pow_nazwy(self):
         tester = app.test_client(self)
         odpowiedz = tester.get("/powietrze/nazwy", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 200)
+
+    def test_pob_pow_nazwy_json(self):
+        tester = app.test_client(self)
+        odpowiedz = tester.get("/powietrze/nazwy", content_type='application/json')
+        self.assertTrue(b'nazwa' in odpowiedz.data)
 
     def test_pob_pow_dane(self):
         tester = app.test_client(self)
@@ -125,6 +101,11 @@ class TestFlaskPobieranieDanych(unittest.TestCase):
         odpowiedz = tester.get("/velib/stacje", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 200)
 
+    def test_pob_velib_nazwy_json(self):
+        tester = app.test_client(self)
+        odpowiedz = tester.get("/velib/stacje", content_type='application/json')
+        self.assertTrue(b'station_id' in odpowiedz.data)
+
     def test_pob_velib_dane(self):
         tester = app.test_client(self)
         odpowiedz = tester.get("/velib/dane/1/1/1", content_type='application/json')
@@ -149,6 +130,11 @@ class TestFlaskPobieranieDanych(unittest.TestCase):
         tester = app.test_client(self)
         odpowiedz = tester.get("/urzedy/nazwy", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 200)
+
+    def test_pob_urzedy_nazwy_json(self):
+        tester = app.test_client(self)
+        odpowiedz = tester.get("/urzedy/nazwy", content_type='application/json')
+        self.assertTrue(b'urzad' in odpowiedz.data)
 
     def test_pob_urzedy_okienka(self):
         tester = app.test_client(self)
@@ -179,4 +165,5 @@ class TestFlaskPobieranieDanych(unittest.TestCase):
         tester = app.test_client(self)
         odpowiedz = tester.get("/urzedy/statymod/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 200)
+
 
