@@ -129,87 +129,87 @@ class TestFlaskPrzekierowywanie(unittest.TestCase):
 
     def test_przek_pow_nazwy(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/powietrze/nazwy", content_type='html/text')
+        odpowiedz = tester.get("/powietrze/nazwy", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_pow_dane(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/powietrze/dane/1/1/1", content_type='html/text')
+        odpowiedz = tester.get("/powietrze/dane/1/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_pow_pred(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/powietrze/predykcja/1", content_type='html/text')
+        odpowiedz = tester.get("/powietrze/predykcja/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_pow_stat(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/powietrze/staty/1/1", content_type='html/text')
+        odpowiedz = tester.get("/powietrze/staty/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_pow_statymod(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/powietrze/statymod/1/1", content_type='html/text')
+        odpowiedz = tester.get("/powietrze/statymod/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_velib_nazwy(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/velib/stacje", content_type='html/text')
+        odpowiedz = tester.get("/velib/stacje", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_velib_dane(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/velib/dane/1/1/1", content_type='html/text')
+        odpowiedz = tester.get("/velib/dane/1/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_velib_pred(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/velib/predykcja/1", content_type='html/text')
+        odpowiedz = tester.get("/velib/predykcja/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_velib_stat(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/velib/staty/1/1", content_type='html/text')
+        odpowiedz = tester.get("/velib/staty/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_velib_statymod(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/velib/statymod/1/1", content_type='html/text')
+        odpowiedz = tester.get("/velib/statymod/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_nazwy(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/nazwy", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/nazwy", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_okienka(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/1", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_pomoc_urzad(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/pomoc/1", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/pomoc/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_dane(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/dane/1/1/1", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/dane/1/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_pred(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/predykcja/1", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/predykcja/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_stat(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/staty/1/1", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/staty/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
     def test_przek_urzedy_statymod(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/urzedy/statymod/1/1", content_type='html/text')
+        odpowiedz = tester.get("/urzedy/statymod/1/1", content_type='application/json')
         self.assertEqual(odpowiedz.status_code, 302)
 
 
