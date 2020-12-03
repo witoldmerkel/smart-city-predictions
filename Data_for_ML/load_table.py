@@ -7,7 +7,7 @@ import time
 
 
 def load_and_get_table_df(keys_space_name, table_name, time_frame=None):
-    # WYmagane pakiety oraz intefejsy
+    # Wymagane pakiety oraz intefejsy
     os.environ[
         'PYSPARK_SUBMIT_ARGS'] = '--packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.0' \
                                  ' --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
@@ -19,7 +19,8 @@ def load_and_get_table_df(keys_space_name, table_name, time_frame=None):
         .load()
 
     if time_frame is None:
-        time_frame = calendar.timegm(time.gmtime()) - 691200 #Zmienione z dwóch tygodni na jeden w celu testów
+        # Dane z jednego tygodnia
+        time_frame = calendar.timegm(time.gmtime()) - 691200
     table_df = table_df.filter(f.col("timestamp") > time_frame)
 
     return table_df, spark
