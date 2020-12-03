@@ -8,7 +8,7 @@ import platform
 import os
 
 
-def make_class_model(data, sc, model_path, model_name, target, ml_model='default'):
+def make_class_model(data, sc, model_path, model_name, target, ml_model='default', save=True):
 
     t0 = time()
     # Stages for pipline
@@ -95,24 +95,28 @@ def make_class_model(data, sc, model_path, model_name, target, ml_model='default
     accuracy = evaluator.evaluate(predictions)
     print("Accuracy = %g" % (0.0 + accuracy))
 
-    # Final model saving and statistics writing
-    tt = time() - t0
-    timestamp = int(time())
-    model.write().overwrite().save(model_path)
+    if save:
+        # Final model saving and statistics writing
+        tt = time() - t0
+        timestamp = int(time())
+        model.write().overwrite().save(model_path)
 
-    cluster = Cluster(['127.0.0.1'], "9042")
-    session = cluster.connect("models")
-    query = ("INSERT INTO %s (model_name, timestamp, target, learning_time, model_path, stat)") % ("models_statistics")
-    query = query + " VALUES (%s, %s, %s, %s, %s, %s)"
-    session.execute(query, (model_name, timestamp, target, tt, model_path, accuracy))
-    session.shutdown()
-    cluster.shutdown()
+        cluster = Cluster(['127.0.0.1'], "9042")
+        session = cluster.connect("models")
+        query = ("INSERT INTO %s (model_name, timestamp, target, learning_time, model_path, stat)") % ("models_statistics")
+        query = query + " VALUES (%s, %s, %s, %s, %s, %s)"
+        session.execute(query, (model_name, timestamp, target, tt, model_path, accuracy))
+        session.shutdown()
+        cluster.shutdown()
 
-    # Stop spark session
-    sc.stop()
+        # Stop spark session
+        sc.stop()
+
+    if not save:
+        return model, sc
 
     # Deleting temp files for Windows systems
-    plt = platform.system()
+    #plt = platform.system()
 
     # if plt == "Windows":
         # os.system('rmdir /q /s "D:\SparkTEMP"')
