@@ -1,32 +1,41 @@
+import os
+import tempfile
+import sqlalchemy
+
 from main import app
 import unittest
 
 
-def signup(self, email, haslo):
-    return self.app.post(
-        '/register',
-        data=dict(email=email, haslo=haslo),
-        follow_redirects=True)
-
-
-def login(self, email, haslo):
-    return self.app.post(
-        '/login',
-        data=dict(email=email, haslo=haslo),
-        follow_redirects=True)
-
-
-def logout(self):
-    return self.app.get(
-        '/logout',
-        follow_redirects=True)
-
 class TestFlaskaPodstaw(unittest.TestCase):
+
+    def setUp(self):
+        self.db_fd, app.config['DATABASE'] = tempfile.mkstemp()
+        self.app = app.test_client()
+
+    def tearDown(self):
+        os.close(self.db_fd)
+        os.unlink(app.config['DATABASE'])
+
+    def login(self, email, haslo):
+        return self.app.post('/login', data=dict(
+            email=email,
+            haslo=haslo
+        ), follow_redirects=True)
+
+    def signup(self, email, haslo):
+        return self.app.post(
+            '/signup',
+            data=dict(email=email, haslo=haslo),
+            follow_redirects=True
+        )
+
+    def logout(self):
+        return self.app.get('/logout', follow_redirects=True)
 
     # Sprawdzamy czy aplikacja poprawnie się odpaliła
     def test_index(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/", content_type = 'html/text')
+        odpowiedz = tester.get("/", content_type='html/text')
         self.assertEqual(odpowiedz.status_code, 200)
 
     # Sprawdzamy czy strona startowa się poprawnie załadowała
@@ -38,7 +47,7 @@ class TestFlaskaPodstaw(unittest.TestCase):
     # Sprawdzamy czy poprawnie odpaliła się storna logowania
     def test_login(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/login", content_type = 'html/text')
+        odpowiedz = tester.get("/login", content_type='html/text')
         self.assertEqual(odpowiedz.status_code, 200)
 
     # Sprawdzamy czy strona logowania się poprawnie załadowała
@@ -50,7 +59,7 @@ class TestFlaskaPodstaw(unittest.TestCase):
     # Sprawdzamy czy poprawnie odpaliła się storna rejstracji
     def test_signup(self):
         tester = app.test_client(self)
-        odpowiedz = tester.get("/signup", content_type = 'html/text')
+        odpowiedz = tester.get("/signup", content_type='html/text')
         self.assertEqual(odpowiedz.status_code, 200)
 
     # Sprawdzamy czy strona logowania się poprawnie załadowała
@@ -59,13 +68,35 @@ class TestFlaskaPodstaw(unittest.TestCase):
         odpowiedz = tester.get("/signup", content_type='html/text')
         self.assertTrue(b'Zarejstruj' in odpowiedz.data)
 
-    # Poprawne logowanie
+    # Poprawne załadowanie się strony po logowaniu
+    def test_login_pop(self):
+        odpowiedz = self.login('witoldmerkel1@gmail.com', '1234')
+        self.assertTrue(b'Witamy' in odpowiedz.data)
 
-    # Niepoprawne logowanie
+    # Poprawny status po logowaniu
+    def test_login_pop_status(self):
+        odpowiedz = self.login('witoldmerkel1@gmail.com', '1234')
+        self.assertEqual(odpowiedz.status_code, 200)
 
-    # Poprawna rejstracja
+    # Poprawne załadowanie się strony po niepoprawnym logowaniu
+    def test_login_niepop(self):
+        odpowiedz = self.login('nie@mail.com', '1234')
+        self.assertTrue(b'Sprawdz wprowadzone dane' in odpowiedz.data)
 
-    # Niepoprawna rejstracja
+    # Poprawny status po niepoprawnym zalogowaniu
+    def test_login_niepop_status(self):
+        odpowiedz = self.login('nie@mail.com', '1234')
+        self.assertEqual(odpowiedz.status_code, 200)
+
+    # Poprawny status po wylogowaniu
+    def test_logout_status(self):
+        odpowiedz = self.logout()
+        self.assertEqual(odpowiedz.status_code, 200)
+
+    # Poprawny status po rejstracji
+    def test_after_signup_status(self):
+        odpowiedz = self.signup('unittest@email.com', '1234')
+        self.assertEqual(odpowiedz.status_code, 200)
 
 
 class TestFlaskPrzekierowywanie(unittest.TestCase):
@@ -180,6 +211,7 @@ class TestFlaskPrzekierowywanie(unittest.TestCase):
         tester = app.test_client(self)
         odpowiedz = tester.get("/urzedy/statymod/1/1", content_type='html/text')
         self.assertEqual(odpowiedz.status_code, 302)
+
 
 if __name__ == '__main__':
     unittest.main()
