@@ -3,6 +3,7 @@ import common_manipulations
 from datetime import datetime
 
 
+# Testowanie czy tabela zwracana jest zgodna z tabelą oczekiwaną
 def test_timestamp_to_date(spark):
     source_data = [
         (1606946341, "a"),

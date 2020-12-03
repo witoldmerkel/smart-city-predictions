@@ -17,11 +17,11 @@ def urzedy_preprocessing(urzedy_data):
     return dane
 
 
-def load_urzedy(keys_space_name="json", table_name="urzedy"):
+def load_urzedy(keys_space_name="json", table_name="urzedy", time_frame=None, spark=None):
 
     # Wczytanie danych
     
-    urzedy_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name)
+    urzedy_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name, time_frame, spark)
 
     urzedy = urzedy_preprocessing(urzedy_temp)
     

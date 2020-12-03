@@ -19,11 +19,11 @@ def velib_preprocessing(velib_data):
     return dane
 
 
-def load_velib(keys_space_name="json", table_name="velib"):
+def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spark=None):
 
     # Wczytanie danych
 
-    velib_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name)
+    velib_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name, time_frame, spark)
 
     # Dodanie zmiennych opisujących dokładnie czas i Usuniecie kolumn nieuzywanych do predykcji
 

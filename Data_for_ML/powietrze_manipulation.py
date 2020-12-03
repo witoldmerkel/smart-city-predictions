@@ -21,11 +21,11 @@ def powietrze_preprocessing(pow_data):
     return dane
 
 
-def load_powietrze(keys_space_name="json", table_name="powietrze"):
+def load_powietrze(keys_space_name="json", table_name="powietrze", time_frame=None, spark=None):
 
     # Wczytanie danych
 
-    powietrze_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name)
+    powietrze_temp, sc = load_table.load_and_get_table_df(keys_space_name, table_name, time_frame, spark)
 
     # Dodanie zmiennych opisujących dokładnie czas i suniecie kolumn nieuzywanych do predykcji
 
@@ -37,7 +37,7 @@ def load_powietrze(keys_space_name="json", table_name="powietrze"):
     dane = powietrze.withColumn("target", lead("target_temp", 4).over(w)).na.drop()
 
     #dane.sort("name", "timestamp").show(200)
-    #print(dane.dtypes)
+    #print(dane.schema)
 
     return dane, sc
 
