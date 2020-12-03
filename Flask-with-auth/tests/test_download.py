@@ -167,3 +167,5 @@ class TestFlaskPobieranieDanych(unittest.TestCase):
         self.assertEqual(odpowiedz.status_code, 200)
 
 
+if __name__ == '__main__':
+    unittest.main()
