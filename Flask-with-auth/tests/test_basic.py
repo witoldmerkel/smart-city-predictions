@@ -1,9 +1,8 @@
 import os
 import tempfile
-import sqlalchemy
+import unittest
 
 from main import app
-import unittest
 
 
 class TestFlaskaPodstaw(unittest.TestCase):
