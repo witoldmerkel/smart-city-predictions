@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+import pandas as pd
 import pytest
 
 
@@ -13,6 +14,7 @@ def spark_df_class():
     yield spark, df
     spark.stop()
 
+
 @pytest.fixture(scope='session')
 def spark_df_regr():
     spark = SparkSession.builder.getOrCreate()
@@ -23,3 +25,10 @@ def spark_df_regr():
         ("yes", 1.0, 0.0, 1.2, -0.5, "right")], ["v1", "target", "v2", "v3", "v4", "v5"])
     yield spark, df
     spark.stop()
+
+
+@pytest.fixture(scope='session')
+def pandas_factory_fixture():
+    def pandas_factory(colnames, rows):
+        return pd.DataFrame(rows, columns=colnames)
+    return pandas_factory

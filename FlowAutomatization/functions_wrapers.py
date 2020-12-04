@@ -84,13 +84,13 @@ def get_best_model_path(model_name, stat):
         query_max = ("Select Max(stat) from models_statistics where model_name = %s")
     else:
         query_max = ("Select Min(stat) from models_statistics where model_name = %s")
-    query_path = ("Select model_path from models_statistics where stat = %s ALLOW FILTERING")
+    query_path = ("Select model_path from models_statistics where stat = %s and model_name = %s ALLOW FILTERING")
     query_max = query_max % model_name
     if stat == 'max':
         max_stat = session.execute(query_max, timeout=None)._current_rows.iloc[0]['system.max(stat)']
     else:
         max_stat = session.execute(query_max, timeout=None)._current_rows.iloc[0]['system.min(stat)']
-    query_path = query_path % max_stat
+    query_path = query_path % (max_stat, model_name)
     path = session.execute(query_path, timeout=None)._current_rows.iloc[0]['model_path']
     return path
 
