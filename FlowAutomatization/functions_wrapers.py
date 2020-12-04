@@ -11,7 +11,7 @@ import tempfile
 import itertools as IT
 import os
 from time import time
-#W tym pliku definujemy procesy ładowania danych z głównego zbioru danych oraz uczenie modeli dla róźnych zbiorów danych
+# W tym pliku definujemy procesy ładowania danych z głównego zbioru danych oraz uczenie modeli dla róźnych zbiorów danych
 #dla których zdefiniowane są funkcje wstępnego przetwarzania oraz ładowania tabeli
 
 
@@ -92,6 +92,8 @@ def get_best_model_path(model_name, stat):
         max_stat = session.execute(query_max, timeout=None)._current_rows.iloc[0]['system.min(stat)']
     query_path = query_path % (max_stat, model_name)
     path = session.execute(query_path, timeout=None)._current_rows.iloc[0]['model_path']
+    session.shutdown()
+    cluster.shutdown()
     return path
 
 # Funkcja zapewniająca unikalność nazw folderów dla modeli

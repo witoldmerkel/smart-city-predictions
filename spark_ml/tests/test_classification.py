@@ -50,4 +50,6 @@ def test_make_class_model_saving(spark_df_class, pandas_factory_fixture):
     expected_path = test_path
     actual_path = path
     assert actual_path == expected_path
+    session.shutdown()
+    cluster.shutdown()
 

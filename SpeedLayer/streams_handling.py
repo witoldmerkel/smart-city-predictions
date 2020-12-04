@@ -2,6 +2,7 @@ from pyspark.ml import PipelineModel
 import pyspark.sql.functions as F
 # W tym pliku znajdują się funckje, które są odpowiedzialne za określone transformacje strumieni danych
 
+
 def stream_to_predictions(stream, model_path, target, source_name):
     # Stworzenie dodatkowych kolumn w strumieniu
     stream = stream.withColumn("target_column", F.lit(target))
