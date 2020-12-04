@@ -60,4 +60,5 @@ def start_flow_predictions(list_of_sources=["velib", "powietrze", "urzedy"], ref
         spark.stop()
 
 
-start_flow_predictions(list_of_sources=["powietrze", "urzedy", "velib"])
+if __name__ == "__main__":
+    start_flow_predictions(list_of_sources=["powietrze", "urzedy", "velib"])

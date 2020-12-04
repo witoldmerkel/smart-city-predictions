@@ -71,5 +71,5 @@ def start_flow(list_of_sources=["velib", "powietrze", "urzedy"], refresh_time=12
             load_and_train(source)
             time.sleep(10)
 
-
-start_flow(list_of_sources=["powietrze", "urzedy"])
+if __name__ == "__main__":
+    start_flow(list_of_sources=["powietrze", "urzedy"])
