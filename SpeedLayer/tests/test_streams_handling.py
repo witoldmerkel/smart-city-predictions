@@ -7,6 +7,7 @@ import pytest
      'test_source'
      )])
 def test_stream_to_predictions(stream, model_path, target, source_name):
+    stream, _ = stream
     predictions = stream_to_predictions(stream, model_path, target, source_name)
     actual_schema = str(predictions)
     expected_schema = "DataFrame[target: string, v1: double, v2: double, v3: double, v4: double, v5: string," \
