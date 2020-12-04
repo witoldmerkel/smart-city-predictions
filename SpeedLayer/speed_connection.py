@@ -11,7 +11,8 @@ from pyspark.sql.types import (
         )
 # W tym pliku znajdują się funkcje, które zajmują się tworzeniem i obsługą strumieni danych dla każdego źródła danych
 
-def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', target="numbikesavailable",
+
+def activate_velib_stream(topic="sparkvelib", model_path=r'velib_model', target="numbikesavailable",
                           source_name="velib", spark=None, sk_connection=None, put_cassandra=False):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     if sk_connection is None:
@@ -67,7 +68,7 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'D:\velib_model', targ
     return query, spark
 
 
-def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_model', target="pm25",
+def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'powietrze_model', target="pm25",
                               source_name="powietrze", spark=None, sk_connection=None, put_cassandra=False):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     if sk_connection is None:
@@ -129,7 +130,7 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'D:\powietrze_
     return query, spark
 
 
-def activate_urzedy_stream(topic="sparkurzedy", model_path=r'D:\urzedy_model', target="liczbaKlwKolejce",
+def activate_urzedy_stream(topic="sparkurzedy", model_path=r'urzedy_model', target="liczbaKlwKolejce",
                            source_name="urzedy", spark=None, sk_connection=None, put_cassandra=False):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     if sk_connection is None:

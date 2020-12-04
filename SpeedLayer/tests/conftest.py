@@ -1,7 +1,11 @@
 from pyspark.sql import SparkSession
 import pytest
+from streams_handling import stream_to_predictions
 from cassandra.cluster import Cluster
 import pandas as pd
+import pyspark.sql.functions as F
+from time import time
+import os
 
 
 @pytest.fixture()
@@ -30,6 +34,9 @@ def pandas_factory_fixture():
 
 @pytest.fixture()
 def stream():
+    os.environ[
+        'PYSPARK_SUBMIT_ARGS'] = '--packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.0' \
+                                 ' --conf spark.cassandra.connection.host=127.0.0.1 pyspark-shell'
     spark = SparkSession.builder.getOrCreate()
     df = spark.createDataFrame([
         ("yes", 1.0, 0.0, 1.1, 0.1, "sun"),
@@ -41,5 +48,17 @@ def stream():
         ("ok", 0.5, 2.0, 1.0, -1.0, "on"),
         ("no", 0.0, 2.0, 1.3, 4.0, "left"),
         ("yes", 1.0, 0.0, 1.2, -0.5, "right")], ["target", "v1", "v2", "v3", "v4", "v5"])
-    yield df
+    yield df, spark
     spark.stop()
+
+
+@pytest.fixture()
+def predictions(stream, model_path):
+    timestamp = int(time())
+    stream, spark = stream
+    predictions = stream_to_predictions(stream, model_path, 'test_target', 'test_source')
+    predictions = predictions.withColumn('individual', predictions['v5'])
+    predictions = predictions.withColumn("timestamp", F.lit(timestamp))
+    predictions = predictions.select('prediction', 'individual', "source_name", "timestamp", "target_column",
+                                     "model_path")
+    return predictions, spark, timestamp
