@@ -16,5 +16,6 @@ def start_flow_learning(list_of_sources=["velib", "powietrze", "urzedy"], refres
 
         time.sleep(refresh_time)
 
+
 if __name__ == "__main__":
     start_flow_learning(list_of_sources=["powietrze", "urzedy", "velib"])
