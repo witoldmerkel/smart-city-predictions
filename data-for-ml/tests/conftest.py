@@ -3,6 +3,7 @@ import pytest
 import os
 
 
+# Plik zawierający kod wielokrotnie wykorzystywany podczas testów dla tego modułu
 @pytest.fixture(scope='session')
 def spark():
     os.environ[

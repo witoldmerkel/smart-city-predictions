@@ -8,6 +8,7 @@ from pyspark.sql.types import (
         )
 
 
+# Test sprawdzający poprawność zapisu predyckji do bazy danych Cassandra
 def test_writeToCassandra(predictions, pandas_factory_fixture):
 
         predictions, spark, timestamp = predictions

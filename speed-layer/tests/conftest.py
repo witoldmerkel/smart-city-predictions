@@ -8,6 +8,7 @@ from time import time
 import os
 
 
+# Plik zawierający kod wielokrotnie wykorzystywany podczas testów dla tego modułu
 @pytest.fixture()
 def model_path(pandas_factory_fixture):
     cluster = Cluster(['127.0.0.1'], "9042")

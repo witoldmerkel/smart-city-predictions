@@ -2,6 +2,7 @@ from kafka_spark_connection import create_sk_connection
 import pytest
 
 
+# Test sprawdzający poprawność nawiązaywania połączeń na lini spark-kafka
 @pytest.mark.parametrize('topic', [
     ('sparkvelib'
      )])

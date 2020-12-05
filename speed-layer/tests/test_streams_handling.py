@@ -2,6 +2,7 @@ from streams_handling import stream_to_predictions
 import pytest
 
 
+# Test sprawdzający poprawność automatycznego tworzenia predykcji na podstawie zwracanego schematu danych
 @pytest.mark.parametrize('target, source_name', [
     ('test_target',
      'test_source'

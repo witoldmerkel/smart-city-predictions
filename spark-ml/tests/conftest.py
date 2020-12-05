@@ -3,6 +3,7 @@ import pandas as pd
 import pytest
 
 
+# Plik zawierający kod wielokrotnie wykorzystywany podczas testów dla tego modułu
 @pytest.fixture()
 def spark_df_class():
     spark = SparkSession.builder.getOrCreate()

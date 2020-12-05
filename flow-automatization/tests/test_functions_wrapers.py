@@ -11,6 +11,7 @@ def pandas_factory_fixture():
     return pandas_factory
 
 
+# Parametryzowany test funkcji sprawdzający, czy funkcja get_best_model poprawnie odczytuję dane z bazy danych
 @pytest.mark.parametrize('model_name, stat', [
     ("'RF_vel'",
      'min'
