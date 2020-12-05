@@ -1,0 +1,165 @@
+/*Kod odpowaiadający za styl strony o powietrzu*/
+body {
+  background-color: white;
+  overflow: hidden;
+  font-family: 'Ubuntu', sans-serif;
+}
+li {display: inline;}
+.menu {
+  width: 100%;
+  height: 5%;
+  overflow: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: cornflowerblue;}
+.menu a {
+  float: left;
+  text-decoration: none;
+  font-size: 17px;
+  width: 25%;
+  text-align: center;
+  background-color: cornflowerblue;}
+.tu_jestes{
+  background-color: yellow;
+  color: yellow}
+.menu a:hover {
+  background-color: black;
+  color: white;}
+.split {
+  height: 60%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  margin-top: 60px;
+  border-bottom: 5px solid black;}
+.left {
+  left: 0;
+  padding-left: 10px;
+  border-right: 5px solid black;}
+.right {
+  right: 0;}
+.centered_r{
+  padding-left: 25px;}
+.container {
+  width: 100%;
+  height: 35%;}
+.leftpanel {
+  width: 33.33%;
+  height: 30%;
+  float: left;
+  border-collapse: collapse;
+  position: absolute;
+  top: 72%;
+  left: 5%;}
+.middlepanel {
+  width: 33.34%;
+  height: 30%;
+  float: left;
+  border-collapse: collapse;
+  position: absolute;
+  top: 65%;
+  left: 34%;}
+.rightpanel {
+  width: 33.33%;
+  height: 30%;
+  float: right;
+  border-collapse: collapse;
+  position: absolute;
+  top: 72%;
+  left: 62%;}
+.middlesubpannel{
+  width: 33.34%;
+  height: 30%;
+  float: left;
+  border-collapse: collapse;
+  position: absolute;
+  top: 35%;
+  left: 34%;}
+.tablica {
+  border: 1px solid #262AA4;
+  background-color: #D0E4F5;
+  width: 97%;
+  text-align: center;
+  border-collapse: collapse;
+  position: absolute;
+  top: 40%;
+}
+.tablica td, table.tablica th {
+  border: 1px solid #000000;
+  padding: 3px 3px;
+}
+.tablica tbody td {
+  font-size: 13px;
+}
+.tablica tr:nth-child(even) {
+  background: #EEEEEE;
+}
+.tablica thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+.tablica thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+.tablica thead th:first-child {
+  border-left: none;
+}
+
+.tablica tfoot td {
+  font-size: 14px;
+}
+.tablica tfoot .links {
+  text-align: right;
+}
+.tablica tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.guzik{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.wybor_czasu{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.wybor{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.wybor_czasu1{
+  position: absolute;
+  left: 205px;
+  width: 300px;
+}
+
+.wybor1{
+  position: absolute;
+  left: 205px;
+  width: 305px;
+}
+.guzik1{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: absolute;
+  top: 31%;
+}
