@@ -1,4 +1,4 @@
-from SpeedLayer import kafka_spark_connection
+from speed_layer import kafka_spark_connection
 
 
 def prepare_sk_connection(list_of_sources, spark):

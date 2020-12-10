@@ -1,9 +1,9 @@
 import spark_ml.classificator.Classification
 import spark_ml.reggresor.Regression
-import Data_for_ML.powietrze_manipulation
-import Data_for_ML.urzedy_manipulation
-import Data_for_ML.velib_manipulation
-import SpeedLayer.speed_connection
+import data_for_ml.powietrze_manipulation
+import data_for_ml.urzedy_manipulation
+import data_for_ml.velib_manipulation
+import speed_layer.speed_connection
 import os
 import findspark
 from pyspark.sql import SparkSession
@@ -17,32 +17,32 @@ path = findspark.find()
 # Powietrze
 
 # Załadowanie tabeli powietrze z bazy danych master dataset
-data_pow, sc_pow = Data_for_ML.powietrze_manipulation.load_powietrze()
+data_pow, sc_pow = data_for_ml.powietrze_manipulation.load_powietrze()
 
 # Wytrenowanie modelu klsyfikacyjnego na wcześniej załadowanych danych
 powietrze_path = os.path.join(path, 'powietrze_model')
 spark_ml.classificator.Classification.make_class_model(data_pow, sc_pow, powietrze_path, 'RF_pow', 'pm25')
 
 # Uruchomienia modułu szybkiego przetwarzania dla powietrza, który korzysta z wcześniej nauczonych modeli
-query_pow, ssc_pow = SpeedLayer.speed_connection.activate_powietrze_stream(model_path=powietrze_path, put_cassandra=True)
+query_pow, ssc_pow = speed_layer.speed_connection.activate_powietrze_stream(model_path=powietrze_path, put_cassandra=True)
 
 # Urzedy
 
-data_urz, sc_urz = Data_for_ML.urzedy_manipulation.load_urzedy()
+data_urz, sc_urz = data_for_ml.urzedy_manipulation.load_urzedy()
 
 urzedy_path = os.path.join(path, 'urzedy_model')
 spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz', "liczbaKlwKolejce")
 
-query_urz, ssc_urz = SpeedLayer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, put_cassandra=True)
+query_urz, ssc_urz = speed_layer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, put_cassandra=True)
 
 # Velib
 
-data_vel, sc_vel = Data_for_ML.velib_manipulation.load_velib()
+data_vel, sc_vel = data_for_ml.velib_manipulation.load_velib()
 
 velib_path = os.path.join(path, 'velib_model')
 spark_ml.reggresor.Regression.make_regr_model(data_vel, sc_vel, velib_path, 'RF_vel', 'numbikesavailable')
 
-query_vel, ssc_vel = SpeedLayer.speed_connection.activate_velib_stream(model_path=velib_path, put_cassandra=True)
+query_vel, ssc_vel = speed_layer.speed_connection.activate_velib_stream(model_path=velib_path, put_cassandra=True)
 
 
 # Shared conncection

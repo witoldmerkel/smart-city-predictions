@@ -2,7 +2,7 @@ from functions_wrapers import load_and_train, activate_stream
 from shared_connection import prepare_sk_connection
 from pyspark.sql import functions as F
 from pyspark.sql import SparkSession
-from SpeedLayer import spark_cassandra_connection
+from speed_layer import spark_cassandra_connection
 import time
 import os
 
