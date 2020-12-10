@@ -243,7 +243,7 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>Report.html</h1>
-    <p>Report generated on 05-Dec-2020 at 14:16:25 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.0</p>
+    <p>Report generated on 10-Dec-2020 at 09:58:11 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.0</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -262,7 +262,7 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
         <td>Python</td>
         <td>3.8.5</td></tr></table>
     <h2>Summary</h2>
-    <p>6 tests ran in 58.17 seconds. </p>
+    <p>6 tests ran in 69.73 seconds. </p>
     <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">6 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
@@ -277,8 +277,8 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">Data_for_ML/tests/test_common_manipulations.py::test_timestamp_to_date</td>
-          <td class="col-duration">31.67</td>
+          <td class="col-name">data-for-ml/tests/test_common_manipulations.py::test_timestamp_to_date</td>
+          <td class="col-duration">40.97</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -286,7 +286,7 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
 The jars for the packages stored in: C:\Users\jaiko\.ivy2\jars
 :: loading settings :: url = jar:file:/C:/Tools/spark/spark-3.0.1-bin-hadoop2.7/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
 com.datastax.spark#spark-cassandra-connector_2.12 added as a dependency
-:: resolving dependencies :: org.apache.spark#spark-submit-parent-6e313367-8f71-43e1-b0f5-eed549ac898d;1.0
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-a90167ea-99b4-4478-99b9-98e2eb94d70b;1.0
 	confs: [default]
 	found com.datastax.spark#spark-cassandra-connector_2.12;3.0.0 in central
 	found com.datastax.spark#spark-cassandra-connector-driver_2.12;3.0.0 in central
@@ -307,7 +307,7 @@ com.datastax.spark#spark-cassandra-connector_2.12 added as a dependency
 	found org.apache.commons#commons-lang3;3.9 in local-m2-cache
 	found com.thoughtworks.paranamer#paranamer;2.8 in central
 	found org.scala-lang#scala-reflect;2.12.11 in central
-:: resolution report :: resolve 665ms :: artifacts dl 34ms
+:: resolution report :: resolve 848ms :: artifacts dl 32ms
 	:: modules in use:
 	com.datastax.oss#java-driver-core-shaded;4.7.2 from central in [default]
 	com.datastax.oss#java-driver-mapper-runtime;4.7.2 from central in [default]
@@ -334,22 +334,22 @@ com.datastax.spark#spark-cassandra-connector_2.12 added as a dependency
 	---------------------------------------------------------------------
 	|      default     |   19  |   0   |   0   |   0   ||   19  |   0   |
 	---------------------------------------------------------------------
-:: retrieving :: org.apache.spark#spark-submit-parent-6e313367-8f71-43e1-b0f5-eed549ac898d
+:: retrieving :: org.apache.spark#spark-submit-parent-a90167ea-99b4-4478-99b9-98e2eb94d70b
 	confs: [default]
-	0 artifacts copied, 19 already retrieved (0kB/23ms)
-20/12/05 14:15:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+	0 artifacts copied, 19 already retrieved (0kB/17ms)
+20/12/10 09:57:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Using Spark&#x27;s default log4j profile: org/apache/spark/log4j-defaults.properties
 Setting default log level to &quot;WARN&quot;.
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-20/12/05 14:15:32 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-20/12/05 14:15:36 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [D:SparkTEMP]. Please check your configured local directories.
-<br/> ------------------------------Captured stderr call------------------------------ <br/>[Stage 0:&gt;                                                          (0 + 4) / 4]20/12/05 14:15:52 WARN ProcfsMetricsGetter: Exception when trying to compute pagesize, as a result reporting of ProcessTree metrics is stopped
+20/12/10 09:57:14 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+20/12/10 09:57:16 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [D:SparkTEMP]. Please check your configured local directories.
+<br/> ------------------------------Captured stderr call------------------------------ <br/>[Stage 0:&gt;                                                          (0 + 4) / 4]20/12/10 09:57:33 WARN ProcfsMetricsGetter: Exception when trying to compute pagesize, as a result reporting of ProcessTree metrics is stopped
                                                                                 [Stage 1:&gt;                                                          (0 + 4) / 4]                                                                                <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">Data_for_ML/tests/test_data_modules_manipulation.py::test_powietrze_preprocessing</td>
-          <td class="col-duration">6.78</td>
+          <td class="col-name">data-for-ml/tests/test_data_modules_manipulation.py::test_powietrze_preprocessing</td>
+          <td class="col-duration">8.12</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -357,8 +357,8 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">Data_for_ML/tests/test_data_modules_manipulation.py::test_urzedy_preprocessing</td>
-          <td class="col-duration">6.92</td>
+          <td class="col-name">data-for-ml/tests/test_data_modules_manipulation.py::test_urzedy_preprocessing</td>
+          <td class="col-duration">6.97</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -366,16 +366,16 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">Data_for_ML/tests/test_data_modules_manipulation.py::test_velib_preprocessing</td>
-          <td class="col-duration">6.46</td>
+          <td class="col-name">data-for-ml/tests/test_data_modules_manipulation.py::test_velib_preprocessing</td>
+          <td class="col-duration">6.33</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>[Stage 6:&gt;                                                          (0 + 4) / 4]                                                                                [Stage 7:&gt;                                                          (0 + 4) / 4][Stage 7:============================================&gt;              (3 + 1) / 4]                                                                                <br/></div></td></tr></tbody>
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>[Stage 6:&gt;                                                          (0 + 4) / 4]                                                                                [Stage 7:&gt;                                                          (0 + 4) / 4]                                                                                <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">Data_for_ML/tests/test_data_modules_manipulation.py::test_load_modules[json-powietrze-StructType(List(StructField(name,StringType,false),StructField(timestamp,LongType,true),StructField(co,FloatType,true),StructField(h,FloatType,true),StructField(lat,FloatType,true),StructField(long,FloatType,true),StructField(no2,FloatType,true),StructField(o3,FloatType,true),StructField(p,FloatType,true),StructField(pm10,FloatType,true),StructField(pm25,FloatType,true),StructField(so2,FloatType,true),StructField(t,FloatType,true),StructField(w,FloatType,true),StructField(godzina,StringType,true),StructField(dzien,StringType,true),StructField(target_temp,StringType,false),StructField(target,StringType,true)))-load_powietrze]</td>
+          <td class="col-name">data-for-ml/tests/test_data_modules_manipulation.py::test_load_modules[json-powietrze-StructType(List(StructField(name,StringType,false),StructField(timestamp,LongType,true),StructField(co,FloatType,true),StructField(h,FloatType,true),StructField(lat,FloatType,true),StructField(long,FloatType,true),StructField(no2,FloatType,true),StructField(o3,FloatType,true),StructField(p,FloatType,true),StructField(pm10,FloatType,true),StructField(pm25,FloatType,true),StructField(so2,FloatType,true),StructField(t,FloatType,true),StructField(w,FloatType,true),StructField(godzina,StringType,true),StructField(dzien,StringType,true),StructField(target_temp,StringType,false),StructField(target,StringType,true)))-load_powietrze]</td>
           <td class="col-duration">3.99</td>
           <td class="col-links"></td></tr>
         <tr>
@@ -384,10 +384,10 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">Data_for_ML/tests/test_load_table.py::test_load_and_get_table_df[json-powietrze-StructType(List(StructField(name,StringType,false),StructField(timestamp,LongType,true),StructField(co,FloatType,true),StructField(h,FloatType,true),StructField(lat,FloatType,true),StructField(long,FloatType,true),StructField(no2,FloatType,true),StructField(o3,FloatType,true),StructField(p,FloatType,true),StructField(pm10,FloatType,true),StructField(pm25,FloatType,true),StructField(so2,FloatType,true),StructField(t,FloatType,true),StructField(tz,StringType,true),StructField(w,FloatType,true)))]</td>
-          <td class="col-duration">2.21</td>
+          <td class="col-name">data-for-ml/tests/test_load_table.py::test_load_and_get_table_df[json-powietrze-StructType(List(StructField(name,StringType,false),StructField(timestamp,LongType,true),StructField(co,FloatType,true),StructField(h,FloatType,true),StructField(lat,FloatType,true),StructField(long,FloatType,true),StructField(no2,FloatType,true),StructField(o3,FloatType,true),StructField(p,FloatType,true),StructField(pm10,FloatType,true),StructField(pm25,FloatType,true),StructField(so2,FloatType,true),StructField(t,FloatType,true),StructField(tz,StringType,true),StructField(w,FloatType,true)))]</td>
+          <td class="col-duration">3.17</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>20/12/05 14:16:23 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>20/12/10 09:58:07 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
 <br/></div></td></tr></tbody></table></body></html>

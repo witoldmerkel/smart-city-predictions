@@ -243,7 +243,7 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>Report.html</h1>
-    <p>Report generated on 05-Dec-2020 at 16:32:54 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.0</p>
+    <p>Report generated on 10-Dec-2020 at 10:12:09 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.0</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -262,7 +262,7 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
         <td>Python</td>
         <td>3.8.5</td></tr></table>
     <h2>Summary</h2>
-    <p>3 tests ran in 76.35 seconds. </p>
+    <p>3 tests ran in 79.15 seconds. </p>
     <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
@@ -277,8 +277,8 @@ function filter_table(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">speed-layer/tests/test_kafka_spark_connection.py::test_create_sk_connection[sparkvelib]</td>
-          <td class="col-duration">23.13</td>
+          <td class="col-name">speed_layer/tests/test_kafka_spark_connection.py::test_create_sk_connection[sparkvelib]</td>
+          <td class="col-duration">15.74</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -291,7 +291,7 @@ org.apache.kafka#kafka-clients added as a dependency
 org.apache.commons#commons-pool2 added as a dependency
 com.datastax.spark#spark-cassandra-connector_2.12 added as a dependency
 org.apache.spark#spark-token-provider-kafka-0-10_2.12 added as a dependency
-:: resolving dependencies :: org.apache.spark#spark-submit-parent-1531540f-770c-4073-95f6-25673e4a617e;1.0
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-34caaf04-b4b4-4dc6-b88e-8d7eaccd8ee6;1.0
 	confs: [default]
 	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.0.1 in central
 	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.0.1 in central
@@ -321,7 +321,7 @@ org.apache.spark#spark-token-provider-kafka-0-10_2.12 added as a dependency
 	found org.apache.commons#commons-lang3;3.9 in local-m2-cache
 	found com.thoughtworks.paranamer#paranamer;2.8 in central
 	found org.scala-lang#scala-reflect;2.12.11 in central
-:: resolution report :: resolve 920ms :: artifacts dl 33ms
+:: resolution report :: resolve 1115ms :: artifacts dl 54ms
 	:: modules in use:
 	com.datastax.oss#java-driver-core-shaded;4.7.2 from central in [default]
 	com.datastax.oss#java-driver-mapper-runtime;4.7.2 from central in [default]
@@ -361,33 +361,33 @@ org.apache.spark#spark-token-provider-kafka-0-10_2.12 added as a dependency
 	---------------------------------------------------------------------
 	|      default     |   31  |   0   |   0   |   3   ||   28  |   0   |
 	---------------------------------------------------------------------
-:: retrieving :: org.apache.spark#spark-submit-parent-1531540f-770c-4073-95f6-25673e4a617e
+:: retrieving :: org.apache.spark#spark-submit-parent-34caaf04-b4b4-4dc6-b88e-8d7eaccd8ee6
 	confs: [default]
-	0 artifacts copied, 28 already retrieved (0kB/20ms)
-20/12/05 16:31:49 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+	0 artifacts copied, 28 already retrieved (0kB/53ms)
+20/12/10 10:10:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Using Spark&#x27;s default log4j profile: org/apache/spark/log4j-defaults.properties
 Setting default log level to &quot;WARN&quot;.
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-20/12/05 16:31:50 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-20/12/05 16:31:51 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [D:SparkTEMP]. Please check your configured local directories.
+20/12/10 10:10:56 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+20/12/10 10:10:58 WARN Utils: The configured local directories are not expected to be URIs; however, got suspicious values [D:SparkTEMP]. Please check your configured local directories.
 <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">speed-layer/tests/test_spark_cassandra_connection.py::test_writeToCassandra</td>
-          <td class="col-duration">37.65</td>
+          <td class="col-name">speed_layer/tests/test_spark_cassandra_connection.py::test_writeToCassandra</td>
+          <td class="col-duration">36.31</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>20/12/05 16:32:01 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-[Stage 0:&gt;                                                          (0 + 1) / 1]                                                                                [Stage 5:&gt;                                                          (0 + 1) / 1]20/12/05 16:32:18 WARN ProcfsMetricsGetter: Exception when trying to compute pagesize, as a result reporting of ProcessTree metrics is stopped
-                                                                                <br/> -------------------------------Captured log setup------------------------------- <br/>WARNING  cassandra.cluster:conftest.py:13 Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = [&#x27;127.0.0.1&#x27;], lbp = None)
-WARNING  cassandra.cluster:conftest.py:14 Downgrading core protocol version from 66 to 65 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
-WARNING  cassandra.cluster:conftest.py:14 Downgrading core protocol version from 65 to 4 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version<br/> ------------------------------Captured stderr call------------------------------ <br/>[Stage 38:&gt;                                                         (0 + 1) / 1]                                                                                <br/> -------------------------------Captured log call-------------------------------- <br/>WARNING  cassandra.cluster:test_spark_cassandra_connection.py:37 Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = [&#x27;127.0.0.1&#x27;], lbp = None)
-WARNING  cassandra.cluster:test_spark_cassandra_connection.py:38 Downgrading core protocol version from 66 to 65 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
-WARNING  cassandra.cluster:test_spark_cassandra_connection.py:38 Downgrading core protocol version from 65 to 4 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
-WARNING  cassandra.protocol:asyncorereactor.py:452 Server warning: Aggregation query used without partition key<br/> ----------------------------Captured stderr teardown---------------------------- <br/>20/12/05 16:32:39 WARN SparkEnv: Exception while deleting Spark temp dir: D:\SparkTEMP\spark-f32585bf-8cdf-4299-bae7-803097bea003\userFiles-0832afc1-4142-4195-a885-d8329fa4b8e9
-java.io.IOException: Failed to delete: D:\SparkTEMP\spark-f32585bf-8cdf-4299-bae7-803097bea003\userFiles-0832afc1-4142-4195-a885-d8329fa4b8e9\org.xerial.snappy_snappy-java-1.1.7.3.jar
+            <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>20/12/10 10:11:06 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+[Stage 0:&gt;                                                          (0 + 1) / 1]                                                                                20/12/10 10:11:21 WARN ProcfsMetricsGetter: Exception when trying to compute pagesize, as a result reporting of ProcessTree metrics is stopped
+[Stage 5:&gt;                                                          (0 + 1) / 1]                                                                                <br/> -------------------------------Captured log setup------------------------------- <br/>WARNING  cassandra.cluster:conftest.py:14 Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = [&#x27;127.0.0.1&#x27;], lbp = None)
+WARNING  cassandra.cluster:conftest.py:15 Downgrading core protocol version from 66 to 65 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
+WARNING  cassandra.cluster:conftest.py:15 Downgrading core protocol version from 65 to 4 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version<br/> ------------------------------Captured stderr call------------------------------ <br/>[Stage 38:&gt;                                                         (0 + 1) / 1]                                                                                <br/> -------------------------------Captured log call-------------------------------- <br/>WARNING  cassandra.cluster:test_spark_cassandra_connection.py:38 Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = [&#x27;127.0.0.1&#x27;], lbp = None)
+WARNING  cassandra.cluster:test_spark_cassandra_connection.py:39 Downgrading core protocol version from 66 to 65 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
+WARNING  cassandra.cluster:test_spark_cassandra_connection.py:39 Downgrading core protocol version from 65 to 4 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
+WARNING  cassandra.protocol:asyncorereactor.py:452 Server warning: Aggregation query used without partition key<br/> ----------------------------Captured stderr teardown---------------------------- <br/>20/12/10 10:11:42 WARN SparkEnv: Exception while deleting Spark temp dir: D:\SparkTEMP\spark-47a6dccf-17fa-471b-bba9-055cb63eb762\userFiles-56c43f7d-b84c-4383-bc22-9003786bc0ff
+java.io.IOException: Failed to delete: D:\SparkTEMP\spark-47a6dccf-17fa-471b-bba9-055cb63eb762\userFiles-56c43f7d-b84c-4383-bc22-9003786bc0ff\org.xerial.snappy_snappy-java-1.1.7.3.jar
 	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:144)
 	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:118)
 	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:128)
@@ -414,16 +414,16 @@ java.io.IOException: Failed to delete: D:\SparkTEMP\spark-f32585bf-8cdf-4299-bae
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">speed-layer/tests/test_streams_handling.py::test_stream_to_predictions[test_target-test_source]</td>
-          <td class="col-duration">15.49</td>
+          <td class="col-name">speed_layer/tests/test_streams_handling.py::test_stream_to_predictions[test_target-test_source]</td>
+          <td class="col-duration">27.01</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>20/12/05 16:32:39 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
-<br/> -------------------------------Captured log setup------------------------------- <br/>WARNING  cassandra.cluster:conftest.py:13 Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = [&#x27;127.0.0.1&#x27;], lbp = None)
-WARNING  cassandra.cluster:conftest.py:14 Downgrading core protocol version from 66 to 65 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
-WARNING  cassandra.cluster:conftest.py:14 Downgrading core protocol version from 65 to 4 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version<br/> ------------------------------Captured stderr call------------------------------ <br/>[Stage 0:&gt;                                                          (0 + 1) / 1]                                                                                <br/> ----------------------------Captured stderr teardown---------------------------- <br/>20/12/05 16:32:54 WARN SparkEnv: Exception while deleting Spark temp dir: D:\SparkTEMP\spark-f32585bf-8cdf-4299-bae7-803097bea003\userFiles-874d4a55-39f9-442c-ad18-e927fce007e8
-java.io.IOException: Failed to delete: D:\SparkTEMP\spark-f32585bf-8cdf-4299-bae7-803097bea003\userFiles-874d4a55-39f9-442c-ad18-e927fce007e8\org.xerial.snappy_snappy-java-1.1.7.3.jar
+            <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>20/12/10 10:11:42 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+<br/> -------------------------------Captured log setup------------------------------- <br/>WARNING  cassandra.cluster:conftest.py:14 Cluster.__init__ called with contact_points specified, but no load_balancing_policy. In the next major version, this will raise an error; please specify a load-balancing policy. (contact_points = [&#x27;127.0.0.1&#x27;], lbp = None)
+WARNING  cassandra.cluster:conftest.py:15 Downgrading core protocol version from 66 to 65 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version
+WARNING  cassandra.cluster:conftest.py:15 Downgrading core protocol version from 65 to 4 for 127.0.0.1:9042. To avoid this, it is best practice to explicitly set Cluster(protocol_version) to the version supported by your cluster. http://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Cluster.protocol_version<br/> ------------------------------Captured stderr call------------------------------ <br/>[Stage 0:&gt;                                                          (0 + 1) / 1]                                                                                <br/> ----------------------------Captured stderr teardown---------------------------- <br/>20/12/10 10:12:09 WARN SparkEnv: Exception while deleting Spark temp dir: D:\SparkTEMP\spark-47a6dccf-17fa-471b-bba9-055cb63eb762\userFiles-42edbdc3-ae83-4fbf-849f-9f54c104f9c6
+java.io.IOException: Failed to delete: D:\SparkTEMP\spark-47a6dccf-17fa-471b-bba9-055cb63eb762\userFiles-42edbdc3-ae83-4fbf-849f-9f54c104f9c6\org.xerial.snappy_snappy-java-1.1.7.3.jar
 	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:144)
 	at org.apache.spark.network.util.JavaUtils.deleteRecursively(JavaUtils.java:118)
 	at org.apache.spark.network.util.JavaUtils.deleteRecursivelyUsingJavaIO(JavaUtils.java:128)
