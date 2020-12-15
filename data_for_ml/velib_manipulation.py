@@ -7,7 +7,7 @@ from pyspark.sql.types import StringType
 # Załadowanie i przetworzenie danych z tabeli velib
 
 
-def velib_preprocessing(velib_data):
+def velib_preprocessing(velib_data, agg, row_start, row_end):
     dane = common_manipulations.timestamp_to_date(velib_data)
 
     dane = dane.drop(*['normal_type', 'numbikesavailable', 'numdocksavailable', 'station_code'])
@@ -16,10 +16,17 @@ def velib_preprocessing(velib_data):
         .withColumn('is_returning', dane['is_returning'].cast(StringType())) \
         .withColumn('station_id', dane['station_id'].cast(StringType())).na.drop()
 
+    if agg == "moving_average":
+        dane = common_manipulations.moving_average_aggregation(dane, "num_bikes_available", "station_id", row_start,
+                                                                 row_end)
+    else:
+        print("No aggregation")
+
     return dane
 
 
-def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spark=None):
+def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spark=None, agg=None,
+                row_start=-1, row_end=1):
 
     # Wczytanie danych
 
@@ -27,7 +34,10 @@ def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spar
 
     # Dodanie zmiennych opisujących dokładnie czas i Usuniecie kolumn nieuzywanych do predykcji
 
-    velib = velib_preprocessing(velib_temp)
+    velib = velib_preprocessing(velib_temp, agg, row_start, row_end)
+
+
+    velib.sort("station_id", "timestamp").show(300)
 
     # Stworzenie zmiennej celu
 

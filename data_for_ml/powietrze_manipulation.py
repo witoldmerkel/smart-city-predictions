@@ -5,9 +5,16 @@ from pyspark.sql.window import Window
 
 
 # Załadowanie i przetworzenie danych z tabeli powietrze
-def powietrze_preprocessing(pow_data):
+def powietrze_preprocessing(pow_data, agg,
+                row_start, row_end):
 
     powietrze = common_manipulations.timestamp_to_date(pow_data)
+
+    if agg == "moving_average":
+        powietrze = common_manipulations.moving_average_aggregation(powietrze, "pm25", "name", row_start,
+                                                                 row_end)
+    else:
+        print("No aggregation")
 
     powietrze = powietrze.withColumn("target_temp", (when(powietrze["pm25"] < 12, "Dobre")
                                                      .when(powietrze["pm25"] <= 35, "Umiarkowane")
@@ -21,7 +28,8 @@ def powietrze_preprocessing(pow_data):
     return dane
 
 
-def load_powietrze(keys_space_name="json", table_name="powietrze", time_frame=None, spark=None):
+def load_powietrze(keys_space_name="json", table_name="powietrze", time_frame=None, spark=None, agg=None,
+                row_start=-1, row_end=1):
 
     # Wczytanie danych
 
@@ -29,8 +37,10 @@ def load_powietrze(keys_space_name="json", table_name="powietrze", time_frame=No
 
     # Dodanie zmiennych opisujących dokładnie czas i suniecie kolumn nieuzywanych do predykcji
 
-    powietrze = powietrze_preprocessing(powietrze_temp)
+    powietrze = powietrze_preprocessing(powietrze_temp, agg,
+                row_start, row_end)
 
+    powietrze.sort("name", "timestamp").show(200)
     # Stworzenie zmiennej celu
 
     w = Window().partitionBy("name").orderBy("timestamp")
