@@ -40,7 +40,7 @@ def load_powietrze(keys_space_name="json", table_name="powietrze", time_frame=No
     powietrze = powietrze_preprocessing(powietrze_temp, agg,
                 row_start, row_end)
 
-    powietrze.sort("name", "timestamp").show(200)
+    #powietrze.sort("name", "timestamp").show(200)
     # Stworzenie zmiennej celu
 
     w = Window().partitionBy("name").orderBy("timestamp")

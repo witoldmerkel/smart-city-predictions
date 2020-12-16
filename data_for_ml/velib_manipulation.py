@@ -37,7 +37,7 @@ def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spar
     velib = velib_preprocessing(velib_temp, agg, row_start, row_end)
 
 
-    velib.sort("station_id", "timestamp").show(300)
+    #velib.sort("station_id", "timestamp").show(300)
 
     # Stworzenie zmiennej celu
 

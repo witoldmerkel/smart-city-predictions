@@ -31,7 +31,7 @@ def load_urzedy(keys_space_name="json", table_name="urzedy", time_frame=None, sp
 
     urzedy = urzedy_preprocessing(urzedy_temp, agg, row_start, row_end)
 
-    urzedy.sort("idgrupy", "timestamp").show(300)
+    #urzedy.sort("idgrupy", "timestamp").show(300)
     
     # Stworzenie zmiennej celu
 

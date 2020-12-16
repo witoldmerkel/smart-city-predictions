@@ -28,7 +28,7 @@ query_pow, ssc_pow = speed_layer.speed_connection.activate_powietrze_stream(mode
 
 # Urzedy
 
-data_urz, sc_urz = data_for_ml.urzedy_manipulation.load_urzedy()
+data_urz, sc_urz = data_for_ml.urzedy_manipulation.load_urzedy(agg="moving_average")
 
 urzedy_path = os.path.join(path, 'urzedy_model')
 spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz', "liczbaKlwKolejce")

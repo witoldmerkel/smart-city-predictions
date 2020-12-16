@@ -30,11 +30,11 @@ def load_and_train(source):
         spark_ml.classificator.Classification.make_class_model(data_pow, sc_pow, powietrze_path, 'RF_pow', 'pm25')
 
     elif source == "urzedy":
-        data_urz, sc_urz = data_for_ml.urzedy_manipulation.load_urzedy()
+        data_urz, sc_urz = data_for_ml.urzedy_manipulation.load_urzedy(agg="moving_average")
 
         urzedy_path = os.path.join(path, 'urzedy_model')
         urzedy_path = urzedy_path + '_' + str(int(time()))
-        spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz', "liczbaKlwKolejce")
+        spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz_ma', "liczbaKlwKolejce")
 
     elif source == "velib":
         data_vel, sc_vel = data_for_ml.velib_manipulation.load_velib()
@@ -54,7 +54,7 @@ def activate_stream(source, spark, sk_connection):
                                                                          sk_connection=sk_connection)
 
     elif source == "urzedy":
-        urzedy_path = get_best_model_path("'RF_urz'", 'min')
+        urzedy_path = get_best_model_path("'RF_urz_ma'", 'min')
         query, _ = speed_layer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, spark=spark,
                                                                          sk_connection=sk_connection)
 
