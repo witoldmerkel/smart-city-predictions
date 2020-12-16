@@ -56,7 +56,8 @@ def activate_stream(source, spark, sk_connection):
     elif source == "urzedy":
         urzedy_path = get_best_model_path("'RF_urz_ma'", 'min')
         query, _ = speed_layer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, spark=spark,
-                                                                         sk_connection=sk_connection)
+                                                                         sk_connection=sk_connection,
+                                                                       agg="moving_average")
 
     elif source == "velib":
         velib_path = get_best_model_path("'RF_vel'", 'min')

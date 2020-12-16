@@ -12,7 +12,7 @@ def urzedy_preprocessing(urzedy_data, agg, row_start, row_end):
     urzedy = common_manipulations.timestamp_to_date(urzedy_temp)
 
     if agg == "moving_average":
-        urzedy = common_manipulations.moving_average_aggregation(urzedy, "liczbaklwkolejce", "idgrupy", row_start,
+        urzedy = common_manipulations.moving_average_aggregation(urzedy, 'liczbaklwkolejce', "idgrupy", row_start,
                                                                  row_end)
     else:
         print("No aggregation")
@@ -31,7 +31,7 @@ def load_urzedy(keys_space_name="json", table_name="urzedy", time_frame=None, sp
 
     urzedy = urzedy_preprocessing(urzedy_temp, agg, row_start, row_end)
 
-    #urzedy.sort("idgrupy", "timestamp").show(300)
+    urzedy.sort("idgrupy", "timestamp").show(300)
     
     # Stworzenie zmiennej celu
 

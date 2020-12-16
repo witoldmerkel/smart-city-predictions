@@ -13,7 +13,8 @@ from pyspark.sql.types import (
 
 
 def activate_velib_stream(topic="sparkvelib", model_path=r'velib_model', target="numbikesavailable",
-                          source_name="velib", spark=None, sk_connection=None, put_cassandra=False):
+                          source_name="velib", spark=None, sk_connection=None, put_cassandra=False,
+                          agg=None, row_start=-1, row_end=1):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     if sk_connection is None:
         sc, spark = create_sk_connection(topic, spark)
@@ -53,7 +54,7 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'velib_model', target=
         .withColumn('station_id', stream['station_id'].cast(IntegerType())) \
         .withColumn('timestamp', stream['timestamp'].cast(IntegerType()))
     # Wstępne przetwarzanie danych wspólne dla przygotowania danych do uczenia modelu oraz dla wykonywania predykcji
-    stream = velib_preprocessing(stream)
+    stream = velib_preprocessing(stream, agg, row_start, row_end)
     # Przekształcanie strumienia danych do predykcji
     stream = stream_to_predictions(stream, model_path, target, source_name)
     # One table
@@ -69,7 +70,8 @@ def activate_velib_stream(topic="sparkvelib", model_path=r'velib_model', target=
 
 
 def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'powietrze_model', target="pm25",
-                              source_name="powietrze", spark=None, sk_connection=None, put_cassandra=False):
+                              source_name="powietrze", spark=None, sk_connection=None, put_cassandra=False,
+                              agg=None, row_start=-1, row_end=1):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     if sk_connection is None:
         sc, spark = create_sk_connection(topic, spark)
@@ -115,7 +117,7 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'powietrze_mod
         .withColumn('w', stream['w'].cast(FloatType())) \
         .withColumn('timestamp', stream['v'].cast(IntegerType()))
     # Wstępne przetwarzanie danych wspólne dla przygotowania danych do uczenia modelu oraz dla wykonywania predykcji
-    stream = powietrze_preprocessing(stream)
+    stream = powietrze_preprocessing(stream, agg, row_start, row_end)
     stream = stream_to_predictions(stream, model_path, target, source_name)
     # One table
     stream = stream.withColumn('individual', stream['name'])
@@ -131,7 +133,8 @@ def activate_powietrze_stream(topic="sparkpowietrze", model_path=r'powietrze_mod
 
 
 def activate_urzedy_stream(topic="sparkurzedy", model_path=r'urzedy_model', target="liczbaKlwKolejce",
-                           source_name="urzedy", spark=None, sk_connection=None, put_cassandra=False):
+                           source_name="urzedy", spark=None, sk_connection=None, put_cassandra=False,
+                           agg=None, row_start=-1, row_end=1):
     # Stworzenie połączenia kafka-spark dla wybranego tematu
     if sk_connection is None:
         sc, spark = create_sk_connection(topic, spark)
@@ -167,7 +170,7 @@ def activate_urzedy_stream(topic="sparkurzedy", model_path=r'urzedy_model', targ
         .withColumn('aktualny_numer', stream['aktualnyNumer'].cast(StringType())) \
         .withColumn('status', stream['status'].cast(StringType()))
     # Wstępne przetwarzanie danych wspólne dla przygotowania danych do uczenia modelu oraz dla wykonywania predykcji
-    stream = urzedy_preprocessing(stream)
+    stream = urzedy_preprocessing(stream, agg, row_start, row_end)
     stream = stream_to_predictions(stream, model_path, target, source_name)
     # One table
     stream = stream.withColumn('individual', stream['idgrupy'])
