@@ -34,7 +34,7 @@ def load_and_train(source):
 
         urzedy_path = os.path.join(path, 'urzedy_model')
         urzedy_path = urzedy_path + '_' + str(int(time()))
-        spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz_ma', "liczbaKlwKolejce")
+        spark_ml.reggresor.Regression.make_regr_model(data_urz, sc_urz, urzedy_path, 'RF_urz_mav', "liczbaKlwKolejce")
 
     elif source == "velib":
         data_vel, sc_vel = data_for_ml.velib_manipulation.load_velib()
@@ -54,7 +54,8 @@ def activate_stream(source, spark, sk_connection):
                                                                          sk_connection=sk_connection)
 
     elif source == "urzedy":
-        urzedy_path = get_best_model_path("'RF_urz_ma'", 'min')
+        urzedy_path = get_best_model_path("'RF_urz_mav'", 'min')
+        print(urzedy_path)
         query, _ = speed_layer.speed_connection.activate_urzedy_stream(model_path=urzedy_path, spark=spark,
                                                                          sk_connection=sk_connection,
                                                                        agg="moving_average")

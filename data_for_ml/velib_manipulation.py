@@ -7,26 +7,28 @@ from pyspark.sql.types import StringType
 # Załadowanie i przetworzenie danych z tabeli velib
 
 
-def velib_preprocessing(velib_data, agg, row_start, row_end):
+def velib_preprocessing(velib_data, agg, time_frames, time_update):
     dane = common_manipulations.timestamp_to_date(velib_data)
 
-    dane = dane.drop(*['normal_type', 'numbikesavailable', 'numdocksavailable', 'station_code'])
+    dane = dane.drop(*['numbikesavailable', 'numdocksavailable', 'station_code'])
     dane = dane.withColumn("is_installed", dane['is_installed'].cast(StringType())) \
         .withColumn('is_renting', dane['is_renting'].cast(StringType())) \
         .withColumn('is_returning', dane['is_returning'].cast(StringType())) \
         .withColumn('station_id', dane['station_id'].cast(StringType())).na.drop()
 
     if agg == "moving_average":
-        dane = common_manipulations.moving_average_aggregation(dane, "num_bikes_available", "station_id", row_start,
-                                                                 row_end)
+        dane = common_manipulations.moving_average_aggregation(dane, "num_bikes_available", "station_id", time_frames,
+                                                                 time_update)
     else:
         print("No aggregation")
+
+    dane = dane.drop(*['normal_type'])
 
     return dane
 
 
 def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spark=None, agg=None,
-                row_start=-1, row_end=1):
+                time_frames="5 minutes", time_update="1 minute"):
 
     # Wczytanie danych
 
@@ -34,10 +36,10 @@ def load_velib(keys_space_name="json", table_name="velib", time_frame=None, spar
 
     # Dodanie zmiennych opisujących dokładnie czas i Usuniecie kolumn nieuzywanych do predykcji
 
-    velib = velib_preprocessing(velib_temp, agg, row_start, row_end)
+    velib = velib_preprocessing(velib_temp, agg, time_frames, time_update)
 
 
-    #velib.sort("station_id", "timestamp").show(300)
+    velib.sort("station_id", "timestamp").show(300)
 
     # Stworzenie zmiennej celu
 
