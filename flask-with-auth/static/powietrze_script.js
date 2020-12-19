@@ -38,7 +38,7 @@
     var pobierzDane = function () {
         var miasto = $('#miasta').val();
         if(miasto == '0'){
-            alert("Proszę wprowadzić dane")
+            alert("Proszę wybrać stacje pomiarową")
         } else {
             var poczatek = "'"
             miasto = poczatek.concat(miasto, "'")
@@ -101,31 +101,34 @@
 
     var pobierzDane_pred = function () {
         var miasto_pred = $('#miasta_pred').val();
-        var poczatek_pred = "'"
-        miasto_pred = poczatek_pred.concat(miasto_pred, "'")
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/predykcja/" + miasto_pred,
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            var tabela_pred = document.getElementById("tabel_pred");
-            tabela_pred.innerHTML='';
-            var singleRow_pred=document.createElement('tr');
-            singleRow_pred.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow_pred.innerHTML += '<td>' + "Stan powietrze" + '</td>';
-            tabela_pred.appendChild(singleRow_pred);
-            for (i=0; i < response.length; i=i+15){
+        if(miasto == '0'){
+            alert("Proszę wybrać stacje pomiarową")
+        } else {
+            var poczatek_pred = "'"
+            miasto_pred = poczatek_pred.concat(miasto_pred, "'")
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://127.0.0.1:5000/powietrze/predykcja/" + miasto_pred,
+                "method": "GET",
+                "dataType": 'json'
+            }
+            $.ajax(settings).done(function (response) {
+                var tabela_pred = document.getElementById("tabel_pred");
+                tabela_pred.innerHTML='';
                 var singleRow_pred=document.createElement('tr');
-                const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
-                const humanDateFormat = dateObject.toLocaleString()
-                singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow_pred.innerHTML += '<td>' + JSON.parse(response[i][0]).prediction + '</td>';
-                tabela_pred.appendChild(singleRow_pred);}
+                singleRow_pred.innerHTML += '<td>' + "Data i godzina" + '</td>';
+                singleRow_pred.innerHTML += '<td>' + "Stan powietrze" + '</td>';
+                tabela_pred.appendChild(singleRow_pred);
+                for (i=0; i < response.length; i=i+15){
+                    var singleRow_pred=document.createElement('tr');
+                    const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
+                    const humanDateFormat = dateObject.toLocaleString()
+                    singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
+                    singleRow_pred.innerHTML += '<td>' + JSON.parse(response[i][0]).prediction + '</td>';
+                    tabela_pred.appendChild(singleRow_pred);}
 
-})};
+})}};
 
     var pobierzDane_stat = function () {
         var from_stat = Date.parse($('#from_stat').val())/1000;
