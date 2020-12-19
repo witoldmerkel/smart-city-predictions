@@ -13,7 +13,9 @@
             var option = document.createElement("option");
             var option_pred = document.createElement("option");
             option.text = "Prosze wybrac punkt";
+            option.value = '0';
             option_pred.text = "Prosze wybrac punkt";
+            option_pred.value = '0';
             x.add(option);
             x_pred.add(option_pred);
             for (i=0; i < response.length; i++){
@@ -35,63 +37,66 @@
 
     var pobierzDane = function () {
         var miasto = $('#miasta').val();
-        var poczatek = "'"
-        miasto = poczatek.concat(miasto, "'")
-        var fromd = Date.parse($('#from').val())/1000;
-        var tod = Date.parse($('#to').val())/1000;
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto + "/" + fromd + "/" + tod,
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            var tabela = document.getElementById("tabel");
-            tabela.innerHTML='';
-            var singleRow=document.createElement('tr');
-            singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow.innerHTML += '<td>' + "Stan powietrze" + '</td>';
-            singleRow.innerHTML += '<td>' + "PM2.5 [μg/m3]" + '</td>';
-            singleRow.innerHTML += '<td>' + "PM10 [μg/m3]" + '</td>';
-            singleRow.innerHTML += '<td>' + "CO [μg/m3]" + '</td>';
-            singleRow.innerHTML += '<td>' + "NO2 [μg/m3]" + '</td>';
-            singleRow.innerHTML += '<td>' + "O3 [μg/m3]" + '</td>';
-            singleRow.innerHTML += '<td>' + "SO2 [μg/m3]" + '</td>';
-            singleRow.innerHTML += '<td>' + "Temperatura [°C]" + '</td>';
-            singleRow.innerHTML += '<td>' + "Ciśnienie [hPa]" + '</td>';
-            tabela.appendChild(singleRow);
-            for (i=0; i < response.length; i++){
-                var stan;
-                if (JSON.parse(response[i][0]).pm25 < 12) {
-                    stan = "Dobre";
-                } else if (JSON.parse(response[i][0]).pm25 <= 35) {
-                    stan = "Umiarkowane";
-                } else if (JSON.parse(response[i][0]).pm25 <= 55) {
-                    stan = "Niezdrowe dla chorych";
-                } else if (JSON.parse(response[i][0]).pm25 <= 150) {
-                    stan = "Niezdrowe";
-                } else if (JSON.parse(response[i][0]).pm25 <= 250) {
-                    stan = "Bardzo niezdrowe";
-                } else {
-                    stan = "Niebezpieczne";
-                }
+        if(miasto == '0'){
+            alert("Proszę wprowadzić dane")
+        } else {
+            var poczatek = "'"
+            miasto = poczatek.concat(miasto, "'")
+            var fromd = Date.parse($('#from').val())/1000;
+            var tod = Date.parse($('#to').val())/1000;
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://127.0.0.1:5000/powietrze/dane/" + miasto + "/" + fromd + "/" + tod,
+                "method": "GET",
+                "dataType": 'json'
+            }
+            $.ajax(settings).done(function (response) {
+                var tabela = document.getElementById("tabel");
+                tabela.innerHTML='';
                 var singleRow=document.createElement('tr');
-                const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
-                const humanDateFormat = dateObject.toLocaleString()
-                singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + stan + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm25 + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm10 + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).co + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).no2 + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).o3 + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).so2 + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).t + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).p + '</td>';
-                tabela.appendChild(singleRow);}
+                singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
+                singleRow.innerHTML += '<td>' + "Stan powietrze" + '</td>';
+                singleRow.innerHTML += '<td>' + "PM2.5 [μg/m3]" + '</td>';
+                singleRow.innerHTML += '<td>' + "PM10 [μg/m3]" + '</td>';
+                singleRow.innerHTML += '<td>' + "CO [μg/m3]" + '</td>';
+                singleRow.innerHTML += '<td>' + "NO2 [μg/m3]" + '</td>';
+                singleRow.innerHTML += '<td>' + "O3 [μg/m3]" + '</td>';
+                singleRow.innerHTML += '<td>' + "SO2 [μg/m3]" + '</td>';
+                singleRow.innerHTML += '<td>' + "Temperatura [°C]" + '</td>';
+                singleRow.innerHTML += '<td>' + "Ciśnienie [hPa]" + '</td>';
+                tabela.appendChild(singleRow);
+                for (i=0; i < response.length; i++){
+                    var stan;
+                    if (JSON.parse(response[i][0]).pm25 < 12) {
+                        stan = "Dobre";
+                    } else if (JSON.parse(response[i][0]).pm25 <= 35) {
+                        stan = "Umiarkowane";
+                    } else if (JSON.parse(response[i][0]).pm25 <= 55) {
+                        stan = "Niezdrowe dla chorych";
+                    } else if (JSON.parse(response[i][0]).pm25 <= 150) {
+                        stan = "Niezdrowe";
+                    } else if (JSON.parse(response[i][0]).pm25 <= 250) {
+                        stan = "Bardzo niezdrowe";
+                    } else {
+                        stan = "Niebezpieczne";
+                    }
+                    var singleRow=document.createElement('tr');
+                    const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
+                    const humanDateFormat = dateObject.toLocaleString()
+                    singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
+                    singleRow.innerHTML += '<td>' + stan + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm25 + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).pm10 + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).co + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).no2 + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).o3 + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).so2 + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).t + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).p + '</td>';
+                    tabela.appendChild(singleRow);}
 
-})};
+})}};
 
 
     var pobierzDane_pred = function () {
