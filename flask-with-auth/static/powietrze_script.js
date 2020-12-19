@@ -101,7 +101,7 @@
 
     var pobierzDane_pred = function () {
         var miasto_pred = $('#miasta_pred').val();
-        if(miasto == '0'){
+        if(miasto_pred == '0'){
             alert("Proszę wybrać stacje pomiarową")
         } else {
             var poczatek_pred = "'"

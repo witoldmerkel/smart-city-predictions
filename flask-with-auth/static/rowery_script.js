@@ -13,7 +13,9 @@
             var option = document.createElement("option");
             var option_pred = document.createElement("option");
             option.text = "Prosze wybrac stację";
+            option.value = '0';
             option_pred.text = "Prosze wybrac stację";
+            option_pred.value = '0';
             x.add(option);
             x_pred.add(option_pred);
             for (i=0; i < response.length; i++){
@@ -34,61 +36,67 @@
 // Następnie te dane są ładowane do wygenerowanej tabeli
     var pobierzDane = function () {
         var stacja = $('#stacje').val();
-        var fromd = Date.parse($('#from').val())/1000;
-        var tod = Date.parse($('#to').val())/1000;
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/velib/dane/" + stacja + "/" + fromd + "/" + tod,
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            var tabela = document.getElementById("tabel");
-            tabela.innerHTML='';
-            var singleRow=document.createElement('tr');
-            singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów mechanicznych" + '</td>';
-            singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów elektrycznych" + '</td>';
-            tabela.appendChild(singleRow);
-            for (i=0; i < response.length; i++){
+        if(stacja == '0'){
+            alert("Proszę wybrać stacje z rowerami")
+        } else {
+            var fromd = Date.parse($('#from').val())/1000;
+            var tod = Date.parse($('#to').val())/1000;
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://127.0.0.1:5000/velib/dane/" + stacja + "/" + fromd + "/" + tod,
+                "method": "GET",
+                "dataType": 'json'
+            }
+            $.ajax(settings).done(function (response) {
+                var tabela = document.getElementById("tabel");
+                tabela.innerHTML='';
                 var singleRow=document.createElement('tr');
-                const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
-                const humanDateFormat = dateObject.toLocaleString()
-                singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).mechanical + '</td>';
-                singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).ebike + '</td>';
-                tabela.appendChild(singleRow);}
+                singleRow.innerHTML += '<td>' + "Data i godzina" + '</td>';
+                singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów mechanicznych" + '</td>';
+                singleRow.innerHTML += '<td>' + "Liczba dostępnych rowerów elektrycznych" + '</td>';
+                tabela.appendChild(singleRow);
+                for (i=0; i < response.length; i++){
+                    var singleRow=document.createElement('tr');
+                    const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
+                    const humanDateFormat = dateObject.toLocaleString()
+                    singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).mechanical + '</td>';
+                    singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).ebike + '</td>';
+                    tabela.appendChild(singleRow);}
 
-})};
+})}};
 
     var pobierzDane_pred = function () {
         var stacje_pred = $('#stacje_pred').val();
-        var poczatek_pred = "'"
-        stacje_pred = poczatek_pred.concat(stacje_pred, "'")
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://127.0.0.1:5000/velib/predykcja/" + stacje_pred,
-            "method": "GET",
-            "dataType": 'json'
-        }
-        $.ajax(settings).done(function (response) {
-            var tabela_pred = document.getElementById("tabel_pred");
-            tabela_pred.innerHTML='';
-            var singleRow_pred=document.createElement('tr');
-            singleRow_pred.innerHTML += '<td>' + "Data i godzina" + '</td>';
-            singleRow_pred.innerHTML += '<td>' + "Liczba dostępnych rowerów" + '</td>';
-            tabela_pred.appendChild(singleRow_pred);
-            for (i=0; i < response.length; i=i+15){
+        if(stacje_pred == '0'){
+            alert("Proszę wybrać stacje z rowerami")
+        } else {
+            var poczatek_pred = "'"
+            stacje_pred = poczatek_pred.concat(stacje_pred, "'")
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://127.0.0.1:5000/velib/predykcja/" + stacje_pred,
+                "method": "GET",
+                "dataType": 'json'
+            }
+            $.ajax(settings).done(function (response) {
+                var tabela_pred = document.getElementById("tabel_pred");
+                tabela_pred.innerHTML='';
                 var singleRow_pred=document.createElement('tr');
-                const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
-                const humanDateFormat = dateObject.toLocaleString()
-                singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
-                singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
-                tabela_pred.appendChild(singleRow_pred);}
+                singleRow_pred.innerHTML += '<td>' + "Data i godzina" + '</td>';
+                singleRow_pred.innerHTML += '<td>' + "Liczba dostępnych rowerów" + '</td>';
+                tabela_pred.appendChild(singleRow_pred);
+                for (i=0; i < response.length; i=i+15){
+                    var singleRow_pred=document.createElement('tr');
+                    const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
+                    const humanDateFormat = dateObject.toLocaleString()
+                    singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
+                    singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
+                    tabela_pred.appendChild(singleRow_pred);}
 
-})};
+})}};
 
     var pobierzDane_stat = function () {
         var from_stat = Date.parse($('#from_stat').val())/1000;
