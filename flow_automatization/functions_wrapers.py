@@ -9,13 +9,17 @@ import pandas as pd
 from cassandra.cluster import Cluster
 import tempfile
 import itertools as IT
-import os
 from time import time
+import platform
+import os
 # W tym pliku definujemy procesy ładowania danych z głównego zbioru danych oraz uczenie modeli dla róźnych zbiorów danych
 #dla których zdefiniowane są funkcje wstępnego przetwarzania oraz ładowania tabeli
 
 
 def load_and_train(source):
+    plt = platform.system()
+    if plt == "Linux":
+        findspark.init("/home/smartcity/Downloads/spark-3.0.1-bin-hadoop2.7")
     path = findspark.find()
     path = os.path.join(path, 'models')
 
