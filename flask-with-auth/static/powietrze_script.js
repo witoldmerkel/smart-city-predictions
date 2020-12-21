@@ -37,13 +37,16 @@
 
     var pobierzDane = function () {
         var miasto = $('#miasta').val();
+        var fromd = Date.parse($('#from').val())/1000;
+        var tod = Date.parse($('#to').val())/1000;
         if(miasto == '0'){
-            alert("Proszę wybrać stacje pomiarową")
+            alert("Proszę wybrać stacje pomiarową - sekcja danych historycznych")
+        }  else if(fromd > tod){
+            alert("Prosze wybrać prawidłowy przedział czasowy - sekcja danych historycznych")
         } else {
             var poczatek = "'"
             miasto = poczatek.concat(miasto, "'")
-            var fromd = Date.parse($('#from').val())/1000;
-            var tod = Date.parse($('#to').val())/1000;
+
             var settings = {
                 "async": true,
                 "crossDomain": true,
@@ -102,7 +105,7 @@
     var pobierzDane_pred = function () {
         var miasto_pred = $('#miasta_pred').val();
         if(miasto_pred == '0'){
-            alert("Proszę wybrać stacje pomiarową")
+            alert("Proszę wybrać stacje pomiarową - sekcja predykcji")
         } else {
             var poczatek_pred = "'"
             miasto_pred = poczatek_pred.concat(miasto_pred, "'")
@@ -133,6 +136,9 @@
     var pobierzDane_stat = function () {
         var from_stat = Date.parse($('#from_stat').val())/1000;
         var to_stat = Date.parse($('#to_stat').val())/1000;
+        if (from_stat > to_stat){
+            alert("Prosze wybrać prawidłowy przedział czasowy - sekcja statystyk")
+        } else{
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -206,4 +212,4 @@
                 singleRow_danych.innerHTML += '<td>' + "Klasyfikator" + '</td>';
                 tabela_danych.appendChild(singleRow_danych);
             })
-        };
+        }};
