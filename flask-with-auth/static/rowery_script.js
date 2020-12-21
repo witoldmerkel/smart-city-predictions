@@ -188,6 +188,7 @@
                         singleRow_danych.innerHTML += '<td>' + Math.round(sr_wart_stat * 100) / 100 + '</td>';
                         singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
                         tabela_danych.appendChild(singleRow_danych);
-            }})
-            $('#loader_stat').addClass("hide-loader");
+            }
+                    $('#loader_stat').addClass("hide-loader");})
+
         }};

@@ -192,12 +192,13 @@
             })})}};
 
     var pobierzDane_stat = function () {
-        $('#loader').removeClass("hide-loader");
+        $('#loader_stat').removeClass("hide-loader");
+        wait(2000);
         var from_stat = Date.parse($('#from_stat').val())/1000;
         var to_stat = Date.parse($('#to_stat').val())/1000;
         if (from_stat > to_stat){
             alert("Prosze wybrać prawidłowy przedział czasowy - sekcja statystyk")
-            $('#loader').addClass("hide-loader");
+            $('#loader_stat').addClass("hide-loader");
         } else {
             var settings = {
                 "async": true,
@@ -266,6 +267,7 @@
                         singleRow_danych.innerHTML += '<td>' + Math.round(sr_wart_stat * 100) / 100 + '</td>';
                         singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
                         tabela_danych.appendChild(singleRow_danych);
-            }})
-            $('#loader').addClass("hide-loader");
+            }
+                $('#loader_stat').addClass("hide-loader");})
+
         }};
