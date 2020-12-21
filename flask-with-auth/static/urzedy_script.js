@@ -36,16 +36,16 @@
 // Funkcja pobierająca dane dotyczace wybranego przez użytkownika punktu oraz okresu czasu
 // Następnie te dane są ładowane do wygenerowanej tabeli
     var pobierzDane = function () {
-        $('#loader').removeClass("hide-loader");
+        $('#loader_hist').removeClass("hide-loader");
         var urzad = $('#urzedy').val();
         var fromd = Date.parse($('#from').val())/1000;
         var tod = Date.parse($('#to').val())/1000;
         if(urzad == '0'){
             alert("Proszę wybrać urząd - sekcja danych historycznych")
-            $('#loader').addClass("hide-loader");
+            $('#loader_hist').addClass("hide-loader");
         } else if(fromd > tod){
             alert("Prosze wybrać prawidłowy przedział czasowy - sekcja danych historycznych")
-            $('#loader').addClass("hide-loader");
+            $('#loader_hist').addClass("hide-loader");
         } else {
             var poczatek = "'"
             urzad = poczatek.concat(urzad, "'")
@@ -88,7 +88,7 @@
                         singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
                         singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).liczbaklwkolejce + '</td>';
                         tabela.appendChild(singleRow);}
-                    $('#loader').addClass("hide-loader");
+                    $('#loader_hist').addClass("hide-loader");
 
 })
 
@@ -139,11 +139,11 @@
 
 
     var pobierzDane_pred = function () {
-        $('#loader').removeClass("hide-loader");
+        $('#loader_pred').removeClass("hide-loader");
         var urzad_pred = $('#urzedy_pred').val();
         if(urzad_pred == '0'){
             alert("Proszę wybrać urząd - sekcja predykcji")
-            $('#loader').addClass("hide-loader");
+            $('#loader_pred').addClass("hide-loader");
         } else {
             var poczatek = "'"
             urzad_pred = poczatek.concat(urzad_pred, "'")
@@ -188,7 +188,7 @@
                         singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
                         singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
                         tabela_pred.appendChild(singleRow_pred);}
-                    $('#loader').addClass("hide-loader");
+                    $('#loader_pred').addClass("hide-loader");
             })})}};
 
     var pobierzDane_stat = function () {
