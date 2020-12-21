@@ -36,13 +36,16 @@
 // Funkcja pobierająca dane dotyczace wybranego przez użytkownika punktu oraz okresu czasu
 // Następnie te dane są ładowane do wygenerowanej tabeli
     var pobierzDane = function () {
+        $('#loader').removeClass("hide-loader");
         var urzad = $('#urzedy').val();
         var fromd = Date.parse($('#from').val())/1000;
         var tod = Date.parse($('#to').val())/1000;
         if(urzad == '0'){
             alert("Proszę wybrać urząd - sekcja danych historycznych")
+            $('#loader').addClass("hide-loader");
         } else if(fromd > tod){
             alert("Prosze wybrać prawidłowy przedział czasowy - sekcja danych historycznych")
+            $('#loader').addClass("hide-loader");
         } else {
             var poczatek = "'"
             urzad = poczatek.concat(urzad, "'")
@@ -85,6 +88,7 @@
                         singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
                         singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).liczbaklwkolejce + '</td>';
                         tabela.appendChild(singleRow);}
+                    $('#loader').addClass("hide-loader");
 
 })
 
@@ -114,33 +118,32 @@
 // Funkcja ładująca okienka dla wybranego urzędu w sekcji predykcji
     var zaladujOkna_pred = function(){
         var urzad_pred = $('#urzedy_pred').val();
-        if(urzad_pred == '0'){
-            alert("Proszę wybrać urząd")
-        } else {
-            var poczatek = "'"
-            urzad_pred = poczatek.concat(urzad_pred, "'")
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "http://127.0.0.1:5000/urzedy/" + urzad_pred,
-                "method": "GET",
-                "dataType": 'json'
-            }
-            $.ajax(settings).done(function (response) {
-                var select = document.getElementById("okienka_pred");
-                select.innerHTML = "";
-                for (i=0; i < response.length; i++){
-                    var x = document.getElementById("okienka_pred");
-                    var option = document.createElement("option");
-                    option.text = JSON.parse(response[i][0]).okienko;
-                    option.value = JSON.parse(response[i][0]).okienko;
-                    x.add(option);}})}};
+        var poczatek = "'"
+        urzad_pred = poczatek.concat(urzad_pred, "'")
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://127.0.0.1:5000/urzedy/" + urzad_pred,
+            "method": "GET",
+            "dataType": 'json'
+        }
+        $.ajax(settings).done(function (response) {
+            var select = document.getElementById("okienka_pred");
+            select.innerHTML = "";
+            for (i=0; i < response.length; i++){
+                var x = document.getElementById("okienka_pred");
+                var option = document.createElement("option");
+                option.text = JSON.parse(response[i][0]).okienko;
+                option.value = JSON.parse(response[i][0]).okienko;
+                x.add(option);}})};
 
 
     var pobierzDane_pred = function () {
+        $('#loader').removeClass("hide-loader");
         var urzad_pred = $('#urzedy_pred').val();
         if(urzad_pred == '0'){
             alert("Proszę wybrać urząd - sekcja predykcji")
+            $('#loader').addClass("hide-loader");
         } else {
             var poczatek = "'"
             urzad_pred = poczatek.concat(urzad_pred, "'")
@@ -185,13 +188,16 @@
                         singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
                         singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
                         tabela_pred.appendChild(singleRow_pred);}
+                    $('#loader').addClass("hide-loader");
             })})}};
 
     var pobierzDane_stat = function () {
+        $('#loader').removeClass("hide-loader");
         var from_stat = Date.parse($('#from_stat').val())/1000;
         var to_stat = Date.parse($('#to_stat').val())/1000;
         if (from_stat > to_stat){
             alert("Prosze wybrać prawidłowy przedział czasowy - sekcja statystyk")
+            $('#loader').addClass("hide-loader");
         } else {
             var settings = {
                 "async": true,
@@ -261,4 +267,5 @@
                         singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
                         tabela_danych.appendChild(singleRow_danych);
             }})
+            $('#loader').addClass("hide-loader");
         }};
