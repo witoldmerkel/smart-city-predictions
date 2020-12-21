@@ -170,7 +170,7 @@ li {display: inline;}
   color: yellow}
 .loader {
   border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid cornflowerblue;
   border-radius: 50%;
   width: 100px;
   height: 100px;
