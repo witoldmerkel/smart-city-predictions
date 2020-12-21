@@ -118,7 +118,7 @@
         var from_stat = Date.parse($('#from_stat').val())/1000;
         var to_stat = Date.parse($('#to_stat').val())/1000;
         if (from_stat > to_stat){
-            alert("Prosze wybrać prawidłowy przedział czasowy - sekcja statystyk")
+            alert("Prosze wybrać prawidłowy przedział czasowy - sekcja statystyk");
             $('#loader_stat').addClass("hide-loader");
         } else {
             var settings = {
