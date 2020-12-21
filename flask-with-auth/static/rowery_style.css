@@ -195,7 +195,7 @@ display:none;
   left: 72%;
   z-index: 2;
  }
-.loader_stat {
+.loader_stat_dane {
   border: 16px solid #f3f3f3;
   border-top: 16px solid cornflowerblue;
   border-radius: 50%;
@@ -203,7 +203,19 @@ display:none;
   height: 100px;
   animation: spin 2s linear infinite;
   position: absolute;
-  top: 70%;
-  left: 47%;
+  top: 80%;
+  left: 18%;
+  z-index: 2;
+ }
+.loader_stat_model {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid cornflowerblue;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 80%;
+  left: 76%;
   z-index: 2;
  }
