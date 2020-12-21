@@ -51,6 +51,9 @@
                 "dataType": 'json'
             }
             $.ajax(settings).done(function (response) {
+                if (response.length == 0){
+                    alert("W bazie danych nie ma, żadnych danych o wybranej specyfikacji - sekcja danych historycznych")
+                }
                 var tabela = document.getElementById("tabel");
                 tabela.innerHTML='';
                 var singleRow=document.createElement('tr');
@@ -114,6 +117,9 @@
                 "dataType": 'json'
             }
             $.ajax(settings).done(function (response) {
+                if (response.length == 0){
+                    alert("W bazie danych nie ma, żadnych danych o wybranej specyfikacji - sekcja statystyki (dane)")
+                }
                 var tabela_danych = document.getElementById("tabel_danych");
                 tabela_danych.innerHTML='';
                 var singleRow_danych=document.createElement('tr');
@@ -144,6 +150,9 @@
                     "dataType": 'json'
                 }
                 $.ajax(settings1).done(function (response) {
+                    if (response.length == 0){
+                    alert("W bazie danych nie ma, żadnych danych o wybranej specyfikacji - sekcja statystyki (modele)")
+                }
                     var tabela_danych = document.getElementById("tabel_modelu");
                     tabela_danych.innerHTML='';
                     var singleRow_danych=document.createElement('tr');
