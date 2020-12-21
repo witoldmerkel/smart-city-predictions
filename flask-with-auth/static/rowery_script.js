@@ -35,13 +35,16 @@
 // Funkcja pobierająca dane dotyczace wybranego przez użytkownika punktu oraz okresu czasu
 // Następnie te dane są ładowane do wygenerowanej tabeli
     var pobierzDane = function () {
+        $('#loader').removeClass("hide-loader");
         var stacja = $('#stacje').val();
         var fromd = Date.parse($('#from').val())/1000;
         var tod = Date.parse($('#to').val())/1000;
         if(stacja == '0'){
             alert("Proszę wybrać stacje z rowerami - sekcja danych historycznych")
+            $('#loader').addClass("hide-loader");
         } else if(fromd > tod){
             alert("Prosze wybrać prawidłowy przedział czasowy - sekcja danych historycznych")
+            $('#loader').addClass("hide-loader");
         } else {
             var settings = {
                 "async": true,
@@ -69,13 +72,16 @@
                     singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).mechanical + '</td>';
                     singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).ebike + '</td>';
                     tabela.appendChild(singleRow);}
+                $('#loader').addClass("hide-loader");
 
 })}};
 
     var pobierzDane_pred = function () {
+        $('#loader').removeClass("hide-loader");
         var stacje_pred = $('#stacje_pred').val();
         if(stacje_pred == '0'){
             alert("Proszę wybrać stacje z rowerami - sekcja predykcji")
+            $('#loader').addClass("hide-loader");
         } else {
             var poczatek_pred = "'"
             stacje_pred = poczatek_pred.concat(stacje_pred, "'")
@@ -103,14 +109,17 @@
                     singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
                     singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
                     tabela_pred.appendChild(singleRow_pred);}
+                $('#loader').addClass("hide-loader");
 
 })}};
 
     var pobierzDane_stat = function () {
+        $('#loader').removeClass("hide-loader");
         var from_stat = Date.parse($('#from_stat').val())/1000;
         var to_stat = Date.parse($('#to_stat').val())/1000;
         if (from_stat > to_stat){
             alert("Prosze wybrać prawidłowy przedział czasowy - sekcja statystyk")
+            $('#loader').addClass("hide-loader");
         } else {
             var settings = {
                 "async": true,
@@ -144,6 +153,7 @@
                     singleRow_danych.innerHTML += '<td>' + liczba_rekordow + '</td>';
                     singleRow_danych.innerHTML += '<td>' + roznica_rekordow + '</td>';
                     tabela_danych.appendChild(singleRow_danych);
+
 
     }})
         var settings1 = {
@@ -179,4 +189,5 @@
                         singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
                         tabela_danych.appendChild(singleRow_danych);
             }})
+            $('#loader').addClass("hide-loader");
         }};
