@@ -211,21 +211,23 @@
                 singleRow_danych.innerHTML += '<td>' + "Ile danych napłyneło" + '</td>';
                 singleRow_danych.innerHTML += '<td>' + "Ile danych nie napłyneło" + '</td>';
                 tabela_danych.appendChild(singleRow_danych);
-                var liczba_rekordow = 0;
-                var roznica_rekordow = 0;
-                var srednia = 0;
-                for (i=0; i < response.length; i++){
-                   liczba_rekordow = liczba_rekordow + JSON.parse(response[i][0]).number_of_records;
-                   roznica_rekordow = roznica_rekordow + JSON.parse(response[i][0]).diff;
-                   srednia = srednia + JSON.parse(response[i][0]).mean_target;}
-                var singleRow_danych=document.createElement('tr');
-                srednia = srednia/response.length;
-                singleRow_danych.innerHTML += '<td>' + Math.round(srednia * 100) / 100 + '</td>';
-                singleRow_danych.innerHTML += '<td>' + liczba_rekordow + '</td>';
-                singleRow_danych.innerHTML += '<td>' + roznica_rekordow + '</td>';
-                tabela_danych.appendChild(singleRow_danych);
+                if (response.length != 0) {
+                    var liczba_rekordow = 0;
+                    var roznica_rekordow = 0;
+                    var srednia = 0;
+                    for (i = 0; i < response.length; i++) {
+                        liczba_rekordow = liczba_rekordow + JSON.parse(response[i][0]).number_of_records;
+                        roznica_rekordow = roznica_rekordow + JSON.parse(response[i][0]).diff;
+                        srednia = srednia + JSON.parse(response[i][0]).mean_target;
+                    }
+                    var singleRow_danych = document.createElement('tr');
+                    srednia = srednia / response.length;
+                    singleRow_danych.innerHTML += '<td>' + Math.round(srednia * 100) / 100 + '</td>';
+                    singleRow_danych.innerHTML += '<td>' + liczba_rekordow + '</td>';
+                    singleRow_danych.innerHTML += '<td>' + roznica_rekordow + '</td>';
+                    tabela_danych.appendChild(singleRow_danych);
 
-    })
+                }})
             var settings1 = {
                     "async": true,
                     "crossDomain": true,
@@ -244,18 +246,19 @@
                     singleRow_danych.innerHTML += '<td>' + "Dokładność" + '</td>';
                     singleRow_danych.innerHTML += '<td>' + "Rodzaj" + '</td>';
                     tabela_danych.appendChild(singleRow_danych);
-                    var sr_czas_ucz = 0;
-                    var sr_wart_stat = 0;
-                    for (i=0; i < response.length; i++){
-                        sr_czas_ucz = sr_czas_ucz + JSON.parse(response[i][0]).learning_time;
-                        sr_wart_stat = sr_wart_stat + JSON.parse(response[i][0]).stat;
-                    }
-                    sr_czas_ucz = sr_czas_ucz/response.length;
-                    sr_wart_stat = sr_wart_stat/response.length;
-                    var singleRow_danych=document.createElement('tr');
-                    singleRow_danych.innerHTML += '<td>' + Math.round(sr_czas_ucz * 100) / 100 + '</td>';
-                    singleRow_danych.innerHTML += '<td>' + Math.round(sr_wart_stat * 100) / 100 + '</td>';
-                    singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
-                    tabela_danych.appendChild(singleRow_danych);
-            })
+                    if (response.length != 0){
+                        var sr_czas_ucz = 0;
+                        var sr_wart_stat = 0;
+                        for (i=0; i < response.length; i++){
+                            sr_czas_ucz = sr_czas_ucz + JSON.parse(response[i][0]).learning_time;
+                            sr_wart_stat = sr_wart_stat + JSON.parse(response[i][0]).stat;
+                        }
+                        sr_czas_ucz = sr_czas_ucz/response.length;
+                        sr_wart_stat = sr_wart_stat/response.length;
+                        var singleRow_danych=document.createElement('tr');
+                        singleRow_danych.innerHTML += '<td>' + Math.round(sr_czas_ucz * 100) / 100 + '</td>';
+                        singleRow_danych.innerHTML += '<td>' + Math.round(sr_wart_stat * 100) / 100 + '</td>';
+                        singleRow_danych.innerHTML += '<td>' + "Regresor" + '</td>';
+                        tabela_danych.appendChild(singleRow_danych);
+            }})
         }};
