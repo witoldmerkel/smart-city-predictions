@@ -56,7 +56,7 @@
             }
             $.ajax(settings).done(function (response) {
                 if (response.length == 0){
-                    alert("W bazie danych nie ma, żadnych danych o wybranej specyfikacji - sekcja danych historycznych")
+                    alert("W bazie danych nie ma, żadnych predykcji z wybranego punktu")
                 }
                 var tabela = document.getElementById("tabel");
                 tabela.innerHTML='';

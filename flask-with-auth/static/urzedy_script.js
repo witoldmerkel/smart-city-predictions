@@ -169,6 +169,9 @@
                     "dataType": 'json'
             }
                 $.ajax(settings1).done(function (response) {
+                    if (response.length == 0){
+                    alert("W bazie danych nie ma, żadnych predykcji z wybranego urzędu i okienka")
+                }
                     var tabela_pred = document.getElementById("tabel_pred");
                     tabela_pred.innerHTML='';
                     var singleRow_pred=document.createElement('tr');

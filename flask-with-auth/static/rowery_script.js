@@ -87,6 +87,9 @@
                 "dataType": 'json'
             }
             $.ajax(settings).done(function (response) {
+                if (response.length == 0){
+                    alert("W bazie danych nie ma, żadnych predykcji z wybranej stacji")
+                }
                 var tabela_pred = document.getElementById("tabel_pred");
                 tabela_pred.innerHTML='';
                 var singleRow_pred=document.createElement('tr');
