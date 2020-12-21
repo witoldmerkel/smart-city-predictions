@@ -125,7 +125,7 @@
                 tabela_pred.appendChild(singleRow_pred);
                 for (i=0; i < response.length; i=i+15){
                     var singleRow_pred=document.createElement('tr');
-                    const dateObject = new Date(JSON.parse(response[i][0]).timestamp * 1000)
+                    const dateObject = new Date((JSON.parse(response[i][0]).timestamp + 14400)* 1000)
                     const humanDateFormat = dateObject.toLocaleString()
                     singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
                     singleRow_pred.innerHTML += '<td>' + JSON.parse(response[i][0]).prediction + '</td>';
