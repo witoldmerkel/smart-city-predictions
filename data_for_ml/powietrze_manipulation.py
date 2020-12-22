@@ -5,8 +5,8 @@ from pyspark.sql.window import Window
 
 
 # Załadowanie i przetworzenie danych z tabeli powietrze
-def powietrze_preprocessing(pow_data, agg,
-                time_frames, time_update):
+def powietrze_preprocessing(pow_data, agg=None,
+                time_frames="5 minutes", time_update="1 minute"):
 
     powietrze = common_manipulations.timestamp_to_date(pow_data)
 

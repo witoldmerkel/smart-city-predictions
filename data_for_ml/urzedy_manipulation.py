@@ -6,7 +6,8 @@ from pyspark.sql.window import Window
 
 # Załadowanie i przetworzenie danych z tabeli urzedy
 
-def urzedy_preprocessing(urzedy_data, agg, time_frames, time_update):
+def urzedy_preprocessing(urzedy_data, agg=None,
+                time_frames="5 minutes", time_update="1 minute"):
 
     urzedy_temp = urzedy_data.drop(*['czasobslugi', 'l_p', 'status', 'aktualny_numer'])
     urzedy = common_manipulations.timestamp_to_date(urzedy_temp)
