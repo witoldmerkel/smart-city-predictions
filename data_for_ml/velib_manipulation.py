@@ -7,7 +7,8 @@ from pyspark.sql.types import StringType
 # Załadowanie i przetworzenie danych z tabeli velib
 
 
-def velib_preprocessing(velib_data, agg, time_frames, time_update):
+def velib_preprocessing(velib_data, agg=None,
+                time_frames="5 minutes", time_update="1 minute"):
     dane = common_manipulations.timestamp_to_date(velib_data)
 
     dane = dane.drop(*['numbikesavailable', 'numdocksavailable', 'station_code'])
