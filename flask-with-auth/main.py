@@ -244,7 +244,7 @@ def get_powietrze_dane_archiwalne(miasto, fromd, tod):
 @app.route("/powietrze/predykcja/<miasto>", methods=['GET'])
 @login_required
 def get_powietrze_predykcje(miasto):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} limit 240 allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} limit 4 allow filtering'''
     params = {
         'miasto': miasto,
     }
@@ -283,7 +283,7 @@ def get_powietrze_stat_danych(fromd_stat, tod_stat):
 @app.route('/powietrze/statymod/<fromd_stat>/<tod_stat>')
 @login_required
 def get_powietrze_stat_modeli(fromd_stat,tod_stat):
-    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_pow' and timestamp > 
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where target = 'pm25' and timestamp > 
     {{fromd_stat}} and timestamp < {{tod_stat}} allow filtering'''
     params = {
         'fromd_stat': fromd_stat,
@@ -381,7 +381,7 @@ def get_velib_stat_danych(fromd_stat, tod_stat):
 @app.route('/velib/statymod/<fromd_stat>/<tod_stat>')
 @login_required
 def get_velib_stat_modeli(fromd_stat, tod_stat):
-    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_vel' and timestamp > 
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where target = 'numbikesavailable' and timestamp > 
     {{fromd_stat}} and timestamp < {{tod_stat}} allow filtering'''
     params = {
         'fromd_stat': fromd_stat,
@@ -520,7 +520,7 @@ def get_urzedy_stat_danych(fromd_stat, tod_stat):
 @app.route('/urzedy/statymod/<fromd_stat>/<tod_stat>')
 @login_required
 def get_urzedy_stat_modeli(fromd_stat, tod_stat):
-    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where model_name = 'RF_urz' and timestamp > 
+    zapytanie_uzytkownika = '''SELECT json * FROM models_statistics where target = 'liczbaKlwKolejce' and timestamp > 
     {{fromd_stat}} and timestamp < {{tod_stat}} allow filtering'''
     params = {
         'fromd_stat': fromd_stat,
