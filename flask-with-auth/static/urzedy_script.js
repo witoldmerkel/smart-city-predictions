@@ -84,12 +84,7 @@
                     for (i=0; i < response.length; i++){
                         var singleRow=document.createElement('tr');
                         var dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000);
-                        var rok = dateObject.getFullYear();
-                        var miesiac = dateObject.getMonth();
-                        var dzien = dateObject.getDay();
-                        var godzina = dateObject.getHours();
-                        var minuty = dateObject.getMinutes();
-                        var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
+                        var data = dateObject.toLocaleString();
                         singleRow.innerHTML += '<td>' + data + '</td>';
                         singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).liczbaklwkolejce + '</td>';
                         tabela.appendChild(singleRow);}
