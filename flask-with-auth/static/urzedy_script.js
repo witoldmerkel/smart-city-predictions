@@ -83,9 +83,14 @@
                     tabela.appendChild(singleRow);
                     for (i=0; i < response.length; i++){
                         var singleRow=document.createElement('tr');
-                        const dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000)
-                        const humanDateFormat = dateObject.toLocaleString()
-                        singleRow.innerHTML += '<td>' + humanDateFormat + '</td>';
+                        var dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000);
+                        var rok = dateObject.getFullYear();
+                        var miesiac = dateObject.getMonth();
+                        var dzien = dateObject.getDay();
+                        var godzina = dateObject.getHours();
+                        var minuty = dateObject.getMinutes();
+                        var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
+                        singleRow.innerHTML += '<td>' + data + '</td>';
                         singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).liczbaklwkolejce + '</td>';
                         tabela.appendChild(singleRow);}
                     $('#loader_hist').addClass("hide-loader");
@@ -183,9 +188,14 @@
                     tabela_pred.appendChild(singleRow_pred);
                     for (i=0; i < response.length; i=i+15){
                         var singleRow_pred = document.createElement('tr');
-                        const dateObject = new Date((JSON.parse(response[i][0]).timestamp + 14400 - 3600) * 1000)
-                        const humanDateFormat = dateObject.toLocaleString()
-                        singleRow_pred.innerHTML += '<td>' + humanDateFormat + '</td>';
+                        var dateObject = new Date((JSON.parse(response[i][0]).timestamp + 14400 - 3600) * 1000);
+                        var rok = dateObject.getFullYear();
+                        var miesiac = dateObject.getMonth();
+                        var dzien = dateObject.getDay();
+                        var godzina = dateObject.getHours();
+                        var minuty = dateObject.getMinutes();
+                        var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
+                        singleRow.innerHTML += '<td>' + data + '</td>';
                         singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
                         tabela_pred.appendChild(singleRow_pred);}
                     $('#loader_pred').addClass("hide-loader");
