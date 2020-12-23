@@ -116,7 +116,7 @@
                     var godzina = dateObject.getHours();
                     var minuty = dateObject.getMinutes();
                     var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
-                    singleRow.innerHTML += '<td>' + data + '</td>';
+                    singleRow_pred.innerHTML += '<td>' + data + '</td>';
                     singleRow_pred.innerHTML += '<td>' + Math.round(JSON.parse(response[i][0]).prediction) + '</td>';
                     tabela_pred.appendChild(singleRow_pred);}
                 $('#loader_pred').addClass("hide-loader");
