@@ -136,11 +136,10 @@
                     var singleRow_pred=document.createElement('tr');
                     var dateObject = new Date((JSON.parse(response[i][0]).timestamp + 14400)* 1000);
                     var rok = dateObject.getFullYear();
-                    var miesiac = dateObject.getMonth();
-                    var dzien = dateObject.getDay();
-                    var godzina = dateObject.getHours();
-                    var minuty = dateObject.getMinutes();
-                    var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
+                    var miesiac = addZero(dateObject.getMonth());
+                    var dzien = addZero(dateObject.getDay());
+                    var godzina = addZero(dateObject.getHours());
+                    var data = rok + "/" + miesiac + "/" + dzien + " " + godzina;
                     singleRow_pred.innerHTML += '<td>' + data + '</td>';
                     singleRow_pred.innerHTML += '<td>' + JSON.parse(response[i][0]).prediction + '</td>';
                     tabela_pred.appendChild(singleRow_pred);}
@@ -245,3 +244,9 @@
                 $('#loader_stat_model').addClass("hide-loader")})
 
         }};
+    function addZero(i) {
+        if (i < 10) {
+        i = "0" + i;
+      }
+        return i;
+    }
