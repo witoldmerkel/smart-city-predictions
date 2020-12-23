@@ -139,7 +139,8 @@
                     var miesiac = addZero(dateObject.getMonth());
                     var dzien = addZero(dateObject.getDay());
                     var godzina = addZero(dateObject.getHours());
-                    var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":00";
+                    var minuty = addZero(dateObject.getMinutes());
+                    var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
                     singleRow_pred.innerHTML += '<td>' + data + '</td>';
                     singleRow_pred.innerHTML += '<td>' + JSON.parse(response[i][0]).prediction + '</td>';
                     tabela_pred.appendChild(singleRow_pred);}
