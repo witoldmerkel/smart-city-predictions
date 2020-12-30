@@ -29,41 +29,66 @@ powietrze = spark.read \
 # Joining data for further analysis
 dane_do_agregacji = powietrze.join(weather, powietrze.timezone1 == weather.timezone, how='full')
 
+# Aggregating data
 df1 = dane_do_agregacji.groupBy("timezone").agg(
-    f.mean("temp").alias("Mean temperature"),
-    f.mean("feels_like").alias("Mean feels like temperature"),
-    f.mean("pressure").alias("Mean pressure"),
-    f.max("uvi").alias("Maximum uvi"),
-    f.min("uvi").alias("Minimum uvi"),
-    f.max('visibility').alias("Maximum visibility"),
-    f.min('visibility').alias("Minimum visibility"),
-    f.skewness("temp").alias("Skewness of temperature"),
-    f.mean("pop").alias("Mean chance of rain")
+    f.mean("temp").alias("mean_temperature"),
+    f.mean("feels_like").alias("mean_feels_like_temperature"),
+    f.mean("pressure").alias("mean_pressure"),
+    f.max("uvi").alias("maximum_uvi"),
+    f.min("uvi").alias("minimum_uvi"),
+    f.max('visibility').alias("maximum_visibility"),
+    f.min('visibility').alias("minimum_visibility"),
+    f.skewness("temp").alias("skewness_of_temperature"),
+    f.mean("pop").alias("mean_chance_of_rain")
 )
 
 df2 = dane_do_agregacji.groupBy("name").agg(
-    f.max('co').alias("Maximum CO condensation"),
-    f.min('co').alias("Minimum CO condensation"),
-    f.max('no2').alias("Maximum NO2 condensation"),
-    f.min('no2').alias("Minimum NO2 condensation"),
-    f.max('o3').alias("Maximum O3 condensation"),
-    f.min('o3').alias("Minimum O3 condensation"),
-    f.max('pm10').alias("Maximum PM10 condensation"),
-    f.min('pm10').alias("Minimum PM10 condensation"),
-    f.max('pm25').alias("Maximum PM2.5 condensation"),
-    f.min('pm25').alias("Minimum PM2.5 condensation"),
-    f.mean('pm25').alias("Mean PM2.5 condensation")
+    f.max('co').alias("maximum_co_condensation"),
+    f.min('co').alias("minimum_co_condensation"),
+    f.max('no2').alias("maximum_no2_condensation"),
+    f.min('no2').alias("minimum_no2_condensation"),
+    f.max('o3').alias("maximum_o3_condensation"),
+    f.min('o3').alias("minimum_o3_condensation"),
+    f.max('pm10').alias("maximum_pm10_condensation"),
+    f.min('pm10').alias("minimum_pm10_condensation"),
+    f.max('pm25').alias("maximum_pm25_condensation"),
+    f.min('pm25').alias("minimum_pm25_condensation"),
+    f.mean('pm25').alias("mean_pm25_condensation")
 )
 
-df3 = dane_do_agregacji.groupBy("weather_main").agg(
-    f.count("weather_main").alias("Number of weather type")
+df3 = dane_do_agregacji.groupBy("weather_main", "timezone").agg(
+    f.count("weather_main").alias("number_of_weather_type")
 )
 
-df4 = dane_do_agregacji.groupBy("weather_description").agg(
-    f.count("weather_description").alias("Number of different descriptions")
+df4 = dane_do_agregacji.groupBy("weather_description", "timezone").agg(
+    f.count("weather_description").alias("number_of_different_descriptions")
 )
 
-df1.show()
-df2.show()
-df3.show()
-df4.show()
+# Saving data to Apache Cassandra
+df1\
+    .write\
+    .format("org.apache.spark.sql.cassandra")\
+    .mode("append")\
+    .options(table="aggregates1", keyspace="weather_aggregations")\
+    .save()
+
+df2\
+    .write\
+    .format("org.apache.spark.sql.cassandra")\
+    .mode("append")\
+    .options(table="aggregates2", keyspace="weather_aggregations")\
+    .save()
+
+df3\
+    .write\
+    .format("org.apache.spark.sql.cassandra")\
+    .mode("append")\
+    .options(table="aggregates3", keyspace="weather_aggregations")\
+    .save()
+
+df4\
+    .write\
+    .format("org.apache.spark.sql.cassandra")\
+    .mode("append")\
+    .options(table="aggregates4", keyspace="weather_aggregations")\
+    .save()
