@@ -25,7 +25,8 @@ weather = spark.read\
 powietrze = spark.read\
         .format("org.apache.spark.sql.cassandra")\
         .options(table='powietrze', keyspace='json')\
-        .load()
+        .load().withColumn('timezone', f.when(f.col('name') == 'Paris', "Europe/Paris").otherwise("Europe/Warsaw"))
 
-weather.show()
-powietrze.show()
+# Joining data for further analysis
+dane_do_agregacji = powietrze.join(weather, powietrze.timezone == weather.timezone, how='full')
+dane_do_agregacji.show()
