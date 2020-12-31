@@ -1,14 +1,7 @@
 # Importing modules
-import pandas as pd
 import os
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
-
-
-# Makes loading faster
-def pandas_factory(colnames, rows):
-    return pd.DataFrame(rows, columns=colnames)
-
 
 # Spark setup
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.0' \
