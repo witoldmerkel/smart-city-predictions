@@ -85,3 +85,8 @@ df4\
     .mode("append")\
     .options(table="aggregates4", keyspace="weather_aggregations")\
     .save()
+
+df1.show()
+df2.show()
+df3.show()
+df4.show()
