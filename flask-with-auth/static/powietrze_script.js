@@ -32,6 +32,24 @@
 
 // Przy załadowaniu okienka dane zostaną wczytane do opcji wyboru
     window.onload = zaladujDane();
+
+// Jak strona się załaduje to zostanie ustawiony domyślny przedział czasowy
+    $(document).ready(function(){
+        var tmp = Date.now();
+        var tmp_from = tmp - 7*1000*86400;
+        var tmp_to = tmp - 1000*86400;
+        var data1 = new Date(tmp_from);
+        var data2 = new Date(tmp_to)
+        var from_date = data1.getFullYear().toString() + '-' + (data1.getMonth() + 1).toString().padStart(2, 0) +
+            '-' + data1.getDate().toString().padStart(2, 0);
+        var to_date = data2.getFullYear().toString() + '-' + (data2.getMonth() + 1).toString().padStart(2, 0) +
+            '-' + data2.getDate().toString().padStart(2, 0);
+        $('#from').val(from_date + "T00:00");
+        $('#from_stat').val(from_date + "T00:00");
+        $('#to').val(to_date + "T00:00");
+        $('#to_stat').val(to_date + "T00:00");
+    });
+
 // Funkcja pobierająca dane dotyczace wybranego przez użytkownika punktu oraz okresu czasu
 // Następnie te dane są ładowane do wygenerowanej tabeli
 
