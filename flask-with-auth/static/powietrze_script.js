@@ -153,12 +153,10 @@
                 for (i=0; i < response.length; i=i+1){
                     var singleRow_pred=document.createElement('tr');
                     var dateObject = new Date((JSON.parse(response[i][0]).timestamp + 14400)* 1000);
-                    var rok = dateObject.getFullYear();
-                    var miesiac = addZero(dateObject.getMonth());
-                    var dzien = addZero(dateObject.getDay());
                     var godzina = addZero(dateObject.getHours());
                     var minuty = addZero(dateObject.getMinutes());
-                    var data = rok + "/" + miesiac + "/" + dzien + " " + godzina + ":" + minuty;
+                    var data = dateObject.getFullYear().toString() + '/' + (dateObject.getMonth() + 1).toString().padStart(2, 0) +
+                        '/' + dateObject.getDate().toString().padStart(2, 0) + " " + godzina + ":" + minuty;
                     singleRow_pred.innerHTML += '<td>' + data + '</td>';
                     singleRow_pred.innerHTML += '<td>' + JSON.parse(response[i][0]).prediction + '</td>';
                     tabela_pred.appendChild(singleRow_pred);}
