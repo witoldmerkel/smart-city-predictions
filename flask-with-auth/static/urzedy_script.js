@@ -101,7 +101,7 @@
                     tabela.appendChild(singleRow);
                     for (i=0; i < response.length; i++){
                         var singleRow=document.createElement('tr');
-                        var dateObject = new Date((JSON.parse(response[i][0]).timestamp - 3600) * 1000);
+                        var dateObject = new Date((JSON.parse(response[i][0]).timestamp) * 1000);
                         var data = dateObject.toLocaleString();
                         singleRow.innerHTML += '<td>' + data + '</td>';
                         singleRow.innerHTML += '<td>' + JSON.parse(response[i][0]).liczbaklwkolejce + '</td>';
