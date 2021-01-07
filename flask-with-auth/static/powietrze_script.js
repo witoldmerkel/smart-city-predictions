@@ -56,8 +56,8 @@
     var pobierzDane = function () {
         $('#loader_hist').removeClass("hide-loader");
         var miasto = $('#miasta').val();
-        var fromd = Date.parse($('#from').val())/1000 - 3600;
-        var tod = Date.parse($('#to').val())/1000 - 3600;
+        var fromd = Date.parse($('#from').val())/1000;
+        var tod = Date.parse($('#to').val())/1000;
         if(miasto == '0'){
             alert("Proszę wybrać stacje pomiarową - sekcja danych historycznych")
             $('#loader_hist').addClass("hide-loader");
