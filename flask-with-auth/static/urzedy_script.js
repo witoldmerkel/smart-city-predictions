@@ -180,7 +180,7 @@
                     }
                 }
                 var urzad_pred1 = idgrupy
-                var czas = Date.now()/1000;
+                var czas = Math.round(Date.now()/1000);
                 var poczatek_pred = "'"
                 urzad_pred1 = poczatek_pred.concat(urzad_pred1, "'")
                 var settings1 = {
