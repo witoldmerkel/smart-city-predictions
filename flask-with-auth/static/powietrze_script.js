@@ -129,7 +129,7 @@
 
     var pobierzDane_pred = function () {
         $('#loader_pred').removeClass("hide-loader");
-        var czas = Math.round(Date.now()/1000); - 14400;
+        var czas = Math.round(Date.now()/1000) - 14400;
         var miasto_pred = $('#miasta_pred').val();
         if(miasto_pred == '0'){
             alert("Proszę wybrać stacje pomiarową - sekcja predykcji")

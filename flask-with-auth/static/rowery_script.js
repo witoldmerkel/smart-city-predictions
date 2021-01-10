@@ -97,7 +97,7 @@
     var pobierzDane_pred = function () {
         $('#loader_pred').removeClass("hide-loader");
         var stacje_pred = $('#stacje_pred').val();
-        var czas = Math.round(Date.now()/1000); - 14400;
+        var czas = Math.round(Date.now()/1000) - 14400;
         if(stacje_pred == '0'){
             alert("Proszę wybrać stacje z rowerami - sekcja predykcji")
             $('#loader_pred').addClass("hide-loader");
