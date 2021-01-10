@@ -343,7 +343,7 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 @app.route("/velib/predykcja/<stacja>/<timestamp>", methods=['GET'])
 @login_required
 def get_velib_predykcje(stacja, timestamp):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} adn timestamp > {{timestamp}} allow filtering'''
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} and timestamp > {{timestamp}} allow filtering'''
     params = {
         'stacja': stacja,
         'timestamp': timestamp,
