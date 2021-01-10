@@ -174,6 +174,9 @@
                 "dataType": 'json'
             }
             $.ajax(settings).done(function (response) {
+                if (response.length == 0){
+                    alert("W bazie danych nie ma, żadnych predykcji z wybranej stacji")
+                }
                 for (i=0; i < response.length; i++){
                     if (JSON.parse(response[i][0]).okienko == okienko_pred){
                         var idgrupy = JSON.parse(response[i][0]).idgrupy;
