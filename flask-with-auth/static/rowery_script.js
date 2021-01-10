@@ -97,6 +97,7 @@
     var pobierzDane_pred = function () {
         $('#loader_pred').removeClass("hide-loader");
         var stacje_pred = $('#stacje_pred').val();
+        var czas = Date.now()/1000;
         if(stacje_pred == '0'){
             alert("Proszę wybrać stacje z rowerami - sekcja predykcji")
             $('#loader_pred').addClass("hide-loader");
@@ -106,7 +107,7 @@
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://127.0.0.1:5000/velib/predykcja/" + stacje_pred,
+                "url": "http://127.0.0.1:5000/velib/predykcja/" + stacje_pred + "/" + czas,
                 "method": "GET",
                 "dataType": 'json'
             }

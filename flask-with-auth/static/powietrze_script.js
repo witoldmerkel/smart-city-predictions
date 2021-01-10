@@ -129,6 +129,7 @@
 
     var pobierzDane_pred = function () {
         $('#loader_pred').removeClass("hide-loader");
+        var czas = Date.now()/1000;
         var miasto_pred = $('#miasta_pred').val();
         if(miasto_pred == '0'){
             alert("Proszę wybrać stacje pomiarową - sekcja predykcji")
@@ -139,7 +140,7 @@
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://127.0.0.1:5000/powietrze/predykcja/" + miasto_pred,
+                "url": "http://127.0.0.1:5000/powietrze/predykcja/" + miasto_pred + "/" + czas,
                 "method": "GET",
                 "dataType": 'json'
             }

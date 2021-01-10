@@ -180,12 +180,13 @@
                     }
                 }
                 var urzad_pred1 = idgrupy
+                var czas = Date.now()/1000;
                 var poczatek_pred = "'"
                 urzad_pred1 = poczatek_pred.concat(urzad_pred1, "'")
                 var settings1 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": "http://127.0.0.1:5000/urzedy/predykcja/" + urzad_pred1,
+                    "url": "http://127.0.0.1:5000/urzedy/predykcja/" + urzad_pred1 + "/" + czas,
                     "method": "GET",
                     "dataType": 'json'
             }
