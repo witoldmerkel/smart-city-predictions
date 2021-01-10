@@ -241,12 +241,13 @@ def get_powietrze_dane_archiwalne(miasto, fromd, tod):
 
 
 # Pobieranie z bazy danych Cassandra danych dotyczących predykcji zanieczyszczenia powietrza w wybranym punkcie
-@app.route("/powietrze/predykcja/<miasto>", methods=['GET'])
+@app.route("/powietrze/predykcja/<miasto>/<timestamp>", methods=['GET'])
 @login_required
-def get_powietrze_predykcje(miasto):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} limit 4 allow filtering'''
+def get_powietrze_predykcje(miasto, timestamp):
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'powietrze' and individual = {{miasto}} and timestamp > {{timestamp}} allow filtering'''
     params = {
         'miasto': miasto,
+        'timestamp': timestamp,
     }
     query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
@@ -339,12 +340,13 @@ def get_rowery_dane_archiwalne(stacja, fromd, tod):
 
 
 # Pobieranie z bazy danych Cassandra danych dotyczących predykcji stanu stacji z rowerami w wybranym punkcie
-@app.route("/velib/predykcja/<stacja>", methods=['GET'])
+@app.route("/velib/predykcja/<stacja>/<timestamp>", methods=['GET'])
 @login_required
-def get_velib_predykcje(stacja):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} limit 240 allow filtering'''
+def get_velib_predykcje(stacja, timestamp):
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'velib' and individual = {{stacja}} adn timestamp > {{timestamp}} allow filtering'''
     params = {
         'stacja': stacja,
+        'timestamp': timestamp,
     }
     query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
@@ -478,12 +480,13 @@ def get_urzedy_dane_archiwalne(id, fromd, tod):
 
 
 # Pobieranie z bazy danych Cassandra danych dotyczących predykcji stanu stacji z rowerami w wybranym punkcie
-@app.route("/urzedy/predykcja/<grupa>", methods=['GET'])
+@app.route("/urzedy/predykcja/<grupa>/<timestamp>", methods=['GET'])
 @login_required
-def get_urzedy_predykcje(grupa):
-    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'urzedy' and individual = {{grupa}} limit 240 allow filtering'''
+def get_urzedy_predykcje(grupa, timestamp):
+    zapytanie_uzytkownika = '''SELECT json * FROM predictions where source_name = 'urzedy' and individual = {{grupa}} and timestamp > {{timestamp}} allow filtering'''
     params = {
         'grupa': grupa,
+        'timestamp': timestamp,
     }
     query, bind_params = j.prepare_query(zapytanie_uzytkownika, params)
     cql = query % bind_params
