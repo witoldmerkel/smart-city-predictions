@@ -9,4 +9,9 @@ The goal of this thesis is to design and implement an IT system that uses the Bi
 
 ## Przewodnik po repozytorium
 * data_for_ml - folder zawierający podstawowe operacje na danych. Funkcje zawarte w tym folderze służą przygotowaniu danych do uczenia maszynowego.
-* 
+* flask-with-auth - folder zawierający część aplikacji odpowiedzialną na graficzny interfejs użytkownika. Tutaj znajduje się baza danych użytkowników, kody .html, .css i .js odpowiedzialne za zarzadzanie poszczególnymi stronami oraz serwer w Flask.
+* flow_authomatization - folder zawierający funkcje odpowiedzialne za zarządzanie procesem trenowania modeli uczenia maszynowego oraz predykcji.
+* nifi - folder zawierający schematy wykorzystywanych przepływów w Apache NiFi.
+* spark_ml - zawiera funkcje tworzące modele regresyjne jak i klasyfikatory oraz dokunujące predykcji.
+* speed_layer - zawiera funkcje zarządzające przetwarzaniem strumieniowym oraz zapisem predykcji do Apache Cassandra.
+* weather - zawiera funkcje dokonujące agregacji dodatkowych danych o pogodzie (funkcjonalność wychodząca poza obszar pracy, któ®ej nie udało się zaimplementować).
