@@ -1,11 +1,11 @@
 # smart-city-predictions
-Prediction system for smart city data.
+System prognostyczny dedykowany dla danych inteligentnych miast
 
-Bachelor's thesis by Michał Stawikowski and Witold Merkel
+Praca inżynierska realizowana przez Michała Stawikowskiego and Witolda Merkela
 
-## Abstract
+## Abstrakt
 
-The goal of this thesis is to design and implement an IT system that uses the Big Data storage and processing environments to obtain data streams from smart cities, and machine learning methods for forecasting based on this data. The system should have an open architecture that allows adding new data sources and new components that create training and test datasets for training classification and regression models and make predictions using these models. The set goals have been achieved. As part of the system, sample components of data acquisition from various data sources and databases using recognized Big Data platforms have been implemented. Additionally, exemplary components have been created which, based on the collected data, perform the process of learning classification and regression models, and then use them to calculate and provide predicted values and model learning statistics. A graphical user interface has been implemented to present information and the results of the system operations. The thesis consists of an in-depth problem analysis, presentation of the system design process, and description of the created modules, as well as detailed technical documentation of the work performed.
+Celem pracy było zaprojektowanie i realizacja systemu informatycznego, który wykorzy-stuje środowiska składowania i przetwarzania danych wielkoskalowych (ang. Big Data) dopozyskiwania strumieni danych z inteligentnych miast (ang. Smart City) oraz metody uczeniamaszynowego do prognozowania na podstawie tych danych. System powinien mieć otwartąarchitekturę, która umożliwia dołączanie nowych źródeł danych oraz dołączanie nowychkomponentów, które tworzą zbiory uczące i testowe na potrzeby uczenia modeli klasyfikacyjnychi regresyjnych oraz wykonują prognozy z użyciem tych modeli. Postawione cele zostały zreali-zowane. W ramach systemu zostały zaimplementowane przykładowe komponenty pozyskiwaniadanych z różnych źródeł danych oraz ich składowanie, wykorzystujące uznane platformy BigData. Dodatkowo zostały stworzone przykładowe komponenty, które na podstawie zgroma-dzonych danych wykonują proces uczenia modeli klasyfikacyjnych i regresyjnych, a następniewyznaczają i udostępniają prognozowane wartości oraz statystyki uczenia modeli. W celuprezentacji informacji oraz wyników działania systemu zaimplementowano graficzny interfejsużytkownika. Na pracę składa się dogłębna analiza problemu, przedstawienie procesu projekto-wania systemu, opis działania stworzonych modułów, a także dokładna dokumentacja techniczna.
 
 ## Przewodnik po repozytorium
 * data_for_ml - folder zawierający podstawowe operacje na danych. Funkcje zawarte w tym folderze służą przygotowaniu danych do uczenia maszynowego.
