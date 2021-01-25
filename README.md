@@ -14,4 +14,3 @@ Celem pracy było zaprojektowanie i realizacja systemu informatycznego, który w
 * nifi - folder zawierający schematy wykorzystywanych przepływów w Apache NiFi.
 * spark_ml - zawiera funkcje tworzące modele regresyjne jak i klasyfikatory oraz dokunujące predykcji.
 * speed_layer - zawiera funkcje zarządzające przetwarzaniem strumieniowym oraz zapisem predykcji do Apache Cassandra.
-* weather - zawiera funkcje dokonujące agregacji dodatkowych danych o pogodzie (funkcjonalność wychodząca poza obszar pracy, któ®ej nie udało się zaimplementować).
